@@ -1,0 +1,216 @@
+{
+  "_meta": {
+    "objet": "Règles de bivouac par TYPE de zonage (hors parcs nationaux, traités site par site dans parcs-nationaux.json)",
+    "cle_jointure": "clé = nom de la couche téléchargée par fetch.sh",
+    "verifie_le": "2026-08-17",
+    "principe_cle": "Un zonage écologique n'est pas automatiquement un zonage réglementaire. Natura 2000, ZNIEFF et PNR n'interdisent pas le bivouac en eux-mêmes. Ce sont les réserves naturelles, les APB et les arrêtés préfectoraux/municipaux qui portent les interdictions.",
+    "droit_commun": {
+      "principe": "Hors zonage spécifique, le bivouac n'est pas interdit par principe en France, mais le camping sauvage est encadré.",
+      "textes": [
+        "Code de l'urbanisme, art. R111-32 : le camping est libre, hors interdictions, avec l'accord de celui qui a la jouissance du sol",
+        "Code de l'urbanisme, art. R111-33 : camping interdit sur les routes et voies publiques, rivages de la mer, dans un rayon de 200 m des points d'eau captés pour la consommation, sites classés/inscrits, abords des monuments historiques et classés",
+        "Code de l'urbanisme, art. R111-34 : le maire peut interdire le camping par arrêté motivé",
+        "Code de l'urbanisme, art. R111-35 : signalement des zones d'interdiction",
+        "Code forestier, art. L131-1 et s. : interdiction de feu à moins de 200 m des bois et forêts",
+        "Code pénal, art. R610-5 : sanction du non-respect d'un arrêté (38 €)"
+      ],
+      "terrain_prive": "Accord du propriétaire requis. Sans accord, le bivouac est possible mais constitue une occupation sans titre.",
+      "cout": {"payant": false, "reservation_obligatoire": false}
+    }
+  },
+
+  "pnr": {
+    "libelle": "Parc naturel régional",
+    "nb_sites": 59,
+    "statut": "renvoi_droit_commun",
+    "resume": "Aucune interdiction propre. Un PNR n'a pas de pouvoir de police : sa charte n'est pas opposable aux particuliers. Le bivouac relève du droit commun et des arrêtés municipaux, commune par commune.",
+    "explication_juridique": "Le PNR est un syndicat mixte régi par les art. L333-1 et s. du code de l'environnement. Sa charte engage les collectivités signataires, pas les visiteurs. C'est la différence majeure avec un parc national.",
+    "tente": {"autorisee": true, "type": "aucune_restriction", "station_debout_autorisee": null, "autoportante_autorisee": null},
+    "horaires": {"debut": null, "fin": null, "detail": "Aucune restriction horaire réglementaire au niveau du PNR ; des arrêtés municipaux peuvent en imposer"},
+    "localisation": {"contrainte": "libre", "distance_min_acces_routier": null, "corridor_m": null, "refuge_obligatoire": false},
+    "duree": {"nuits_max": null, "consecutif_meme_lieu": null},
+    "cout": {"payant": false, "montant_eur": null, "unite": null, "reservation_obligatoire": false},
+    "feu": {"feu_ouvert": false, "rechaud_portatif": true, "detail": "Interdiction du code forestier à moins de 200 m des bois ; arrêtés préfectoraux incendie fréquents en été"},
+    "attention": "Un PNR chevauche souvent des zonages qui, eux, interdisent : réserves naturelles, APB, sites classés. Toujours croiser avec les autres couches. Certains PNR publient des recommandations ou des aires de bivouac conventionnées (ex. Chartreuse, Vercors) — non réglementaires mais utiles.",
+    "base_legale": ["C. env. art. L333-1 et s.", "Droit commun : C. urb. art. R111-32 à R111-35"],
+    "sources": [{"type": "reference", "url": "https://www.parcs-naturels-regionaux.fr/"}]
+  },
+
+  "n2000_zps": {
+    "libelle": "Natura 2000 — Zone de protection spéciale (directive Oiseaux)",
+    "nb_sites": 407,
+    "statut": "renvoi_droit_commun",
+    "resume": "Aucune interdiction de bivouac en tant que telle. Natura 2000 est un outil de gestion contractuelle, pas de police.",
+    "explication_juridique": "Le régime Natura 2000 (C. env. art. L414-1 et s.) repose sur des DOCOB et des contrats, et sur l'évaluation d'incidences pour les projets et manifestations. Il ne crée pas d'interdiction individuelle de bivouaquer.",
+    "tente": {"autorisee": true, "type": "aucune_restriction", "station_debout_autorisee": null, "autoportante_autorisee": null},
+    "horaires": {"debut": null, "fin": null},
+    "localisation": {"contrainte": "libre", "distance_min_acces_routier": null, "corridor_m": null, "refuge_obligatoire": false},
+    "duree": {"nuits_max": null, "consecutif_meme_lieu": null},
+    "cout": {"payant": false, "montant_eur": null, "unite": null, "reservation_obligatoire": false},
+    "feu": {"feu_ouvert": false, "rechaud_portatif": true},
+    "attention": "Une manifestation ou un rassemblement organisé peut relever de l'évaluation d'incidences (C. env. art. R414-19). Un bivouac de groupe organisé n'est donc pas toujours neutre. Par ailleurs les ZPS recouvrent très souvent des réserves ou des APB qui interdisent.",
+    "base_legale": ["C. env. art. L414-1 et s.", "C. env. art. R414-19 (évaluation d'incidences)"],
+    "sources": [{"type": "reference", "url": "https://inpn.mnhn.fr/programme/natura2000"}]
+  },
+
+  "n2000_sic": {
+    "libelle": "Natura 2000 — Site d'importance communautaire / ZSC (directive Habitats)",
+    "nb_sites": 1355,
+    "statut": "renvoi_droit_commun",
+    "resume": "Identique aux ZPS : aucune interdiction propre de bivouac. Gestion contractuelle, pas de police.",
+    "explication_juridique": "Voir n2000_zps. Même régime juridique (C. env. art. L414-1 et s.).",
+    "tente": {"autorisee": true, "type": "aucune_restriction", "station_debout_autorisee": null, "autoportante_autorisee": null},
+    "horaires": {"debut": null, "fin": null},
+    "localisation": {"contrainte": "libre", "distance_min_acces_routier": null, "corridor_m": null, "refuge_obligatoire": false},
+    "duree": {"nuits_max": null, "consecutif_meme_lieu": null},
+    "cout": {"payant": false, "montant_eur": null, "unite": null, "reservation_obligatoire": false},
+    "feu": {"feu_ouvert": false, "rechaud_portatif": true},
+    "attention": "Couche la plus étendue du jeu de données (1355 sites). Sa présence seule n'est pas un signal d'interdiction — ne pas la traiter comme telle dans une carte, au risque de faire croire à une interdiction inexistante.",
+    "base_legale": ["C. env. art. L414-1 et s."],
+    "sources": [{"type": "reference", "url": "https://inpn.mnhn.fr/programme/natura2000"}]
+  },
+
+  "rnn": {
+    "libelle": "Réserve naturelle nationale",
+    "nb_sites": 186,
+    "statut": "interdit_sauf_exception",
+    "resume": "Le camping et le bivouac sont interdits dans la très grande majorité des réserves. Chaque réserve a son propre décret de création qui fixe la règle — vérification site par site indispensable.",
+    "explication_juridique": "C. env. art. L332-1 et s. Le décret de création peut réglementer ou interdire le camping (art. L332-3). Les art. R332-70 et R332-73 encadrent les activités. Le gestionnaire peut prendre des arrêtés complémentaires.",
+    "tente": {"autorisee": false, "type": "interdite", "station_debout_autorisee": false, "autoportante_autorisee": false, "detail": "Interdiction par défaut ; quelques réserves aménagent des aires dédiées"},
+    "horaires": {"debut": null, "fin": null, "detail": "Sans objet en cas d'interdiction ; les réserves qui autorisent calquent souvent 19h–9h"},
+    "localisation": {"contrainte": "aires_designees", "distance_min_acces_routier": null, "corridor_m": null, "refuge_obligatoire": false},
+    "duree": {"nuits_max": 0, "consecutif_meme_lieu": false},
+    "cout": {"payant": false, "montant_eur": null, "unite": null, "reservation_obligatoire": false},
+    "feu": {"feu_ouvert": false, "rechaud_portatif": false, "detail": "Le feu est interdit dans la quasi-totalité des réserves, réchaud inclus dans certaines"},
+    "sanction": "Jusqu'à 1 500 € (C. env. art. L332-25) — le régime le plus sévère des zonages courants, bien au-delà des 68 € des parcs nationaux",
+    "exemples_documentes": {
+      "RNN du Néouvielle": {
+        "statut": "restreint_zones",
+        "regle": "Bivouac autorisé 19h–9h uniquement sur les aires aménagées aux abords des lacs d'Orédon et d'Aubert ; interdit ailleurs",
+        "cout": {"payant": false, "reservation_obligatoire": false}
+      },
+      "RNN de la Haute Chaîne du Jura": {
+        "statut": "autorise_sous_conditions",
+        "regle": "Conditions de pratique du bivouac fixées par arrêté préfectoral du 16 octobre 2017",
+        "source": "https://www.rnn-hautechainedujura.fr/"
+      },
+      "RNN des Hauts Plateaux du Vercors": {
+        "statut": "autorise_sous_conditions",
+        "regle": "Bivouac réglementé par arrêté interpréfectoral d'application du décret de création",
+        "source": "https://www.parc-du-vercors.fr/sites/default/files/actualites/Accueil%20Biodiversit%C3%A9/ArreteApplicationDecretRNHPVComplet.pdf"
+      }
+    },
+    "methode_verification": "Le champ `acte_deb` de la couche donne la référence du décret ; `url_fiche` pointe la fiche INPN du site. Récupérer le décret sur Légifrance et chercher les termes « camping », « bivouac », « campement ».",
+    "base_legale": ["C. env. art. L332-1 et s.", "C. env. art. L332-3", "C. env. art. R332-70, R332-73", "C. env. art. L332-25 (sanctions)"],
+    "sources": [{"type": "reference", "url": "https://www.reserves-naturelles.org/"}]
+  },
+
+  "rnr": {
+    "libelle": "Réserve naturelle régionale",
+    "nb_sites": 195,
+    "statut": "interdit_sauf_exception",
+    "resume": "Même logique que les RNN, mais l'acte de création est une délibération du conseil régional. Interdiction fréquente du camping et du bivouac.",
+    "explication_juridique": "C. env. art. L332-2-1. La région classe et fixe la réglementation par délibération.",
+    "tente": {"autorisee": false, "type": "interdite", "station_debout_autorisee": false, "autoportante_autorisee": false},
+    "horaires": {"debut": null, "fin": null},
+    "localisation": {"contrainte": "aires_designees", "distance_min_acces_routier": null, "corridor_m": null, "refuge_obligatoire": false},
+    "duree": {"nuits_max": 0, "consecutif_meme_lieu": false},
+    "cout": {"payant": false, "montant_eur": null, "unite": null, "reservation_obligatoire": false},
+    "feu": {"feu_ouvert": false, "rechaud_portatif": false},
+    "sanction": "Jusqu'à 1 500 € (C. env. art. L332-25)",
+    "methode_verification": "Délibération régionale, référencée via `url_fiche` (fiche INPN). Moins bien centralisé que les RNN.",
+    "base_legale": ["C. env. art. L332-2-1", "C. env. art. L332-25"]
+  },
+
+  "rnc": {
+    "libelle": "Réserve naturelle de Corse",
+    "nb_sites": 7,
+    "statut": "interdit_sauf_exception",
+    "resume": "Compétence de la Collectivité de Corse. Régime comparable aux RNR.",
+    "explication_juridique": "C. env. art. L332-2-2 : la collectivité territoriale de Corse exerce la compétence de classement.",
+    "tente": {"autorisee": false, "type": "interdite", "station_debout_autorisee": false, "autoportante_autorisee": false},
+    "horaires": {"debut": null, "fin": null},
+    "localisation": {"contrainte": "aires_designees", "distance_min_acces_routier": null, "corridor_m": null, "refuge_obligatoire": false},
+    "duree": {"nuits_max": 0, "consecutif_meme_lieu": false},
+    "cout": {"payant": false, "montant_eur": null, "unite": null, "reservation_obligatoire": false},
+    "feu": {"feu_ouvert": false, "rechaud_portatif": false},
+    "sanction": "Jusqu'à 1 500 € (C. env. art. L332-25)",
+    "base_legale": ["C. env. art. L332-2-2"]
+  },
+
+  "apb": {
+    "libelle": "Arrêté de protection de biotope (APPB)",
+    "nb_sites": 1103,
+    "statut": "verifier_arrete",
+    "resume": "Chaque APB est un arrêté préfectoral au contenu propre. Beaucoup interdisent la circulation, le campement ou la fréquentation, parfois seulement sur une période (nidification). Vérification obligatoire au cas par cas.",
+    "explication_juridique": "C. env. art. R411-15 à R411-17. Le préfet fixe les mesures nécessaires à la conservation des biotopes. Les interdictions sont directement opposables aux particuliers — contrairement à une charte de PNR.",
+    "tente": {"autorisee": null, "type": "aucune_restriction", "station_debout_autorisee": null, "autoportante_autorisee": null, "detail": "Dépend entièrement de l'arrêté"},
+    "horaires": {"debut": null, "fin": null, "detail": "Certains APB comportent une interdiction saisonnière (période de nidification, ex. 15 février – 15 août pour les rapaces en falaise) plutôt qu'horaire"},
+    "localisation": {"contrainte": "libre", "distance_min_acces_routier": null, "corridor_m": null, "refuge_obligatoire": false, "detail": "Certains APB interdisent toute pénétration dans le périmètre"},
+    "duree": {"nuits_max": null, "consecutif_meme_lieu": null},
+    "cout": {"payant": false, "montant_eur": null, "unite": null, "reservation_obligatoire": false},
+    "feu": {"feu_ouvert": false, "rechaud_portatif": null},
+    "sanction": "Contravention de 4e classe — jusqu'à 750 € (C. env. art. R415-1)",
+    "methode_verification": "Le champ `acte_deb` donne la référence de l'arrêté préfectoral ; `url_fiche` pointe la fiche INPN. Les arrêtés sont publiés au recueil des actes administratifs de la préfecture — pas de base nationale consolidée. C'est le principal point de friction pour un traitement automatisé.",
+    "base_legale": ["C. env. art. R411-15 à R411-17", "C. env. art. R415-1 (sanctions)"]
+  },
+
+  "rb": {
+    "libelle": "Réserve biologique (ONF) — dirigée (RBD) ou intégrale (RBI)",
+    "nb_sites": 285,
+    "statut": "interdit_sauf_exception",
+    "resume": "En réserve biologique intégrale, la fréquentation hors sentiers et le bivouac sont généralement interdits. En réserve dirigée, régime variable fixé par l'arrêté ministériel.",
+    "explication_juridique": "Créées par arrêté ministériel sur proposition de l'ONF, en forêt publique. Le régime forestier s'applique en plus (C. for. art. L161-1 et s.).",
+    "tente": {"autorisee": false, "type": "interdite", "station_debout_autorisee": false, "autoportante_autorisee": false, "detail": "RBI : interdiction quasi systématique. RBD : à vérifier."},
+    "horaires": {"debut": null, "fin": null},
+    "localisation": {"contrainte": "aires_designees", "distance_min_acces_routier": null, "corridor_m": null, "refuge_obligatoire": false},
+    "duree": {"nuits_max": 0, "consecutif_meme_lieu": false},
+    "cout": {"payant": false, "montant_eur": null, "unite": null, "reservation_obligatoire": false},
+    "feu": {"feu_ouvert": false, "rechaud_portatif": false, "detail": "Feu interdit — code forestier, à moins de 200 m des bois"},
+    "attention": "En forêt domaniale hors réserve, l'ONF tolère généralement le bivouac d'une nuit, discret, sans feu, hors zones interdites par arrêté. C'est une tolérance, pas un droit.",
+    "base_legale": ["Arrêté ministériel de création", "Code forestier art. L161-1 et s.", "C. for. art. L131-1 (feu)"],
+    "sources": [{"type": "reference", "url": "https://www.onf.fr/"}]
+  },
+
+  "site_classe": {
+    "libelle": "Site classé (et site inscrit)",
+    "nb_sites": 2657,
+    "statut": "interdit",
+    "resume": "Le camping et le caravaning sont interdits de plein droit dans les sites classés, par le code de l'urbanisme. Interdiction générale, sans besoin d'arrêté local.",
+    "explication_juridique": "C. urb. art. R111-33 : le camping est interdit dans les sites classés ou inscrits. C. env. art. L341-1 et s. : régime des monuments naturels et sites. Cette interdiction est l'une des rares qui découle directement du zonage, sans acte local.",
+    "tente": {"autorisee": false, "type": "interdite", "station_debout_autorisee": false, "autoportante_autorisee": false},
+    "horaires": {"debut": null, "fin": null, "detail": "Interdiction permanente"},
+    "localisation": {"contrainte": "libre", "distance_min_acces_routier": null, "corridor_m": null, "refuge_obligatoire": false},
+    "duree": {"nuits_max": 0, "consecutif_meme_lieu": false},
+    "cout": {"payant": false, "montant_eur": null, "unite": null, "reservation_obligatoire": false},
+    "feu": {"feu_ouvert": false, "rechaud_portatif": null},
+    "sanction": "C. urb. et C. env. art. L341-19 et s.",
+    "nuance": "La lettre du texte vise le « camping », pas le « bivouac ». En pratique, le bivouac d'une nuit démonté au matin est souvent toléré en site classé de montagne (ex. cirque de Gavarnie), mais il n'existe aucune base juridique pour s'en prévaloir. À signaler comme « interdit, tolérance locale possible » plutôt que comme autorisé.",
+    "base_legale": ["C. urb. art. R111-33", "C. env. art. L341-1 et s."]
+  },
+
+  "cdl": {
+    "libelle": "Terrain du Conservatoire du littoral",
+    "statut": "interdit",
+    "resume": "Bivouac et camping interdits sur les terrains du Conservatoire. Le gestionnaire (souvent commune ou département) fixe les règles d'accès par arrêté.",
+    "explication_juridique": "C. env. art. L322-1 et s. Terrains propriété d'un établissement public, gérés par convention. Les règles d'accès sont fixées par le gestionnaire.",
+    "tente": {"autorisee": false, "type": "interdite", "station_debout_autorisee": false, "autoportante_autorisee": false},
+    "horaires": {"debut": null, "fin": null},
+    "localisation": {"contrainte": "libre", "distance_min_acces_routier": null, "corridor_m": null, "refuge_obligatoire": false},
+    "duree": {"nuits_max": 0, "consecutif_meme_lieu": false},
+    "cout": {"payant": false, "montant_eur": null, "unite": null, "reservation_obligatoire": false},
+    "feu": {"feu_ouvert": false, "rechaud_portatif": false},
+    "attention": "Se cumule avec l'interdiction de camper sur les rivages de la mer (C. urb. art. R111-33) et souvent avec la loi Littoral.",
+    "base_legale": ["C. env. art. L322-1 et s.", "C. urb. art. R111-33"],
+    "sources": [{"type": "reference", "url": "https://www.conservatoire-du-littoral.fr/"}]
+  },
+
+  "_non_telecharge": {
+    "commentaire": "Zonages pertinents non inclus dans fetch.sh, avec la raison.",
+    "znieff": "ZNIEFF 1 et 2 (couches patrinat_znieff*) : inventaire scientifique SANS portée réglementaire. Aucune règle de bivouac. Ajoutables si besoin d'un affichage informatif, mais ne jamais en déduire une interdiction.",
+    "arretes_prefectoraux_incendie": "Non géoréférencés nationalement. Régime saisonnier et départemental, souvent le facteur le plus contraignant en été (interdiction totale d'accès aux massifs par vent fort). À consulter sur le site de chaque préfecture — c'est la principale limite de ce jeu de données.",
+    "arretes_municipaux": "Aucune base nationale. ~35 000 communes, chacune pouvant interdire le camping par arrêté motivé (C. urb. art. R111-34). Impossible à automatiser exhaustivement — limite structurelle assumée.",
+    "obligations_legales_debroussaillement": "Peuvent restreindre l'accès en zone à risque incendie.",
+    "terrains_militaires": "Interdiction d'accès. Couche disponible séparément si besoin."
+  }
+}

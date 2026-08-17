@@ -1,0 +1,434 @@
+{
+  "_meta": {
+    "objet": "Règles de bivouac par site — parcs nationaux (cœur + aire d'adhésion)",
+    "cle_jointure": "id_mnhn (couche patrinat_pn de la Géoplateforme IGN)",
+    "verifie_le": "2026-08-17",
+    "avertissement": "Les arrêtés du directeur sont modifiables chaque saison. Un arrêté préfectoral (risque incendie) ou municipal peut interdire le bivouac même là où le parc l'autorise.",
+    "base_legale_commune": [
+      "Code de l'environnement, art. L331-1 et s. (parcs nationaux)",
+      "Code de l'environnement, art. L331-4-1 (pouvoir réglementaire du directeur)",
+      "Code de l'environnement, art. R331-62 et s.",
+      "Sanction usuelle : contravention de 3e classe (art. R331-64), 68 € forfaitaire par personne"
+    ],
+    "schema": {
+      "statut": "interdit | autorise_sous_conditions | restreint_zones | regime_specifique",
+      "tente": {
+        "autorisee": "bool",
+        "type": "aucune_restriction | legere_sans_station_debout | sans_tente_uniquement | interdite",
+        "station_debout_autorisee": "bool — critère juridique récurrent : la tente ne doit pas permettre de se tenir debout",
+        "autoportante_autorisee": "bool | null si non spécifié"
+      },
+      "horaires": {
+        "debut": "HH:MM ou 'coucher_soleil' / 'coucher_soleil-1h' / 'tombee_nuit'",
+        "fin": "HH:MM ou 'lever_soleil+1h' / 'lever_jour'",
+        "obligation": "démontage impératif avant l'heure de fin — une tente debout hors fenêtre = camping sauvage sanctionnable"
+      },
+      "localisation": {
+        "contrainte": "libre | distance_acces | proximite_refuge_obligatoire | couloir_sentier | aires_designees",
+        "distance_min_acces_routier": "durée de marche minimale, ou null",
+        "corridor_m": "largeur autorisée de part et d'autre du sentier, ou null",
+        "refuge_obligatoire": "bool"
+      },
+      "duree": {"nuits_max": "int", "consecutif_meme_lieu": "bool"},
+      "cout": {
+        "payant": "bool",
+        "montant_eur": "number | null",
+        "unite": "emplacement | personne | null",
+        "reservation_obligatoire": "bool"
+      },
+      "feu": {"feu_ouvert": "bool", "rechaud_portatif": "bool"},
+      "saison": "période d'ouverture, ou null si toute l'année"
+    },
+    "regle_aire_adhesion": "Pas de réglementation « cœur ». Le camping sauvage relève du droit commun : art. R111-32 à R111-35 du code de l'urbanisme, arrêtés municipaux et préfectoraux. Ni interdiction ni autorisation générale."
+  },
+
+  "FR3300001": {
+    "parc": "Vanoise",
+    "zone": "Cœur",
+    "statut": "restreint_zones",
+    "resume": "Uniquement aux aires de bivouac de certains refuges gardés, 19h–8h, du 1er juin au 30 septembre, 5 €/emplacement, réservation obligatoire auprès du gardien.",
+    "tente": {
+      "autorisee": true,
+      "type": "legere_sans_station_debout",
+      "station_debout_autorisee": false,
+      "autoportante_autorisee": null
+    },
+    "horaires": {"debut": "19:00", "fin": "08:00"},
+    "localisation": {
+      "contrainte": "proximite_refuge_obligatoire",
+      "distance_min_acces_routier": null,
+      "corridor_m": null,
+      "refuge_obligatoire": true,
+      "detail": "Aires désignées aux abords de refuges gardés, communes d'Aussois, Bonneval-sur-Arc, Champagny-en-Vanoise, Peisey-Nancroix, Pralognan-la-Vanoise, Saint-Bon-Tarentaise, Termignon, Val d'Isère (localisation en annexe de l'arrêté). Le portail du parc recense 25 refuges avec aire de bivouac, dont 2 refuges FFCAM sans aire."
+    },
+    "duree": {"nuits_max": 1, "consecutif_meme_lieu": false},
+    "cout": {
+      "payant": true,
+      "montant_eur": 5,
+      "unite": "emplacement",
+      "reservation_obligatoire": true,
+      "detail": "5 € par emplacement, donnant accès aux sanitaires et douches du refuge. Réservation directe auprès du refuge (téléphone ou site). Réserver ~1,5 mois à l'avance en haute saison, places limitées. Se présenter au gardien à l'arrivée pour l'attribution de l'emplacement."
+    },
+    "feu": {"feu_ouvert": false, "rechaud_portatif": true},
+    "saison": "1er juin – 30 septembre (période de gardiennage effectif des refuges)",
+    "derogation": "Le directeur peut autoriser des projets pédagogiques de groupe, à plus d'une heure de marche d'un accès routier et des zones habitées.",
+    "sanction": "Contravention de 3e classe (art. R331-64 C. env.) — 68 €",
+    "sources": [
+      {"type": "arrete", "ref": "Arrêté du 09/07/2015 concernant le bivouac dans le cœur du parc national de la Vanoise", "url": "https://aida.ineris.fr/reglementation/arrete-090715-concernant-bivouac-coeur-parc-national-vanoise"},
+      {"type": "visa", "ref": "C. env. art. L331-1 à L331-29 et R331-1 à R331-85 ; loi n° 2006-436 ; décret n° 2009-447 ; décret n° 2015-473 (charte)"},
+      {"type": "officiel", "url": "https://www.vanoise-parcnational.fr/fr/des-decouvertes/sejourner-dans-le-parc/lart-du-bivouac-responsable-en-vanoise"},
+      {"type": "faq", "url": "https://votreparc.vanoise.com/cms_viewFile.php?idtf=201808&path=FAQ-Bivouac.pdf"}
+    ]
+  },
+
+  "FR3300005": {
+    "parc": "Ecrins",
+    "zone": "Cœur",
+    "statut": "autorise_sous_conditions",
+    "resume": "Autorisé gratuitement 19h–9h, à plus d'1h de marche d'un accès routier — ou à moins d'1h si à proximité de 3 refuges nommés.",
+    "tente": {
+      "autorisee": true,
+      "type": "legere_sans_station_debout",
+      "station_debout_autorisee": false,
+      "autoportante_autorisee": null,
+      "detail": "« Tente de petite taille, de dimension ne permettant pas la station debout »"
+    },
+    "horaires": {"debut": "19:00", "fin": "09:00", "detail": "Tente montée après 19h et démontée avant 9h"},
+    "localisation": {
+      "contrainte": "distance_acces",
+      "distance_min_acces_routier": "1h de marche",
+      "corridor_m": null,
+      "refuge_obligatoire": false,
+      "detail": "Soit à plus d'1h de marche d'un accès routier ou des limites du cœur ; soit à moins d'1h mais à proximité de refuges particulièrement fréquentés des itinéraires de grande randonnée : Pré de la Chaumette (Champoléon), abords du lac de la Muzelle (Venosc), Pré des Selles aux abords du lac Lauvitel (Bourg-d'Oisans). Signalétique spécifique aux abords des lacs de la Muzelle et du Lauvitel."
+    },
+    "duree": {"nuits_max": 1, "consecutif_meme_lieu": false, "detail": "Une nuit, ou au plus la durée d'intempéries susceptibles de compromettre la sécurité du randonneur"},
+    "cout": {"payant": false, "montant_eur": null, "unite": null, "reservation_obligatoire": false},
+    "feu": {"feu_ouvert": false, "rechaud_portatif": true, "detail": "Réchaud portatif autorisé (art. 2) ; feux réalisés au sol interdits"},
+    "saison": null,
+    "sanction": "Contravention de 3e classe (art. R331-64 C. env.) — 68 €",
+    "sources": [
+      {"type": "arrete", "ref": "Arrêté n° 192/2013 du 4 juin 2014 relatif au bivouac dans le cœur du parc national des Écrins", "url": "https://www.ecrins-parcnational.fr/sites/ecrins-parcnational.com/files/fiche_doc/9678/14-06-192ardir-reglementationbivouac.pdf"},
+      {"type": "visa", "ref": "C. env. art. L331-4-1 et R331-62 ; décret n° 2009-448 du 21/04/2009 art. 15-II-3° ; décret n° 2012-1540 du 28/12/2012 (charte) chap. II-B et C, modalité 20-II"},
+      {"type": "aida", "url": "https://aida.ineris.fr/reglementation/arrete-ndeg-1922013-040614-relatif-bivouac-coeur-parc-national-ecrins"}
+    ]
+  },
+
+  "FR3300006": {
+    "parc": "Mercantour",
+    "zone": "Cœur",
+    "statut": "autorise_sous_conditions",
+    "resume": "Autorisé gratuitement 19h–9h, à plus d'1h de marche des limites du cœur ou d'un accès routier. Tente non autoportante uniquement. Zone Merveilles/Fontanalba : 2 aires seulement.",
+    "tente": {
+      "autorisee": true,
+      "type": "legere_sans_station_debout",
+      "station_debout_autorisee": false,
+      "autoportante_autorisee": false,
+      "detail": "Tentes non autoportantes uniquement — restriction propre au Mercantour"
+    },
+    "horaires": {"debut": "19:00", "fin": "09:00"},
+    "localisation": {
+      "contrainte": "distance_acces",
+      "distance_min_acces_routier": "1h de marche",
+      "corridor_m": null,
+      "refuge_obligatoire": false,
+      "detail": "À plus d'une heure de marche d'un accès routier ou des limites du cœur."
+    },
+    "duree": {"nuits_max": 1, "consecutif_meme_lieu": false, "detail": "Une seule nuit par site"},
+    "cout": {"payant": false, "montant_eur": null, "unite": null, "reservation_obligatoire": false},
+    "feu": {"feu_ouvert": false, "rechaud_portatif": true},
+    "saison": null,
+    "interdictions_associees": [
+      "Aucun aménagement du site : pas de rigole de drainage, pas d'agencement de pierres, pas de modification du paysage (art. 3)",
+      "Chiens interdits dans le cœur, même tenus en laisse ou portés",
+      "Drones strictement interdits"
+    ],
+    "zones_particulieres": {
+      "nom": "Zone réglementée des gravures rupestres Merveilles/Fontanalba",
+      "regle": "Bivouac permis uniquement aux abords du refuge de Fontanalbe et du refuge des Merveilles (commune de Tende), aux mêmes conditions de tente, d'horaires et de durée.",
+      "refuge_obligatoire": true
+    },
+    "sanction": "Contravention de 3e classe (art. R331-64 C. env.)",
+    "sources": [
+      {"type": "arrete", "ref": "Arrêté n° 2018-07 du 01/06/2018 réglementant la pratique du bivouac dans le cœur du parc national du Mercantour (abroge l'arrêté n° 2013-08 du 03/06/2013)", "url": "https://aida.ineris.fr/reglementation/arrete-ndeg-2018-07-010618-reglementant-pratique-bivouac-coeur-parc-national"},
+      {"type": "visa", "ref": "C. env. art. L331-4-1 et R331-35 ; décret n° 2009-486 du 29/04/2009 ; décret n° 2012-1541 du 28/12/2012 (charte) ; arrêté n° 2013-09 (zones de gravures rupestres)"},
+      {"type": "officiel", "url": "https://www.mercantour-parcnational.fr/fr/le-parc-national-du-mercantour/la-reglementation"}
+    ]
+  },
+
+  "FR3300003": {
+    "parc": "Pyrénées",
+    "zone": "Cœur",
+    "statut": "autorise_sous_conditions",
+    "resume": "Autorisé gratuitement 19h–9h, à plus d'1h de marche de tout accès motorisé. Réserve du Néouvielle : uniquement aux aires d'Orédon et d'Aubert (gratuites, sans réservation).",
+    "tente": {
+      "autorisee": true,
+      "type": "legere_sans_station_debout",
+      "station_debout_autorisee": false,
+      "autoportante_autorisee": null,
+      "detail": "« Petite tente »"
+    },
+    "horaires": {"debut": "19:00", "fin": "09:00", "detail": "Montée à partir de 19h, démontée avant 9h"},
+    "localisation": {
+      "contrainte": "distance_acces",
+      "distance_min_acces_routier": "1h de marche",
+      "corridor_m": null,
+      "refuge_obligatoire": false,
+      "detail": "À plus d'une heure de marche de tout accès motorisé. Des aires de bivouac sont aménagées sur certains sites et à proximité de refuges."
+    },
+    "duree": {"nuits_max": 1, "consecutif_meme_lieu": false},
+    "cout": {"payant": false, "montant_eur": null, "unite": null, "reservation_obligatoire": false},
+    "feu": {"feu_ouvert": false, "rechaud_portatif": true},
+    "saison": null,
+    "interdictions_associees": [
+      "Camping interdit dans le cœur",
+      "Caravaning et stationnement nocturne de camping-cars interdits sur les routes et aires de stationnement du cœur"
+    ],
+    "zones_particulieres": {
+      "nom": "Réserve naturelle nationale du Néouvielle",
+      "regle": "Régime propre, plus strict : bivouac autorisé de 19h à 9h uniquement sur les aires aménagées aux abords des lacs d'Orédon et d'Aubert. Interdit partout ailleurs dans la réserve.",
+      "aires_designees": ["Lac d'Orédon", "Lac d'Aubert"],
+      "cout": {"payant": false, "reservation_obligatoire": false, "detail": "Accès libre et gratuit, premier arrivé premier servi. Eau potable et sanitaires accessibles de mi-juin à mi-septembre."}
+    },
+    "sanction": "Contravention de 3e classe (art. R331-64 C. env.)",
+    "sources": [
+      {"type": "officiel", "url": "https://www.pyrenees-parcnational.fr/fr/des-decouvertes/sejourner-dans-le-parc-national/ou-dormir-en-montagne/bivouac"},
+      {"type": "note", "ref": "Aucun arrêté « bivouac » consolidé publié sur AIDA au 2026-08-17 ; règles issues de la réglementation du cœur et de l'arrêté propre à la RNN du Néouvielle."}
+    ]
+  },
+
+  "FR3300004": {
+    "parc": "Cévennes",
+    "zone": "Cœur",
+    "statut": "restreint_zones",
+    "resume": "Autorisé gratuitement 19h–9h uniquement le long des GR/GRP balisés, à 50 m max de part et d'autre du sentier, hors 10 tronçons interdits. Sans tente ou tente légère.",
+    "tente": {
+      "autorisee": true,
+      "type": "legere_sans_station_debout",
+      "station_debout_autorisee": false,
+      "autoportante_autorisee": null,
+      "detail": "« Dans une tente légère ne permettant pas la station debout ou sans tente » — le bivouac à même le sol est explicitement prévu"
+    },
+    "horaires": {"debut": "19:00", "fin": "09:00"},
+    "localisation": {
+      "contrainte": "couloir_sentier",
+      "distance_min_acces_routier": null,
+      "corridor_m": 50,
+      "refuge_obligatoire": false,
+      "detail": "Le long des itinéraires balisés GR/GRP, à 50 mètres maximum de part et d'autre du sentier. Randonneurs non motorisés uniquement."
+    },
+    "duree": {"nuits_max": 1, "consecutif_meme_lieu": false, "detail": "Une seule nuit consécutive"},
+    "cout": {"payant": false, "montant_eur": null, "unite": null, "reservation_obligatoire": false},
+    "feu": {
+      "feu_ouvert": false,
+      "rechaud_portatif": true,
+      "detail": "Seuls les feux domestiques au moyen d'un réchaud portatif sont autorisés, à plus de 200 m des forêts et sous réserve des arrêtés préfectoraux incendie (art. 3)"
+    },
+    "saison": null,
+    "zones_particulieres": {
+      "nom": "Tronçons de GR/GRP interdits au bivouac (art. 2 de l'arrêté)",
+      "secteurs": {
+        "Causse Méjean": "5 sections — Tour du Méjean, GR6 vers Cassagnes, Villeneuve, Volcégur",
+        "Mont Lozère": "2 sections — GR70 près du sommet de Finiels ; GR7/GR72 autour du Pont du Tarn (rayon de 200 m et 400 m en aval)",
+        "Aigoual": "3 secteurs — lac des Pises, approches du sommet de l'Aigoual aux jonctions GR60/GR66/GR71, secteur St-Guiral"
+      },
+      "signalement": "Signalés par pancarte sur le terrain et cartographiés sur la carte dynamique de la réglementation des activités de pleine nature du parc."
+    },
+    "sanction": "Contravention de 3e classe (art. R331-64 C. env.)",
+    "sources": [
+      {"type": "arrete", "ref": "Arrêté n° 20140007 du 20/01/2014 réglementant le bivouac en cœur du parc national des Cévennes", "url": "https://aida.ineris.fr/reglementation/arrete-ndeg-20140007-200114-reglementant-bivouac-coeur-parc-national-cevennes"},
+      {"type": "visa", "ref": "Loi n° 2006-436 du 14/04/2006, art. L331-4-1 C. env. ; décret n° 2009-1677 du 29/12/2009 ; décret n° 2013-995 du 08/11/2013 (charte)"},
+      {"type": "officiel", "url": "https://www.cevennes-parcnational.fr/fr/le-parc-national-des-cevennes/la-reglementation-du-coeur/les-regles-pour-tous"}
+    ]
+  },
+
+  "FR3300011": {
+    "parc": "Forêts",
+    "zone": "Cœur",
+    "statut": "autorise_sous_conditions",
+    "resume": "Autorisé gratuitement à proximité des voies et sentiers, d'1h avant le coucher du soleil à 1h après le lever du soleil. Fenêtre horaire solaire, pas d'heure fixe.",
+    "tente": {
+      "autorisee": true,
+      "type": "legere_sans_station_debout",
+      "station_debout_autorisee": false,
+      "autoportante_autorisee": null,
+      "detail": "« Petite tente »"
+    },
+    "horaires": {
+      "debut": "coucher_soleil-1h",
+      "fin": "lever_soleil+1h",
+      "detail": "Fenêtre calée sur le soleil, non sur une heure fixe — elle se déplace avec la saison"
+    },
+    "localisation": {
+      "contrainte": "couloir_sentier",
+      "distance_min_acces_routier": null,
+      "corridor_m": null,
+      "refuge_obligatoire": false,
+      "detail": "À proximité des voies et sentiers (pas de distance chiffrée dans la charte)"
+    },
+    "duree": {"nuits_max": 1, "consecutif_meme_lieu": false},
+    "cout": {"payant": false, "montant_eur": null, "unite": null, "reservation_obligatoire": false},
+    "feu": {
+      "feu_ouvert": false,
+      "rechaud_portatif": true,
+      "detail": "Feu interdit hors installations aménagées et habitations ; réchaud portatif autonome toléré en bivouac, sous réserve des arrêtés préfectoraux"
+    },
+    "saison": null,
+    "interdictions_associees": ["Camping (sous tente ou en véhicule) interdit dans le cœur, sauf terrains clos ou propriétés privées"],
+    "sanction": "Contravention de 3e classe (art. R331-64 C. env.)",
+    "sources": [
+      {"type": "charte", "ref": "Charte du parc, cahier 3, modalité n° 33 (p. 56) ; dérogations : modalités n° 5 (p. 14) et 35 (p. 60)"},
+      {"type": "decret", "ref": "Décret de création TREL1918199D"},
+      {"type": "officiel", "url": "https://www.forets-parcnational.fr/fr/parc-national-de-forets/la-reglementation-du-coeur"}
+    ]
+  },
+
+  "FR3300009": {
+    "parc": "Réunion",
+    "zone": "Cœur",
+    "statut": "restreint_zones",
+    "resume": "Autorisé gratuitement dans le cœur sauf 4 zones nommées. Hamac explicitement admis. Montage avant le coucher du soleil, démontage dans la matinée.",
+    "tente": {
+      "autorisee": true,
+      "type": "aucune_restriction",
+      "station_debout_autorisee": null,
+      "autoportante_autorisee": null,
+      "hamac_autorise": true,
+      "detail": "« Les tentes et autres hamacs » — pas de restriction de dimension publiée ; le hamac est explicitement visé, spécificité tropicale"
+    },
+    "horaires": {
+      "debut": "coucher_soleil",
+      "fin": "lever_jour",
+      "detail": "Montés avant le coucher du soleil, démontés dans la matinée (usuellement lu comme ~18h–8h)"
+    },
+    "localisation": {
+      "contrainte": "libre",
+      "distance_min_acces_routier": null,
+      "corridor_m": null,
+      "refuge_obligatoire": false,
+      "detail": "Libre dans le périmètre du cœur, hors zones interdites listées"
+    },
+    "duree": {"nuits_max": 1, "consecutif_meme_lieu": false},
+    "cout": {"payant": false, "montant_eur": null, "unite": null, "reservation_obligatoire": false},
+    "feu": {
+      "feu_ouvert": false,
+      "rechaud_portatif": true,
+      "detail": "Feu de camp interdit ; seuls les foyers maçonnés aménagés et les réchauds portatifs sont admis"
+    },
+    "saison": null,
+    "interdictions_associees": [
+      "Groupes électrogènes interdits",
+      "Déchets à évacuer intégralement, y compris biodégradables (attirent les rats, menace pour les espèces endémiques)",
+      "Chiens tolérés mais tenus en laisse dans le massif de la Roche Écrite"
+    ],
+    "zones_particulieres": {
+      "nom": "Zones où le bivouac est interdit",
+      "liste": ["Forêt de Mare-Longue", "Grand Bassin", "Rivière des Remparts", "Remparts du Piton des Neiges", "Remparts du Grand Bénare"]
+    },
+    "sources": [
+      {"type": "decret", "ref": "Décret de création DEVN0710010D (05/03/2007)"},
+      {"type": "officiel", "url": "https://www.reunion-parcnational.fr/fr/le-parc-national-de-la-reunion/reglementation/bivouac-en-coeur-de-parc-national"}
+    ]
+  },
+
+  "FR3300007": {
+    "parc": "Guadeloupe",
+    "zone": "Cœur",
+    "statut": "autorise_sous_conditions",
+    "resume": "Autorisé gratuitement de la tombée de la nuit au lever du jour, à plus d'1h de marche des limites du cœur ou d'un accès routier.",
+    "tente": {
+      "autorisee": true,
+      "type": "legere_sans_station_debout",
+      "station_debout_autorisee": false,
+      "autoportante_autorisee": null
+    },
+    "horaires": {"debut": "tombee_nuit", "fin": "lever_jour"},
+    "localisation": {
+      "contrainte": "distance_acces",
+      "distance_min_acces_routier": "1h de marche",
+      "corridor_m": null,
+      "refuge_obligatoire": false,
+      "detail": "À plus d'une heure de marche des limites du cœur ou d'un accès routier"
+    },
+    "duree": {"nuits_max": 1, "consecutif_meme_lieu": false},
+    "cout": {"payant": false, "montant_eur": null, "unite": null, "reservation_obligatoire": false},
+    "feu": {"feu_ouvert": false, "rechaud_portatif": true},
+    "saison": null,
+    "fiabilite": "moyenne — règle issue du portail national des parcs, arrêté local non retrouvé en ligne",
+    "sources": [
+      {"type": "decret", "ref": "Décret de création PRME8861199D"},
+      {"type": "officiel", "url": "https://www.guadeloupe-parcnational.fr/"},
+      {"type": "portail", "url": "https://www.parcsnationaux.fr/fr/des-decouvertes/visiter-et-semerveiller/la-reglementation-et-les-conseils/le-bivouac"}
+    ]
+  },
+
+  "FR3300008": {
+    "parc": "Guyane (Parc Amazonien)",
+    "zone": "Cœur",
+    "statut": "regime_specifique",
+    "resume": "Régime particulier : protection stricte et droits d'usage des communautés autochtones. Accès à certaines zones soumis à autorisation. Se renseigner auprès du parc avant tout projet.",
+    "tente": {"autorisee": null, "type": "aucune_restriction", "station_debout_autorisee": null, "autoportante_autorisee": null, "hamac_autorise": true},
+    "horaires": {"debut": null, "fin": null},
+    "localisation": {
+      "contrainte": "aires_designees",
+      "distance_min_acces_routier": null,
+      "corridor_m": null,
+      "refuge_obligatoire": false,
+      "detail": "Accès à certaines zones soumis à autorisation (zones de droits d'usage collectifs, abords des villages). Consulter le parc et les autorités coutumières."
+    },
+    "duree": {"nuits_max": null, "consecutif_meme_lieu": null},
+    "cout": {"payant": false, "montant_eur": null, "unite": null, "reservation_obligatoire": true, "detail": "Autorisation requise pour certaines zones"},
+    "feu": {"feu_ouvert": null, "rechaud_portatif": null},
+    "saison": null,
+    "fiabilite": "faible — régime complexe, contact direct du parc indispensable",
+    "sources": [
+      {"type": "decret", "ref": "Décret de création DEVN0710009D (2007)"},
+      {"type": "officiel", "url": "https://www.parc-amazonien-guyane.fr/"}
+    ]
+  },
+
+  "FR3300010": {
+    "parc": "Calanques",
+    "zone": "Cœur",
+    "statut": "interdit",
+    "resume": "Bivouac et camping totalement interdits dans le cœur, par tout moyen — y compris à la belle étoile. Réchaud à gaz également interdit.",
+    "tente": {"autorisee": false, "type": "interdite", "station_debout_autorisee": false, "autoportante_autorisee": false},
+    "horaires": {"debut": null, "fin": null, "detail": "Aucune fenêtre — interdiction permanente"},
+    "localisation": {"contrainte": "libre", "distance_min_acces_routier": null, "corridor_m": null, "refuge_obligatoire": false},
+    "duree": {"nuits_max": 0, "consecutif_meme_lieu": false},
+    "cout": {"payant": false, "montant_eur": null, "unite": null, "reservation_obligatoire": false},
+    "feu": {
+      "feu_ouvert": false,
+      "rechaud_portatif": false,
+      "detail": "Feux, cigarettes ET réchauds à gaz interdits (sauf zones habitées et jardins privés, et réchaud en véhicule fermé) — plus strict que les autres parcs"
+    },
+    "saison": null,
+    "interdictions_associees": [
+      "« Bivouaquer et camper par tout moyen » : à la belle étoile, sous tente, dans un véhicule, une remorque habitable ou tout autre abri mobile",
+      "S'applique aussi aux abords des routes traversant le cœur : Mont Rose–Callelongue, routes de Sormiou/Morgiou, D559 Marseille–Cassis, D141 Cassis–La Ciotat"
+    ],
+    "sanction": "68 € par personne pour le bivouac ; 135 € pour l'emploi du feu",
+    "sources": [
+      {"type": "decret", "ref": "Décret de création DEVL1204517D"},
+      {"type": "officiel", "url": "https://www.calanques-parcnational.fr/fr/actualites/camping-sauvage-et-bivouac-rappel-des-reglementations-et-des-bons-gestes"}
+    ]
+  },
+
+  "FR3300002": {
+    "parc": "Port-Cros",
+    "zone": "Cœur",
+    "statut": "interdit",
+    "resume": "Camping sauvage et bivouac interdits dans tout le parc national (îles de Port-Cros et Porquerolles). Visite à la journée ou hébergement en dur.",
+    "tente": {"autorisee": false, "type": "interdite", "station_debout_autorisee": false, "autoportante_autorisee": false},
+    "horaires": {"debut": null, "fin": null, "detail": "Aucune fenêtre — interdiction permanente"},
+    "localisation": {"contrainte": "libre", "distance_min_acces_routier": null, "corridor_m": null, "refuge_obligatoire": false},
+    "duree": {"nuits_max": 0, "consecutif_meme_lieu": false},
+    "cout": {"payant": false, "montant_eur": null, "unite": null, "reservation_obligatoire": false},
+    "feu": {"feu_ouvert": false, "rechaud_portatif": false},
+    "saison": null,
+    "interdictions_associees": ["Interdiction sur les îles de Port-Cros et Porquerolles", "Prévoir une visite à la journée ou un hébergement sur place"],
+    "sources": [
+      {"type": "officiel", "url": "https://www.portcros-parcnational.fr/"},
+      {"type": "portail", "url": "https://www.parcsnationaux.fr/fr/des-decouvertes/visiter-et-semerveiller/la-reglementation-et-les-conseils/le-bivouac"}
+    ]
+  }
+}
