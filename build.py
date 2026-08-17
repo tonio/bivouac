@@ -15,6 +15,9 @@ import sys
 ROOT = pathlib.Path(__file__).parent
 DATA, OUT = ROOT / "data", ROOT / "out"
 
+# ponytail: z5-12 suffit pour du zonage; au-delà on lit la géométrie source.
+MINZOOM, MAXZOOM = 5, 12
+
 # couche -> clé dans rules/par-type.json. L'ordre définit la priorité d'affichage
 # (le plus contraignant en dernier = dessiné au-dessus).
 LAYERS = [
@@ -131,15 +134,64 @@ def main():
     print(f"\n{len(features)} objets -> {dest} ({dest.stat().st_size / 1e6:.0f} Mo)")
 
     if "--pmtiles" in sys.argv:
-        tiles = OUT / "bivouac.pmtiles"
-        # ponytail: zoom 5-12 suffit pour du zonage; au-delà on lit la géométrie
-        # source. Monter MAXZOOM si tu veux du calage fin sur sentier.
-        subprocess.run(
-            ["ogr2ogr", "-f", "PMTiles", str(tiles), str(dest),
-             "-dsco", "MINZOOM=5", "-dsco", "MAXZOOM=12", "-nln", "bivouac"],
-            check=True,
+        pmtiles(features)
+
+
+def pmtiles(features):
+    """Deux couches MVT : les zones (polygones) et les points.
+
+    Une couche de tuiles vectorielles ne porte qu'un type de géométrie — tout
+    mélanger fait disparaître silencieusement les 25 points de refuge.
+    """
+    tiles = OUT / "bivouac.pmtiles"
+    pts = [f for f in features if f["geometry"]["type"] == "Point"]
+    zones = [f for f in features if f["geometry"]["type"] != "Point"]
+
+    parts = {}
+    for nom, feats in (("zones", zones), ("points", pts)):
+        src = OUT / f"_{nom}.geojson"
+        src.write_text(
+            json.dumps({"type": "FeatureCollection", "features": feats},
+                       ensure_ascii=False),
+            encoding="utf-8",
         )
-        print(f"tuiles -> {tiles} ({tiles.stat().st_size / 1e6:.0f} Mo)")
+        parts[nom] = src
+
+    # Le driver PMTiles n'accepte pas -update/-append : les deux couches
+    # doivent être écrites dans la même ouverture du dataset.
+    from osgeo import gdal
+
+    gdal.UseExceptions()
+    tiles.unlink(missing_ok=True)
+    # Les zooms doivent être fixés à la création du dataset : passés seulement
+    # en options de couche, le tileset reste borné à z5.
+    dst = gdal.GetDriverByName("PMTiles").Create(
+        str(tiles), 0, 0, 0, gdal.GDT_Unknown,
+        ["NAME=bivouac", f"MINZOOM={MINZOOM}", f"MAXZOOM={MAXZOOM}"])
+    for nom, src in parts.items():
+        gdal.VectorTranslate(
+            dst, str(src),
+            options=gdal.VectorTranslateOptions(
+                layerName=nom,
+                layerCreationOptions=[f"MINZOOM={MINZOOM}", f"MAXZOOM={MAXZOOM}"],
+            ),
+        )
+    dst = None
+    for src in parts.values():
+        src.unlink()
+
+    got = subprocess.run(["ogrinfo", "-q", str(tiles)],
+                         capture_output=True, text=True).stdout
+    for nom in ("zones", "points"):
+        assert nom in got, f"couche '{nom}' absente des tuiles :\n{got}"
+
+    # Le tileset est resté borné à z5 quand les zooms n'étaient passés qu'en
+    # options de couche : on vérifie plutôt que de faire confiance.
+    ds = gdal.OpenEx(str(tiles), open_options=[f"ZOOM_LEVEL={MAXZOOM}"])
+    assert ds is not None, f"tuiles illisibles au zoom {MAXZOOM}"
+    ds = None
+    print(f"tuiles -> {tiles} ({tiles.stat().st_size / 1e6:.0f} Mo) "
+          f"— couches: zones + points ({len(pts)} refuges)")
 
 
 def demo():
