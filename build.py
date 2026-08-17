@@ -118,6 +118,10 @@ def main():
         print("  ! zones_internes.geojson absent — lancer ./zones_internes.py",
               file=sys.stderr)
 
+    if not features:
+        sys.exit("Aucune donnée : lancer ./fetch.sh, ./fetch_osm.sh puis "
+                 "./zones_internes.py avant ./build.py")
+
     dest = OUT / "bivouac.geojson"
     dest.write_text(
         json.dumps({"type": "FeatureCollection", "features": features},

@@ -286,12 +286,26 @@ def demo():
     assert len(VANOISE_AVEC_BIVOUAC) == 23, len(VANOISE_AVEC_BIVOUAC)
     assert not set(VANOISE_AVEC_BIVOUAC) & set(VANOISE_SANS_BIVOUAC)
 
-    for f in cevennes():
+    assert titre("GR®70 - Portion du Sommet de Finiels Le bivouac est interdit dans "
+                 "le cœur") == "GR®70 - Portion du Sommet de Finiels"
+    assert titre("Le tracé actuel du GR®66/71 a été dévié " * 4).startswith("GR®66/71")
+
+    cev = cevennes()
+    for f in cev:
         p = f["properties"]
         assert p["statut"] == "interdit" and p["severite"] == 5
         assert p["source_licence"] == "ODbL"
         assert f["geometry"]["type"] in ("Polygon", "MultiPolygon")
-    print(f"demo OK — {len(cevennes())} tronçons Cévennes, {len(VANOISE_AVEC_BIVOUAC)} refuges Vanoise")
+        assert "Le bivouac est interdit" not in p["nom"], p["nom"]
+
+    # Sans les données sources il n'y a rien à valider : le dire, plutôt que
+    # laisser un check vide passer pour un succès.
+    if not cev:
+        print("demo PARTIELLE — données Cévennes absentes (lancer ./fetch.sh), "
+              f"{len(VANOISE_AVEC_BIVOUAC)} refuges Vanoise vérifiés")
+        return
+    assert len(cev) == 11, f"attendu 11 tronçons, obtenu {len(cev)}"
+    print(f"demo OK — {len(cev)} tronçons Cévennes, {len(VANOISE_AVEC_BIVOUAC)} refuges Vanoise")
 
 
 if __name__ == "__main__":
