@@ -68,16 +68,48 @@ Sanction usuelle 68 €/personne (contravention de 3e classe, C. env. art. R331-
 
 | Type | Statut | Pourquoi |
 |---|---|---|
-| Site classé (2657) | **interdit** | C. urb. art. R111-33, s'applique de plein droit. Tolérance de fait fréquente en montagne, sans base juridique |
+| Site classé (2657) | **à vérifier** | R111-33 interdit le « camping pratiqué isolément », **sauf dérogation** — et vise le camping, pas le bivouac. Ne pas lire comme une interdiction de bivouaquer (voir plus bas) |
 | Conservatoire du littoral (814) | **interdit** | C. env. L322-1 + interdiction de camper sur les rivages |
-| RNN / RNR / RNC (388) | interdit sauf exception | Un décret ou une délibération par site. **Jusqu'à 1 500 €** (L332-25) |
+| RNN / RNR / RNC (388) | interdit sauf exception | Un décret ou une délibération par site. **Jusqu'à 1 500 €** (L332-25). 3 réserves vérifiées individuellement dans `rules/reserves.json` |
 | Réserve biologique ONF (285) | interdit sauf exception | RBI quasi systématiquement fermée ; RBD variable |
 | APPB (1103) | **à vérifier** | Un arrêté préfectoral par site, opposable. Souvent saisonnier (nidification). Jusqu'à 750 € |
 | PNR (59) | droit commun | **Un PNR n'a pas de pouvoir de police** — sa charte n'est pas opposable aux visiteurs |
 | Natura 2000 ZPS + SIC (1762) | droit commun | Outil de gestion contractuelle, **n'interdit rien** en soi |
 
 Piège principal : Natura 2000 et PNR couvrent d'énormes surfaces **sans rien interdire**. Les afficher comme
-contraignants ferait croire à des interdictions inexistantes. La sévérité réelle vient des réserves, APPB et sites classés.
+contraignants ferait croire à des interdictions inexistantes. La sévérité réelle vient des réserves et des APPB.
+
+### Le cas des sites classés
+
+Un site classé n'interdit pas de bivouaquer. Le texte applicable (C. urb. R111-33 2°) dit :
+
+> Le camping pratiqué isolément ainsi que la création de terrains de camping sont interdits […] dans les sites
+> classés ou en instance de classement […], **sauf dérogation** accordée par les autorités compétentes.
+
+Deux limites : la dérogation est prévue par le texte lui-même, et la notion visée est le **camping**, pas le
+bivouac. Une tente montée le soir et démontée au matin relève du bivouac ; installée à demeure, elle devient du
+camping. Beaucoup de hauts lieux de la randonnée sont classés — cirque de Gavarnie, gorges du Verdon, massif du
+Mont-Blanc — et le bivouac y est pratiqué et toléré. Le classement protège contre l'altération du site, il ne
+crée pas d'interdiction de dormir dehors.
+
+D'où le statut `verifier_arrete` et non `interdit`. Le risque réel vient du **cumul** (un site classé recouvre
+souvent une réserve ou un cœur de parc, qui eux réglementent) et des arrêtés municipaux sur les sites fréquentés.
+
+Les ~4500 **sites inscrits** relèvent d'un régime distinct (R111-33 1°, sans dérogation prévue) et ne sont
+**pas** dans ce jeu de données — la couche `patrinat_sc` ne contient que les ~2700 sites classés.
+
+### Réserves vérifiées site par site
+
+`rules/reserves.json` surcharge la règle générique du type, trop restrictive pour plusieurs réserves.
+
+| Réserve | Régime réel |
+|---|---|
+| **Hauts de Chartreuse** | Bivouac **autorisé** coucher→lever, 1 nuit. Hors juillet-août : tente légère admise. **1er juil – 31 août : tente interdite** (arrêté préfectoral du 16/07/2024, 9 communes), belle étoile toujours permise |
+| **Néouvielle** | Uniquement aux aires d'Orédon et d'Aubert, 19h–9h, gratuit sans réservation |
+| **Hauts Plateaux du Vercors** | Arrêté interpréfectoral, conditions à vérifier |
+
+3 réserves sur 388 : l'absence d'une réserve ici ne confirme pas l'interdiction, elle signale qu'elle n'a pas
+été vérifiée.
 
 ## Zonages internes aux parcs
 

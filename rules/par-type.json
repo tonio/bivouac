@@ -173,20 +173,28 @@
   },
 
   "site_classe": {
-    "libelle": "Site classé (et site inscrit)",
+    "libelle": "Site classé",
     "nb_sites": 2657,
-    "statut": "interdit",
-    "resume": "Le camping et le caravaning sont interdits de plein droit dans les sites classés, par le code de l'urbanisme. Interdiction générale, sans besoin d'arrêté local.",
-    "explication_juridique": "C. urb. art. R111-33 : le camping est interdit dans les sites classés ou inscrits. C. env. art. L341-1 et s. : régime des monuments naturels et sites. Cette interdiction est l'une des rares qui découle directement du zonage, sans acte local.",
-    "tente": {"autorisee": false, "type": "interdite", "station_debout_autorisee": false, "autoportante_autorisee": false},
-    "horaires": {"debut": null, "fin": null, "detail": "Interdiction permanente"},
+    "statut": "verifier_arrete",
+    "resume": "Le camping est interdit de plein droit, sauf dérogation. Mais le texte vise le « camping pratiqué isolément », pas le bivouac : une nuit démontée au matin n'est pas explicitement interdite, et la pratique est largement tolérée en montagne.",
+    "explication_juridique": "C. urb. art. R111-33 : « Le camping pratiqué isolément ainsi que la création de terrains de camping sont interdits […] 2° dans les sites classés ou en instance de classement en application de l'article L341-2 du code de l'environnement, sauf dérogation accordée par les autorités compétentes. » Deux limites à retenir : la dérogation est prévue par le texte lui-même, et la notion visée est le camping, non le bivouac.",
+    "tente": {
+      "autorisee": null,
+      "type": "aucune_restriction",
+      "station_debout_autorisee": null,
+      "autoportante_autorisee": null,
+      "detail": "Aucune règle propre au bivouac. Une tente montée le soir et démontée au matin relève du bivouac ; installée à demeure, elle devient du camping interdit."
+    },
+    "horaires": {"debut": null, "fin": null, "detail": "Aucune fenêtre réglementaire : c'est la durée et l'installation qui distinguent bivouac et camping"},
     "localisation": {"contrainte": "libre", "distance_min_acces_routier": null, "corridor_m": null, "refuge_obligatoire": false},
-    "duree": {"nuits_max": 0, "consecutif_meme_lieu": false},
+    "duree": {"nuits_max": 1, "consecutif_meme_lieu": false, "detail": "Au-delà d'une nuit au même endroit, la qualification de camping devient difficile à contester"},
     "cout": {"payant": false, "montant_eur": null, "unite": null, "reservation_obligatoire": false},
-    "feu": {"feu_ouvert": false, "rechaud_portatif": null},
-    "sanction": "C. urb. et C. env. art. L341-19 et s.",
-    "nuance": "La lettre du texte vise le « camping », pas le « bivouac ». En pratique, le bivouac d'une nuit démonté au matin est souvent toléré en site classé de montagne (ex. cirque de Gavarnie), mais il n'existe aucune base juridique pour s'en prévaloir. À signaler comme « interdit, tolérance locale possible » plutôt que comme autorisé.",
-    "base_legale": ["C. urb. art. R111-33", "C. env. art. L341-1 et s."]
+    "feu": {"feu_ouvert": false, "rechaud_portatif": true},
+    "sanction": "C. urb. et C. env. art. L341-19 et s. (atteinte à un site classé)",
+    "nuance": "Ne pas présenter le site classé comme une interdiction de bivouaquer. Beaucoup de hauts lieux de la randonnée française sont classés (cirque de Gavarnie, gorges du Verdon, Mont-Blanc, pointe du Raz) et le bivouac y est pratiqué et toléré. Le classement protège contre l'altération du site, il ne crée pas d'interdiction de dormir dehors. Attention en revanche au cumul : un site classé recouvre souvent une réserve ou un cœur de parc, qui eux réglementent réellement.",
+    "attention": "Un arrêté municipal ou préfectoral peut interdire le bivouac sur un site classé fréquenté — c'est le cas sur plusieurs sites emblématiques. Vérifier localement.",
+    "base_legale": ["C. urb. art. R111-33 (2°)", "C. env. art. L341-1 et s.", "C. env. art. L341-2 (classement)"],
+    "note_donnees": "La couche patrinat_sc contient les ~2700 sites classés. Les ~4500 sites inscrits (régime distinct : R111-33 1°, sans dérogation prévue) ne sont pas dans ce jeu de données."
   },
 
   "cdl": {

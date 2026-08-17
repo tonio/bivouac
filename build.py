@@ -62,6 +62,10 @@ def main():
     meta_pn = regles_pn.pop("_meta")
     par_type = load("par-type.json")
     par_type.pop("_meta")
+    # Réserves vérifiées une par une : surchargent la règle générique du type,
+    # qui est trop restrictive pour plusieurs d'entre elles.
+    reserves = load("reserves.json")
+    reserves.pop("_meta")
 
     OUT.mkdir(exist_ok=True)
     features, stats = [], {}
@@ -84,6 +88,10 @@ def main():
             else:
                 regle, statut = base, base.get("statut", "verifier_arrete")
                 libelle = base.get("libelle", layer)
+                # Une réserve documentée l'emporte sur la règle du type.
+                propre = reserves.get(src_props.get("id_mnhn"))
+                if propre and layer in ("rnn", "rnr", "rnc"):
+                    regle, statut = propre, propre["statut"]
 
             feat["properties"] = {
                 "type": layer,
@@ -228,7 +236,28 @@ def demo():
             continue
         assert v["statut"] in SEVERITE, f"{k} : statut inconnu {v['statut']}"
 
-    print(f"demo OK — {len(regles)} cœurs de parc, {len(par_type) - 1} types de zonage")
+    # Le site classé ne doit pas être présenté comme une interdiction de
+    # bivouaquer : R111-33 vise le camping, et prévoit une dérogation.
+    sc = par_type["site_classe"]
+    assert sc["statut"] == "verifier_arrete", sc["statut"]
+    assert sc["tente"]["autorisee"] is None
+
+    reserves = load("reserves.json")
+    reserves.pop("_meta")
+    for rid, r in reserves.items():
+        assert r["statut"] in SEVERITE, f"{rid} : statut inconnu {r['statut']}"
+        for champ in ("tente", "horaires", "localisation", "duree", "cout", "feu"):
+            assert champ in r, f"{rid} ({r['reserve']}) : champ '{champ}' manquant"
+
+    # Chartreuse : la règle générique « interdit sauf exception » est fausse ici,
+    # le bivouac y est autorisé — avec interdiction de la tente en juillet-août.
+    ch = reserves["FR3600136"]
+    assert ch["statut"] == "restreint_zones", ch["statut"]
+    assert ch["tente"]["autorisee"] is True
+    assert "1er juillet" in ch["restriction_saisonniere"]["periode"]
+
+    print(f"demo OK — {len(regles)} cœurs de parc, {len(par_type) - 1} types de zonage, "
+          f"{len(reserves)} réserves détaillées")
 
 
 if __name__ == "__main__":

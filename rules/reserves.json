@@ -1,0 +1,115 @@
+{
+  "_meta": {
+    "objet": "Règles de bivouac par réserve, quand elles diffèrent de la règle générique du type (rules/par-type.json)",
+    "cle_jointure": "id_mnhn (couches patrinat_rnn / rnr / rnc)",
+    "verifie_le": "2026-08-17",
+    "pourquoi": "La règle générique « interdit sauf exception » est fausse pour un nombre non négligeable de réserves : chaque décret de création fixe son propre régime, et un arrêté préfectoral peut le préciser. Ce fichier porte les réserves vérifiées une par une ; les autres restent sur la règle générique, marquée comme à vérifier.",
+    "couverture": "3 réserves sur 388 (RNN + RNR + RNC). Tout le reste garde la règle générique — ne pas lire l'absence ici comme une confirmation de l'interdiction."
+  },
+
+  "FR3600136": {
+    "reserve": "Hauts de Chartreuse",
+    "type": "rnn",
+    "statut": "restreint_zones",
+    "resume": "Bivouac autorisé du coucher au lever du soleil, une nuit. Hors juillet-août : tente légère admise. Du 1er juillet au 31 août : tente interdite par arrêté préfectoral, seul le bivouac à la belle étoile reste possible.",
+    "tente": {
+      "autorisee": true,
+      "type": "legere_sans_station_debout",
+      "station_debout_autorisee": false,
+      "autoportante_autorisee": null,
+      "detail": "Tente ne permettant pas la station debout, ou abri naturel. INTERDITE du 1er juillet au 31 août (arrêté préfectoral) : sur cette période, uniquement sac de couchage et tapis de sol à la belle étoile."
+    },
+    "horaires": {
+      "debut": "coucher_soleil",
+      "fin": "lever_soleil",
+      "detail": "Montage à la tombée du jour, démontage au lever du jour"
+    },
+    "localisation": {
+      "contrainte": "libre",
+      "distance_min_acces_routier": null,
+      "corridor_m": null,
+      "refuge_obligatoire": false,
+      "detail": "Pas de zone dédiée. Aucune atteinte au sol ; demander l'accord du propriétaire ou du berger si présent."
+    },
+    "duree": {"nuits_max": 1, "consecutif_meme_lieu": false, "detail": "Au-delà d'une nuit au même endroit = camping, interdit sauf autorisation préfectorale à but scientifique"},
+    "cout": {"payant": false, "montant_eur": null, "unite": null, "reservation_obligatoire": false},
+    "feu": {
+      "feu_ouvert": false,
+      "rechaud_portatif": true,
+      "detail": "Feu strictement interdit (les foyers détruisent le sol durablement) ; réchauds à gaz et à combustible liquide autorisés. Dérogation préfectorale possible pour les travaux forestiers ou l'entretien de la réserve."
+    },
+    "saison": null,
+    "restriction_saisonniere": {
+      "periode": "1er juillet – 31 août",
+      "regle": "Bivouac sous tente interdit par arrêté préfectoral. Le bivouac à la belle étoile demeure autorisé.",
+      "motif": "Surfréquentation et impacts sur le milieu",
+      "communes_concernees": [
+        "Apremont", "Saint-Pierre-de-Chartreuse",
+        "Saint-Pierre-d'Entremont (Isère)", "Saint-Pierre-d'Entremont (Savoie)",
+        "Entremont-le-Vieux", "Chapareillan", "Sainte-Marie-du-Mont",
+        "Porte-de-Savoie", "Plateau-des-Petites-Roches"
+      ],
+      "historique": "Expérimenté en août 2021, pérennisé par l'arrêté du 16 juillet 2024 pour tous les étés suivants."
+    },
+    "sanction": "Jusqu'à 1 500 € (C. env. art. L332-25)",
+    "sources": [
+      {"type": "decret", "ref": "Décret n° 97-905 du 1er octobre 1997 (création), art. 12 et 22", "acte_inpn": "ATEN9750027D"},
+      {"type": "arrete", "ref": "Arrêté préfectoral du 16 juillet 2024 réglementant le bivouac dans la RNN des Hauts de Chartreuse (AP_Bivouac_RNHC)", "url": "https://www.parc-chartreuse.net/reserve-naturelle/arrete-prefectoral-concernant-le-bivouac-sous-tente-sur-la-reserve-naturelle-des-hauts-de-chartreuse/"},
+      {"type": "visa", "ref": "C. env. art. L332-3, R332-70, R332-73"},
+      {"type": "officiel", "url": "https://www.parc-chartreuse.net/reserve-naturelle-des-hauts-de-chartreuse/reglementation-mode-demploi/"},
+      {"type": "officiel", "url": "https://www.parc-chartreuse.net/reserve-naturelle/lart-de-bivouaquer-responsable-sur-la-reserve-naturelle-des-hauts-de-chartreuse/"},
+      {"type": "consultation", "url": "https://www.auvergne-rhone-alpes.developpement-durable.gouv.fr/isere-savoie-projet-d-arrete-portant-a25659.html"}
+    ]
+  },
+
+  "FR3600004": {
+    "reserve": "Néouvielle",
+    "type": "rnn",
+    "statut": "restreint_zones",
+    "resume": "Bivouac autorisé de 19h à 9h uniquement sur les aires aménagées aux abords des lacs d'Orédon et d'Aubert. Interdit partout ailleurs dans la réserve.",
+    "tente": {"autorisee": true, "type": "legere_sans_station_debout", "station_debout_autorisee": false, "autoportante_autorisee": null},
+    "horaires": {"debut": "19:00", "fin": "09:00"},
+    "localisation": {
+      "contrainte": "aires_designees",
+      "distance_min_acces_routier": null,
+      "corridor_m": null,
+      "refuge_obligatoire": false,
+      "aires_designees": ["Lac d'Orédon", "Lac d'Aubert"],
+      "detail": "Hors de ces deux aires aménagées, le bivouac est interdit dans la réserve."
+    },
+    "duree": {"nuits_max": 1, "consecutif_meme_lieu": false},
+    "cout": {
+      "payant": false,
+      "montant_eur": null,
+      "unite": null,
+      "reservation_obligatoire": false,
+      "detail": "Accès libre et gratuit, premier arrivé premier servi. Eau potable et sanitaires de mi-juin à mi-septembre."
+    },
+    "feu": {"feu_ouvert": false, "rechaud_portatif": true},
+    "saison": null,
+    "note": "La réserve est enclavée dans le cœur du parc national des Pyrénées ; son régime propre, plus strict, prime.",
+    "sanction": "Jusqu'à 1 500 € (C. env. art. L332-25)",
+    "sources": [
+      {"type": "officiel", "url": "https://www.pyrenees-parcnational.fr/fr/des-decouvertes/sejourner-dans-le-parc-national/ou-dormir-en-montagne/bivouac"}
+    ]
+  },
+
+  "FR3600074": {
+    "reserve": "Hauts Plateaux du Vercors",
+    "type": "rnn",
+    "statut": "verifier_arrete",
+    "resume": "Bivouac réglementé par arrêté interpréfectoral d'application du décret de création. Conditions à vérifier avant départ : le régime a évolué avec la fréquentation.",
+    "tente": {"autorisee": true, "type": "legere_sans_station_debout", "station_debout_autorisee": false, "autoportante_autorisee": null},
+    "horaires": {"debut": null, "fin": null, "detail": "Fixés par l'arrêté interpréfectoral"},
+    "localisation": {"contrainte": "aires_designees", "distance_min_acces_routier": null, "corridor_m": null, "refuge_obligatoire": false},
+    "duree": {"nuits_max": 1, "consecutif_meme_lieu": false},
+    "cout": {"payant": false, "montant_eur": null, "unite": null, "reservation_obligatoire": false},
+    "feu": {"feu_ouvert": false, "rechaud_portatif": true},
+    "saison": null,
+    "fiabilite": "moyenne — arrêté non lu intégralement, se référer à la source",
+    "sanction": "Jusqu'à 1 500 € (C. env. art. L332-25)",
+    "sources": [
+      {"type": "arrete", "ref": "Arrêté interpréfectoral d'application du décret de création", "url": "https://www.parc-du-vercors.fr/sites/default/files/actualites/Accueil%20Biodiversit%C3%A9/ArreteApplicationDecretRNHPVComplet.pdf"}
+    ]
+  }
+}

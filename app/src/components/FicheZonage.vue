@@ -17,6 +17,7 @@ const LIB_TENTE = {
 const LIB_HORAIRE = {
   coucher_soleil: 'coucher du soleil',
   'coucher_soleil-1h': '1 h avant le coucher du soleil',
+  lever_soleil: 'lever du soleil',
   'lever_soleil+1h': "1 h après le lever du soleil",
   tombee_nuit: 'tombée de la nuit',
   lever_jour: 'lever du jour',
@@ -83,6 +84,8 @@ const fiches = computed(() =>
       detail,
       interdictions: r.interdictions_associees ?? [],
       zonesParticulieres: r.zones_particulieres ?? null,
+      saisonniere: r.restriction_saisonniere ?? null,
+      attention: r.attention ?? null,
       acte: o.acte,
       fiche: o.fiche_inpn,
       source: o.source_url,
@@ -116,6 +119,12 @@ const fiches = computed(() =>
           <dd>{{ v }}</dd>
         </template>
       </dl>
+
+      <p v-if="f.saisonniere" class="saison">
+        <strong>{{ f.saisonniere.periode }}</strong> — {{ f.saisonniere.regle }}
+      </p>
+
+      <p v-if="f.attention" class="attention">{{ f.attention }}</p>
 
       <template v-if="f.interdictions.length">
         <h4>Également interdit</h4>
@@ -246,6 +255,19 @@ ul {
   padding-left: 1.1rem;
   font-size: 0.8rem;
   line-height: 1.4;
+}
+
+/* Une restriction saisonnière est souvent l'information décisive : elle doit
+   se distinguer du résumé. */
+.saison,
+.attention {
+  margin: 0 0 var(--pad-s);
+  padding: var(--pad-s);
+  border-left: 3px solid #c8901a;
+  background: color-mix(in srgb, #c8901a 10%, transparent);
+  border-radius: 2px;
+  font-size: 0.8rem;
+  line-height: 1.45;
 }
 
 .reserve {
