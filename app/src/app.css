@@ -1,0 +1,50 @@
+/* Variables globales et reset minimal. Tout le reste est scopé par composant. */
+
+:root {
+  --fg: #1b1f23;
+  --fg-doux: #5c6670;
+  --bg: #ffffff;
+  --bg-doux: #f4f5f7;
+  --bord: #d5d9de;
+  --accent: #1f6feb;
+
+  --pad: 0.75rem;
+  --pad-s: 0.4rem;
+  --rayon: 4px;
+  --ombre: 0 1px 4px rgb(0 0 0 / 0.18);
+
+  --police: system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif;
+  --police-mono: ui-monospace, 'SF Mono', Menlo, monospace;
+
+  color-scheme: light dark;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --fg: #e6e8ea;
+    --fg-doux: #9aa4ae;
+    --bg: #1c2024;
+    --bg-doux: #262b30;
+    --bord: #3a4148;
+    --ombre: 0 1px 4px rgb(0 0 0 / 0.5);
+  }
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  font-family: var(--police);
+  color: var(--fg);
+  background: var(--bg);
+}
+
+#app {
+  height: 100dvh;
+}
+
+a {
+  color: var(--accent);
+}

@@ -6,3 +6,5 @@ out/
 
 __pycache__/
 *.py[cod]
+
+# app/ a son propre .gitignore (node_modules, dist, symlink pmtiles)
