@@ -1,5 +1,5 @@
 <script setup>
-import { computed, ref, watch } from 'vue'
+import { computed, onUnmounted, ref, watch } from 'vue'
 import { SEVERITES, VERDICT } from '../map/config.js'
 
 const props = defineProps({
@@ -28,13 +28,39 @@ const couleur = (s) => SEVERITES.find((x) => x.v === s)?.couleur ?? '#7f8c9b'
 
 // Un seul accordéon ouvert à la fois ; -1 = tous replié.
 const ouvert = ref(0)
-// La feuille mobile démarre repliée sur le seul verdict, pour ne pas masquer
-// la carte que l'on vient de toucher.
-const deplie = ref(false)
+
+// Le repli ne concerne que la feuille mobile, où elle masquerait la carte que
+// l'on vient de toucher. En desktop, la poignée et le bouton « voir plus » sont
+// masqués en CSS : replier y rendrait le détail inatteignable.
+// Même borne que le @media du bloc mobile.
+const feuille = window.matchMedia('(max-width: 900px)')
+const enFeuille = ref(feuille.matches)
+const replie = ref(feuille.matches)
+
+const onFormat = (e) => {
+  enFeuille.value = e.matches
+  replie.value = e.matches
+}
+feuille.addEventListener('change', onFormat)
+
+// Le bloc verdict porte ses couleurs en style inline : sans suivre le thème, un
+// basculement clair/sombre le laisserait dans l'ancienne palette.
+const theme = window.matchMedia('(prefers-color-scheme: dark)')
+const sombre = ref(theme.matches)
+const onTheme = (e) => { sombre.value = e.matches }
+theme.addEventListener('change', onTheme)
+
+onUnmounted(() => {
+  feuille.removeEventListener('change', onFormat)
+  theme.removeEventListener('change', onTheme)
+})
+
+// `deplie` pilote le style de la feuille : toujours vrai hors mobile.
+const deplie = computed(() => !enFeuille.value || !replie.value)
 
 watch(() => props.selection, () => {
   ouvert.value = 0
-  deplie.value = false
+  replie.value = enFeuille.value
 })
 
 // Le champ regle_json porte la règle complète : les tuiles vectorielles
@@ -115,11 +141,13 @@ const chef = computed(() => fiches.value[0] ?? null)
 const verdict = computed(() => {
   if (!chef.value) return null
   const s = chef.value.severite
-  const sombre = window.matchMedia?.('(prefers-color-scheme: dark)').matches
+  const jeu = sombre.value ? VERDICT.sombre : VERDICT.clair
   return {
     label: SEVERITES.find((x) => x.v === s)?.label ?? '',
     nom: chef.value.nom,
-    ...(sombre ? VERDICT.sombre : VERDICT.clair)[s],
+    // Repli sur la sévérité 0 : une valeur hors bornes laisserait le bloc sans
+    // aucune couleur.
+    ...(jeu[s] ?? jeu[0]),
   }
 })
 </script>
@@ -130,7 +158,8 @@ const verdict = computed(() => {
       type="button"
       class="poignee"
       aria-label="Déplier ou replier la fiche"
-      @click="deplie = !deplie"
+      :aria-expanded="deplie"
+      @click="replie = !replie"
     ></button>
 
     <header>
@@ -147,12 +176,12 @@ const verdict = computed(() => {
       class="verdict"
       :style="{ background: verdict.fond, color: verdict.texte }"
     >
-      <p class="sureligne" :style="{ color: verdict.label }">Ici, la règle la plus contraignante</p>
+      <p class="sureligne" :style="{ color: verdict.accent }">Ici, la règle la plus contraignante</p>
       <p class="verdict-titre">{{ verdict.label }}</p>
       <p class="verdict-nom">{{ verdict.nom }}</p>
     </div>
 
-    <button v-if="!deplie" type="button" class="voir-plus" @click="deplie = true">
+    <button v-if="!deplie" type="button" class="voir-plus" @click="replie = false">
       Voir les {{ fiches.length }} protection{{ fiches.length > 1 ? 's' : '' }} et leurs règles ▴
     </button>
 

@@ -45,25 +45,29 @@ export const SEVERITES = [
   { v: 5, couleur: '#7d1d13', label: 'Interdit' },
 ]
 
-// Habillage du bloc « verdict » en tête de fiche : la sévérité maximale des
-// protections empilées colore le bloc entier. Deux jeux, le thème sombre ne
-// peut pas se déduire du clair par simple opacité sans perdre le contraste.
+// Habillage du bloc « verdict » en tête de fiche, indexé par sévérité : la plus
+// contraignante des protections empilées colore le bloc entier. Deux jeux, le
+// thème sombre ne se déduit pas du clair par simple opacité sans perdre le
+// contraste.
+// La couleur d'accent se nomme `accent` et non `label` : SEVERITES.label est un
+// libellé texte, et les deux clés se sont déjà écrasées dans un spread — la
+// couleur s'affichait à la place du mot.
 export const VERDICT = {
   clair: [
-    { fond: '#eef1f3', label: '#5e6b78', texte: '#243039' },
-    { fond: '#e7f2ea', label: '#3c7a55', texte: '#123b25' },
-    { fond: '#f7eedc', label: '#8a6413', texte: '#4a360a' },
-    { fond: '#f6e9dc', label: '#8a4c15', texte: '#43230a' },
-    { fond: '#fbe9e5', label: '#93291f', texte: '#4a130c' },
-    { fond: '#f6e2de', label: '#7d1d13', texte: '#3a0d07' },
+    { fond: '#eef1f3', accent: '#5e6b78', texte: '#243039' },
+    { fond: '#e7f2ea', accent: '#3c7a55', texte: '#123b25' },
+    { fond: '#f7eedc', accent: '#8a6413', texte: '#4a360a' },
+    { fond: '#f6e9dc', accent: '#8a4c15', texte: '#43230a' },
+    { fond: '#fbe9e5', accent: '#93291f', texte: '#4a130c' },
+    { fond: '#f6e2de', accent: '#7d1d13', texte: '#3a0d07' },
   ],
   sombre: [
-    { fond: '#212a2f', label: '#9fb0bd', texte: '#e6edf2' },
-    { fond: '#17301f', label: '#7fc79b', texte: '#e4f4ea' },
-    { fond: '#33270e', label: '#e0b45c', texte: '#f7ecd6' },
-    { fond: '#33210f', label: '#dda169', texte: '#f6e6d8' },
-    { fond: '#3a1a15', label: '#e3a79e', texte: '#fbe9e5' },
-    { fond: '#31130e', label: '#d99286', texte: '#f7dfda' },
+    { fond: '#212a2f', accent: '#9fb0bd', texte: '#e6edf2' },
+    { fond: '#17301f', accent: '#7fc79b', texte: '#e4f4ea' },
+    { fond: '#33270e', accent: '#e0b45c', texte: '#f7ecd6' },
+    { fond: '#33210f', accent: '#dda169', texte: '#f6e6d8' },
+    { fond: '#3a1a15', accent: '#e3a79e', texte: '#fbe9e5' },
+    { fond: '#31130e', accent: '#d99286', texte: '#f7dfda' },
   ],
 }
 
