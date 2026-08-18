@@ -27,6 +27,14 @@ jobs:
           cache-dependency-path: app/yarn.lock
       - run: yarn --cwd app install --frozen-lockfile
       - run: yarn --cwd app build
+      # La donnée arrive dans le site plutôt que dans le dépôt : git garde ses
+      # 840 Ko, et Pages sert le pmtiles en même-origine — donc avec les Range
+      # requests dont PMTiles dépend, et sans CORS à négocier. Les release
+      # assets, eux, redirigent vers une URL signée qui expire en ~1 h et ne
+      # portent aucun en-tête CORS : inutilisables depuis le navigateur.
+      - run: gh release download data-v1 -p bivouac.pmtiles -O app/dist/bivouac.pmtiles
+        env:
+          GH_TOKEN: ${{ github.token }}
       - uses: actions/upload-pages-artifact@v3
         with:
           path: app/dist
@@ -43,7 +51,7 @@ jobs:
 
 # Le pmtiles n'est pas régénéré ici : ./fetch.sh télécharge ~300 Mo et ./build.py
 # tourne plusieurs minutes, pour une donnée qui bouge quelques fois par an.
-# Publication à la main quand les zonages changent :
+# Mise à jour à la main quand les zonages changent — le tag data-v1 est fixe,
+# on remplace son asset plutôt que d'avoir à toucher au workflow :
 #   ./build.py --pmtiles
-#   gh release create data-v2 out/bivouac.pmtiles --title "Données AAAA-MM"
-# puis bump le tag dans src/components/CarteBivouac.vue.
+#   gh release upload data-v1 out/bivouac.pmtiles --clobber

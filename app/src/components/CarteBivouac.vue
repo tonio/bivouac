@@ -22,13 +22,11 @@ let repere = null
 const chargement = ref(true)
 const erreur = ref('')
 
-// En dev : le symlink public/bivouac.pmtiles vers ../../out/. En prod : la
-// release GitHub — 93 Mo, au-delà de la limite de 100 Mo par fichier du dépôt,
-// et de toute façon un dérivé reproductible par ./build.py.
+// Servi en même-origine dans les deux cas : symlink vers ../../out/ en dev, et
+// déposé dans dist/ par le workflow Pages en prod. PMTiles lit par Range
+// requests, que Pages honore.
 // BASE_URL, pas un chemin absolu : le site vit sous /bivouac/ pendant la bêta.
-const PMTILES_URL = import.meta.env.DEV
-  ? new URL(`${import.meta.env.BASE_URL}bivouac.pmtiles`, location.href).href
-  : 'https://github.com/tonio/bivouac/releases/download/data-v1/bivouac.pmtiles'
+const PMTILES_URL = new URL(`${import.meta.env.BASE_URL}bivouac.pmtiles`, location.href).href
 
 // Les types masqués sont exclus par filtre GPU, pas en retirant des couches :
 // une seule expression, appliquée aux 4 couches de données.
