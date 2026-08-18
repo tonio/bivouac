@@ -1,19 +1,36 @@
 /* Variables globales et reset minimal. Tout le reste est scopé par composant. */
 
 :root {
-  --fg: #1b1f23;
-  --fg-doux: #5c6670;
-  --bg: #ffffff;
-  --bg-doux: #f4f5f7;
-  --bord: #d5d9de;
-  --accent: #1f6feb;
+  --fg: #1d2321;
+  --fg-doux: #3f4a44;
+  --fg-secondaire: #6b7570;
+  /* Assez sombre pour tenir le 4.5:1 de WCAG AA sur --bg : ce ton porte
+     l'avertissement juridique et les placeholders, en 12-14px. */
+  --fg-atenue: #71736c;
+  --bg: #fffdf8;
+  --bg-doux: #f3eee3;
+  --bg-carte: #ede7db;
+  --bord: #ede7db;
+  --bord-fort: #eae4d8;
+  --accent: #23604a;
+  --repere: #2f8f4e;
 
-  --pad: 0.75rem;
-  --pad-s: 0.4rem;
-  --rayon: 4px;
-  --ombre: 0 1px 4px rgb(0 0 0 / 0.18);
+  --pad: 1.125rem;
+  --pad-s: 0.625rem;
+  --pad-xs: 0.25rem;
+  --rayon: 8px;
+  --rayon-s: 5px;
+  --rayon-feuille: 14px;
+  --ombre: 0 2px 10px rgb(29 35 33 / 0.12);
+  --ombre-panneau: 0 2px 14px rgb(29 35 33 / 0.14);
+  --ombre-fiche: 0 6px 28px rgb(29 35 33 / 0.2);
+  --ombre-feuille: 0 -8px 34px rgb(29 35 33 / 0.22);
 
-  --police: system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif;
+  /* Cible tactile : 3rem en mobile, 2.5rem en pointeur fin. */
+  --cible: 3rem;
+
+  --police: 'Instrument Sans', system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif;
+  --police-titre: 'Instrument Serif', Georgia, serif;
   --police-mono: ui-monospace, 'SF Mono', Menlo, monospace;
 
   color-scheme: light dark;
@@ -21,12 +38,27 @@
 
 @media (prefers-color-scheme: dark) {
   :root {
-    --fg: #e6e8ea;
-    --fg-doux: #9aa4ae;
-    --bg: #1c2024;
-    --bg-doux: #262b30;
-    --bord: #3a4148;
-    --ombre: 0 1px 4px rgb(0 0 0 / 0.5);
+    --fg: #e8e6e1;
+    --fg-doux: #b4bcb8;
+    --fg-secondaire: #98a29d;
+    --fg-atenue: #909a95;
+    --bg: #1c2124;
+    --bg-doux: #20272a;
+    --bg-carte: #14181a;
+    --bord: #2e3538;
+    --bord-fort: #2e3538;
+    --accent: #6fc496;
+    --repere: #4fb577;
+    --ombre: 0 2px 10px rgb(0 0 0 / 0.5);
+    --ombre-panneau: 0 2px 14px rgb(0 0 0 / 0.5);
+    --ombre-fiche: 0 6px 28px rgb(0 0 0 / 0.55);
+    --ombre-feuille: 0 -8px 34px rgb(0 0 0 / 0.55);
+  }
+}
+
+@media (pointer: fine) {
+  :root {
+    --cible: 2.5rem;
   }
 }
 
@@ -38,7 +70,7 @@ body {
   margin: 0;
   font-family: var(--police);
   color: var(--fg);
-  background: var(--bg);
+  background: var(--bg-carte);
 }
 
 #app {
@@ -47,4 +79,54 @@ body {
 
 a {
   color: var(--accent);
+}
+
+/* Focus clavier visible partout, une seule fois : sans ça la navigation au
+   clavier est aveugle. `:focus-visible` n'apparaît pas au clic souris. */
+:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 2px;
+}
+
+/* Surface flottante : toutes les cartes posées au-dessus de la carte.
+   Les composants ajustent librement `box-shadow` selon l'élévation voulue ;
+   le fond et le liseré restent ici. */
+.surface {
+  border: 1px solid transparent;
+  border-radius: var(--rayon);
+  background: var(--bg);
+  box-shadow: var(--ombre-panneau);
+}
+
+@media (prefers-color-scheme: dark) {
+  /* Le liseré passe par `border` et non par un `inset` de box-shadow : plusieurs
+     composants redéfinissent box-shadow et effaçaient le contour, laissant les
+     surfaces sombres se fondre dans la carte. */
+  .surface {
+    border-color: var(--bord);
+  }
+}
+
+/* Contrôles MapLibre (attribution, échelle). Ils se posent sur les tuiles, qui
+   restent claires même en thème sombre : leur palette ne doit pas suivre le
+   thème, sinon on obtient du texte clair sur fond blanc — illisible. */
+/* Deux classes pour égaler la spécificité de MapLibre
+   (`.maplibregl-ctrl.maplibregl-ctrl-attrib`), sinon son fond à 50 % gagne. */
+.maplibregl-ctrl.maplibregl-ctrl-attrib {
+  background: rgb(255 255 255 / 0.82);
+}
+
+.maplibregl-ctrl-attrib,
+.maplibregl-ctrl-attrib a {
+  color: #333;
+}
+
+/* Suréligne commune aux en-têtes de panneaux. */
+.sureligne {
+  margin: 0;
+  color: var(--fg-atenue);
+  font-size: 0.625rem;
+  font-weight: 600;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
 }

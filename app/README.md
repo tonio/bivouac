@@ -75,6 +75,34 @@ Trois blocages coûteux, corrigés — à ne pas réintroduire :
 
 En dev, la carte est exposée en `window.__carte` pour inspection console.
 
+### Pièges CSS
+
+4. **Un `button` scopé bat `.surface`.** Vue compile `button { … }` en
+   `button[data-v-xxx]` (0-1-1), plus spécifique que la classe `.surface`
+   (0-1-0) : un reset `background: none` volait donc son fond au seul bouton
+   portant `.surface`. D'où le `button:not(.surface)` dans `BarreHaute.vue`.
+   Corollaire : ne pas remettre `border: 0` sur un `button.surface`, la bordure
+   porte le liseré du mode sombre.
+5. **Le liseré sombre passe par `border`, pas par un `inset` de box-shadow.**
+   Plusieurs composants redéfinissent `box-shadow` pour ajuster l'élévation, ce
+   qui effaçait un liseré posé en `inset` — les surfaces se fondaient dans la
+   carte.
+6. **Les contrôles MapLibre ne suivent pas le thème.** Ils reposent sur les
+   tuiles, toujours claires : leur palette est figée en clair dans `app.css`,
+   sinon on obtient du texte clair sur fond blanc. Égaler leur spécificité
+   demande deux classes (`.maplibregl-ctrl.maplibregl-ctrl-attrib`).
+
+### Accessibilité
+
+Focus clavier global (`:focus-visible`, 2 px `--accent`) déclaré une seule fois
+dans `app.css` — le champ de recherche délègue à sa surface via
+`:focus-within`, l'outline d'un input se lisant mal à l'intérieur du bloc.
+
+Contrastes vérifiés au ratio WCAG dans les deux thèmes : `--fg-atenue` porte
+l'avertissement juridique et les placeholders en 12-14 px, d'où un ton assez
+sombre pour tenir 4.5:1 (4.73 en clair, 5.60 en sombre). L'assombrir moins
+casse la conformité.
+
 ## Fonctionnalités
 
 Volontairement minimal : affichage, légende, sélection de fond, filtres par

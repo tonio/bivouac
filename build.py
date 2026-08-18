@@ -15,8 +15,9 @@ import sys
 ROOT = pathlib.Path(__file__).parent
 DATA, OUT = ROOT / "data", ROOT / "out"
 
-# ponytail: z5-12 suffit pour du zonage; au-delà on lit la géométrie source.
-MINZOOM, MAXZOOM = 5, 12
+# ponytail: z4-12. z4 pour que la France entière tienne à l'écran en portrait
+# mobile sans carte vide ; au-delà de z12 on lit la géométrie source.
+MINZOOM, MAXZOOM = 4, 12
 
 # couche -> clé dans rules/par-type.json. L'ordre définit la priorité d'affichage
 # (le plus contraignant en dernier = dessiné au-dessus).
@@ -172,7 +173,7 @@ def pmtiles(features):
     gdal.UseExceptions()
     tiles.unlink(missing_ok=True)
     # Les zooms doivent être fixés à la création du dataset : passés seulement
-    # en options de couche, le tileset reste borné à z5.
+    # en options de couche, le tileset reste borné au minzoom.
     dst = gdal.GetDriverByName("PMTiles").Create(
         str(tiles), 0, 0, 0, gdal.GDT_Unknown,
         ["NAME=bivouac", f"MINZOOM={MINZOOM}", f"MAXZOOM={MAXZOOM}"])
@@ -193,8 +194,9 @@ def pmtiles(features):
     for nom in ("zones", "points"):
         assert nom in got, f"couche '{nom}' absente des tuiles :\n{got}"
 
-    # Le tileset est resté borné à z5 quand les zooms n'étaient passés qu'en
-    # options de couche : on vérifie plutôt que de faire confiance.
+    # Le tileset s'était retrouvé borné au seul MINZOOM quand les zooms
+    # n'étaient passés qu'en options de couche : on vérifie plutôt que de
+    # faire confiance.
     ds = gdal.OpenEx(str(tiles), open_options=[f"ZOOM_LEVEL={MAXZOOM}"])
     assert ds is not None, f"tuiles illisibles au zoom {MAXZOOM}"
     ds = None

@@ -1,50 +1,109 @@
 <script setup>
 import { ref } from 'vue'
 import CarteBivouac from './components/CarteBivouac.vue'
-import LegendeCarte from './components/LegendeCarte.vue'
+import BarreHaute from './components/BarreHaute.vue'
+import PanneauProtections from './components/PanneauProtections.vue'
+import LegendeSeverite from './components/LegendeSeverite.vue'
+import ControlesCarte from './components/ControlesCarte.vue'
 import FicheZonage from './components/FicheZonage.vue'
 import { FONDS, GROUPES } from './map/config.js'
 
 const fond = ref(FONDS[0].id)
 const groupes = ref(GROUPES.filter((g) => g.actifDefaut).map((g) => g.id))
 const selection = ref(null)
+
+// Le panneau des protections est masqué au chargement : la carte est l'écran,
+// tout le reste se demande.
+const panneau = ref(false)
+const carte = ref(null)
 </script>
 
 <template>
-  <div class="ecran" :class="{ 'ecran--fiche': selection }">
-    <LegendeCarte v-model:fond="fond" v-model:groupes="groupes" />
+  <div class="ecran">
     <CarteBivouac
+      ref="carte"
       :fond="fond"
       :groupes-actifs="groupes"
       @selection="selection = $event"
     />
+
+    <BarreHaute
+      v-model:fond="fond"
+      :panneau-ouvert="panneau"
+      @basculer-panneau="panneau = !panneau"
+    />
+
+    <PanneauProtections
+      v-if="panneau"
+      v-model:groupes="groupes"
+      class="panneau"
+      @fermer="panneau = false"
+    />
+
+    <!-- En mobile la légende vit dans le panneau : ici on n'affiche que la
+         version flottante permanente du desktop. -->
+    <LegendeSeverite class="legende" />
+
+    <ControlesCarte
+      class="controles"
+      @zoom="carte?.zoomer($event)"
+      @recentrer="carte?.recentrer()"
+    />
+
     <FicheZonage :selection="selection" @fermer="selection = null" />
   </div>
 </template>
 
 <style scoped>
+/* La carte occupe tout : les panneaux flottent au-dessus et leur hauteur suit
+   leur contenu. Aucune colonne fixe ne comprime plus la carte. */
 .ecran {
-  display: grid;
-  grid-template-columns: 16rem 1fr;
+  position: relative;
   height: 100%;
+  overflow: hidden;
 }
 
-.ecran--fiche {
-  grid-template-columns: 16rem 1fr 21rem;
+.panneau {
+  position: absolute;
+  z-index: 2;
+  top: 5.5rem;
+  left: 1.5rem;
+  width: 18.5rem;
+  max-height: calc(100% - 12rem);
 }
 
-/* Sous 900 px les panneaux passent au-dessus de la carte plutôt que de la
-   comprimer : une carte de 200 px de large ne sert à rien. */
+.legende {
+  position: absolute;
+  z-index: 1;
+  bottom: 3.5rem;
+  left: 1.5rem;
+  width: 18.5rem;
+}
+
+.controles {
+  position: absolute;
+  z-index: 2;
+  top: 5.5rem;
+  right: 1.5rem;
+}
+
 @media (max-width: 900px) {
-  .ecran,
-  .ecran--fiche {
-    grid-template-columns: 1fr;
-    grid-template-rows: auto 1fr;
-    overflow-y: auto;
+  .panneau {
+    top: 4.875rem;
+    left: 0.875rem;
+    width: 18.75rem;
+    max-width: calc(100% - 1.75rem);
+    max-height: calc(100% - 7rem);
   }
 
-  .ecran--fiche {
-    grid-template-rows: auto 60vh auto;
+  .controles {
+    top: 4.875rem;
+    right: 0.875rem;
+  }
+
+  /* La légende n'est plus permanente : elle est dépliée dans le panneau. */
+  .legende {
+    display: none;
   }
 }
 </style>
