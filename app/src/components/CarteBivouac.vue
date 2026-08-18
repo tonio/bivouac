@@ -1,7 +1,7 @@
 <script setup>
 import { onMounted, onUnmounted, ref, shallowRef, watch } from 'vue'
 // MapLibre 6 n'expose plus d'export `default` : imports nommés uniquement.
-import { Map, ScaleControl, addProtocol, removeProtocol } from 'maplibre-gl'
+import { Map, Marker, ScaleControl, addProtocol, removeProtocol } from 'maplibre-gl'
 import { Protocol } from 'pmtiles'
 import 'maplibre-gl/dist/maplibre-gl.css'
 import { CENTRE, ZOOM, EMPRISE, GROUPES } from '../map/config.js'
@@ -11,11 +11,14 @@ const props = defineProps({
   fond: { type: String, required: true },
   groupesActifs: { type: Array, required: true },
 })
-const emit = defineEmits(['selection'])
+const emit = defineEmits(['selection', 'emprise'])
 
 const conteneur = ref(null)
 const carte = shallowRef(null)
 let protocole = null
+// Marqueur du dernier résultat de recherche, remplacé à chaque nouvelle
+// recherche et retiré à la destruction.
+let repere = null
 const chargement = ref(true)
 const erreur = ref('')
 
@@ -109,9 +112,19 @@ onMounted(() => {
     map.on('mouseenter', id, () => { map.getCanvas().style.cursor = 'pointer' })
     map.on('mouseleave', id, () => { map.getCanvas().style.cursor = '' })
   }
+
+  // Emprise remontée à la fin des déplacements seulement : la recherche s'en
+  // sert pour trier par proximité, pas besoin de suivre chaque image.
+  const publierEmprise = () => {
+    const b = map.getBounds()
+    emit('emprise', [[b.getWest(), b.getSouth()], [b.getEast(), b.getNorth()]])
+  }
+  map.on('moveend', publierEmprise)
+  map.once('idle', publierEmprise)
 })
 
 onUnmounted(() => {
+  repere?.remove()
   carte.value?.remove()
   removeProtocol('pmtiles')
 })
@@ -134,6 +147,26 @@ watch(() => props.groupesActifs, (actifs) => {
 defineExpose({
   zoomer: (pas) => carte.value?.zoomTo(carte.value.getZoom() + pas, { duration: 250 }),
   recentrer: () => carte.value?.fitBounds(EMPRISE, { padding: 16, duration: 700 }),
+
+  /** Cadre sur un résultat de recherche et le marque. */
+  allerA: (lieu) => {
+    const map = carte.value
+    if (!map || !lieu) return
+
+    // Une emprise cadre juste une commune ou un lac ; pour un refuge ou un
+    // parking, elle est minuscule — on plafonne le zoom pour garder du
+    // contexte, sinon on se retrouve collé au sol.
+    if (lieu.emprise) {
+      map.fitBounds(lieu.emprise, { padding: 80, maxZoom: 14, duration: 900 })
+    } else {
+      map.flyTo({ center: [lieu.lon, lieu.lat], zoom: 14, duration: 900 })
+    }
+
+    repere?.remove()
+    repere = new Marker({ color: '#c0392b' })
+      .setLngLat([lieu.lon, lieu.lat])
+      .addTo(map)
+  },
 })
 </script>
 

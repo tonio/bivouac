@@ -45,18 +45,60 @@ une couche de tuiles vectorielles ne peut contenir qu'un type de géométrie.
 
 ## Fonds de carte
 
-| Fond | Source | Licence |
-|---|---|---|
-| OpenStreetMap | `tile.openstreetmap.org` | ODbL, attribution obligatoire |
-| Plan IGN | `GEOGRAPHICALGRIDSYSTEMS.PLANIGNV2` | Licence Ouverte |
-| Photo aérienne | `ORTHOIMAGERY.ORTHOPHOTOS` | Licence Ouverte |
+Deux fonds, tous deux utiles à la préparation : la topo pour le relief et les
+sentiers, la photo pour la nature du terrain (pierrier, herbe, forêt).
 
-**Top25 / SCAN25 absent volontairement** : la Géoplateforme refuse la couche
+| Fond | Source | Licence | Zoom max |
+|---|---|---|---|
+| Carte topographique (défaut) | `tile.opentopomap.org` | CC-BY-SA, attribution imposée mot pour mot | 17 |
+| Photo aérienne | `ORTHOIMAGERY.ORTHOPHOTOS` (Géoplateforme) | Licence Ouverte | 19 |
+
+**OpenTopoMap** est le fond « rando » : courbes de niveau cotées, ombrage du
+relief, sentiers et éboulis figurés — le rendu disponible librement le plus
+proche d'une Top25. CC-BY-SA autorise l'usage commercial ; en contrepartie
+l'attribution est imposée telle quelle et le partage à l'identique s'applique.
+
+**OSM standard et le Plan IGN ont été retirés** : plats, sans courbes de niveau,
+ils n'apportaient rien pour préparer un bivouac. CyclOSM a été écarté aussi —
+orienté vélo, sans variante rando.
+
+Serveur bénévole, sans garantie de disponibilité et sans limite chiffrée mais
+avec une clause anti-téléchargement massif : les trois sous-domaines `a/b/c` sont
+déclarés pour répartir la charge. Ne pas préchauffer de cache dessus.
+
+**Top25 / SCAN25 reste hors de portée** : la Géoplateforme refuse la couche
 (HTTP 400) sans habilitation, sa licence n'étant pas ouverte. Ne pas l'ajouter
 sans avoir vérifié les droits.
 
-Attention aux identifiants : `GEOGRAPHICALGRIDSYSTEMS.PLANIGNV2` (sans point
-avant `V2`). `PLAN.IGN` et `MAPS` renvoient 400.
+`maxzoom: 17` sur le fond topo est mesuré, pas supposé : z18 renvoie une tuile
+unie (une seule couleur). MapLibre sur-zoome donc la dernière tuile réelle au
+lieu d'afficher du blanc.
+
+Attention aux identifiants Géoplateforme : `ORTHOIMAGERY.ORTHOPHOTOS` fonctionne,
+`PLAN.IGN` et `MAPS` renvoient 400 (le plan s'appelait
+`GEOGRAPHICALGRIDSYSTEMS.PLANIGNV2`, sans point avant `V2`).
+
+Le contour des protections s'épaissit jusqu'à 3 px en zoom fort : sur un fond
+topographique texturé, un remplissage à 28 % se noie alors qu'un liseré net
+délimite sans masquer les courbes.
+
+## Recherche de lieu
+
+Géocodage via **Nominatim** (OpenStreetMap), pas la BAN : `api-adresse.data.gouv.fr`
+ne connaît que des adresses postales et renvoie « Le Refuge de l'Arche » en
+Mayenne pour « refuge de l'Arpont ». Nominatim rend le bon refuge avec son type
+`alpine_hut`, et couvre lacs, cols, sommets, hameaux et parkings.
+
+`src/map/recherche.js` classe les résultats par pertinence bivouac (refuge et
+cabane d'abord, cours d'eau et hélisurfaces en dernier) et transmet l'emprise de
+la vue courante : « la valette » donne la vallée en Vanoise si la carte y est,
+l'homonyme grenoblois sinon.
+
+La politique d'usage de Nominatim plafonne à **1 requête/seconde** et décourage
+explicitement l'autocomplétion. D'où un debounce de 600 ms, l'annulation des
+requêtes obsolètes (`AbortController`) et un cache par requête : une saisie de
+18 caractères ne déclenche qu'un seul appel, vérifié. L'attribution Nominatim
+apparaît en pied de liste, comme la politique l'exige.
 
 ## Pièges rencontrés
 

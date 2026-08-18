@@ -16,6 +16,11 @@ const selection = ref(null)
 // tout le reste se demande.
 const panneau = ref(false)
 const carte = ref(null)
+
+// Emprise courante, transmise à la recherche pour privilégier les résultats
+// proches de ce que l'utilisateur regarde (« la valette » → celle de Vanoise
+// si la carte est sur la Vanoise).
+const viewbox = ref(null)
 </script>
 
 <template>
@@ -25,12 +30,15 @@ const carte = ref(null)
       :fond="fond"
       :groupes-actifs="groupes"
       @selection="selection = $event"
+      @emprise="viewbox = $event"
     />
 
     <BarreHaute
       v-model:fond="fond"
       :panneau-ouvert="panneau"
+      :viewbox="viewbox"
       @basculer-panneau="panneau = !panneau"
+      @aller="carte?.allerA($event)"
     />
 
     <PanneauProtections

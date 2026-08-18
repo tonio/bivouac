@@ -1,10 +1,12 @@
 <script setup>
 import { FONDS } from '../map/config.js'
+import ChampRecherche from './ChampRecherche.vue'
 
 defineProps({
   panneauOuvert: { type: Boolean, default: false },
+  viewbox: { type: Array, default: null },
 })
-defineEmits(['basculer-panneau'])
+defineEmits(['basculer-panneau', 'aller'])
 
 const fond = defineModel('fond', { type: String, required: true })
 </script>
@@ -22,10 +24,7 @@ const fond = defineModel('fond', { type: String, required: true })
       <span>Zones</span>
     </button>
 
-    <label class="surface recherche">
-      <span class="loupe" aria-hidden="true">⌕</span>
-      <input type="search" placeholder="Rechercher un lieu, un massif, un refuge…" />
-    </label>
+    <ChampRecherche class="recherche" :viewbox="viewbox" @aller="$emit('aller', $event)" />
 
     <div class="surface fonds" role="radiogroup" aria-label="Fond de carte">
       <button
@@ -97,43 +96,6 @@ button.surface {
   height: 0.5625rem;
   border-radius: 50%;
   background: var(--repere);
-}
-
-.recherche {
-  display: flex;
-  align-items: center;
-  gap: 0.5625rem;
-  width: 22.5rem;
-  height: 3rem;
-  padding: 0 1rem;
-  box-shadow: var(--ombre);
-}
-
-.loupe {
-  color: var(--fg-secondaire);
-}
-
-input {
-  width: 100%;
-  border: 0;
-  background: none;
-  color: var(--fg);
-  font: 400 0.875rem var(--police);
-}
-
-input::placeholder {
-  color: var(--fg-atenue);
-}
-
-/* Le focus est porté par la surface entière plutôt que par le champ, sinon
-   l'outline se dessine à l'intérieur du bloc et se lit mal. */
-.recherche:focus-within {
-  outline: 2px solid var(--accent);
-  outline-offset: 2px;
-}
-
-.recherche input:focus-visible {
-  outline: none;
 }
 
 .fonds {

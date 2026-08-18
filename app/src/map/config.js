@@ -4,23 +4,31 @@
 const IGN = 'https://data.geopf.fr/wmts?SERVICE=WMTS&VERSION=1.0.0&REQUEST=GetTile' +
   '&STYLE=normal&TILEMATRIXSET=PM&TILEMATRIX={z}&TILEROW={y}&TILECOL={x}'
 
+// Deux fonds seulement, tous deux utiles à la préparation d'un bivouac : la topo
+// pour le relief et les sentiers, la photo pour la nature du terrain (pierrier,
+// herbe, forêt). OSM standard et le Plan IGN ont été retirés : plats, sans
+// courbes de niveau, ils n'apportaient rien ici.
 export const FONDS = [
   {
-    id: 'osm',
-    label: 'OpenStreetMap',
+    // Courbes de niveau cotées, ombrage du relief, sentiers et éboulis figurés —
+    // le rendu le plus proche d'une Top25 disponible librement.
+    // SCAN25 (la vraie Top25) reste hors de portée : la Géoplateforme le refuse
+    // sans habilitation, sa licence n'étant pas ouverte.
+    id: 'topo',
+    label: 'Carte topographique',
     // Libellé court pour le segmenté de la barre haute, où la place manque.
-    court: 'OSM',
-    tiles: ['https://tile.openstreetmap.org/{z}/{x}/{y}.png'],
-    attribution: '© les contributeurs <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a>',
-    maxzoom: 19,
-  },
-  {
-    id: 'ign-plan',
-    label: 'Plan IGN',
-    court: 'Plan IGN',
-    tiles: [`${IGN}&LAYER=GEOGRAPHICALGRIDSYSTEMS.PLANIGNV2&FORMAT=image/png`],
-    attribution: '<a href="https://www.ign.fr/">IGN</a> — Plan IGN v2',
-    maxzoom: 19,
+    court: 'Topo',
+    tiles: [
+      'https://a.tile.opentopomap.org/{z}/{x}/{y}.png',
+      'https://b.tile.opentopomap.org/{z}/{x}/{y}.png',
+      'https://c.tile.opentopomap.org/{z}/{x}/{y}.png',
+    ],
+    // Attribution imposée telle quelle par la licence CC-BY-SA d'OpenTopoMap.
+    attribution:
+      'Données : © les contributeurs <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a>, SRTM | ' +
+      'rendu : © <a href="https://opentopomap.org/">OpenTopoMap</a> (<a href="https://creativecommons.org/licenses/by-sa/3.0/">CC-BY-SA</a>)',
+    // OpenTopoMap s'arrête à 17 ; au-delà MapLibre sur-zoome la dernière tuile.
+    maxzoom: 17,
   },
   {
     id: 'ign-ortho',

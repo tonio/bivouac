@@ -58,8 +58,11 @@ export function creerStyle(fondId, pmtilesUrl) {
         'source-layer': 'zones',
         paint: {
           'line-color': couleurParSeverite,
-          'line-width': ['interpolate', ['linear'], ['zoom'], 5, 0.5, 12, 1.6],
-          'line-opacity': 0.9,
+          // Le contour porte la lecture des limites : sur un fond topographique
+          // très texturé, un remplissage à 28 % se noie mais un liseré net reste
+          // visible sans masquer les courbes de niveau.
+          'line-width': ['interpolate', ['linear'], ['zoom'], 5, 0.6, 10, 2, 14, 3],
+          'line-opacity': 0.95,
         },
       },
       {
