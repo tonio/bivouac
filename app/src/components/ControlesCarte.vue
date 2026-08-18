@@ -1,12 +1,12 @@
 <script setup>
-defineEmits(['zoom', 'recentrer'])
+defineEmits(['zoom', 'localiser'])
 </script>
 
 <template>
   <div class="surface controles">
     <button type="button" aria-label="Zoomer" @click="$emit('zoom', 1)">+</button>
     <button type="button" aria-label="Dézoomer" @click="$emit('zoom', -1)">−</button>
-    <button type="button" aria-label="Voir toute la France" @click="$emit('recentrer')">⌖</button>
+    <button type="button" aria-label="Me localiser" @click="$emit('localiser')">⌖</button>
   </div>
 </template>
 

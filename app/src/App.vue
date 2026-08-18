@@ -55,7 +55,7 @@ const viewbox = ref(null)
     <ControlesCarte
       class="controles"
       @zoom="carte?.zoomer($event)"
-      @recentrer="carte?.recentrer()"
+      @localiser="carte?.localiser()"
     />
 
     <FicheZonage :selection="selection" @fermer="selection = null" />

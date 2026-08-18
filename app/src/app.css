@@ -121,6 +121,14 @@ a {
   color: #333;
 }
 
+/* GeolocateControl est là pour le point bleu, le cercle de précision et la
+   gestion de la permission ; son bouton natif ferait doublon avec le ⌖ de
+   ControlesCarte, qui le déclenche. On masque le groupe de contrôle, pas le
+   contrôle : le marqueur de position vit dans la carte, pas ici. */
+.maplibregl-ctrl-group:has(.maplibregl-ctrl-geolocate) {
+  display: none;
+}
+
 
 /* Suréligne commune aux en-têtes de panneaux. */
 .sureligne {

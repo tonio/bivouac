@@ -1,7 +1,7 @@
 <script setup>
 import { onMounted, onUnmounted, ref, shallowRef, watch } from 'vue'
 // MapLibre 6 n'expose plus d'export `default` : imports nommés uniquement.
-import { Map, Marker, ScaleControl, addProtocol, removeProtocol } from 'maplibre-gl'
+import { GeolocateControl, Map, Marker, ScaleControl, addProtocol, removeProtocol } from 'maplibre-gl'
 import { Protocol } from 'pmtiles'
 import 'maplibre-gl/dist/maplibre-gl.css'
 import { CENTRE, ZOOM, EMPRISE, GROUPES } from '../map/config.js'
@@ -19,8 +19,12 @@ let protocole = null
 // Marqueur du dernier résultat de recherche, remplacé à chaque nouvelle
 // recherche et retiré à la destruction.
 let repere = null
+// GeolocateControl, déclenché par le bouton ⌖ de ControlesCarte.
+let geoloc = null
 const chargement = ref(true)
 const erreur = ref('')
+// Séparé de `erreur` : il ne suit pas le cycle de chargement des protections.
+const erreurGeoloc = ref('')
 
 // Servi en même-origine dans les deux cas : symlink vers ../../out/ en dev, et
 // déposé dans dist/ par le workflow Pages en prod. PMTiles lit par Range
@@ -98,6 +102,30 @@ onMounted(() => {
   // Pas de NavigationControl : les boutons de zoom sont des éléments de l'UI
   // flottante (ControlesCarte), pour garder une seule grammaire visuelle.
   map.addControl(new ScaleControl({ maxWidth: 120, unit: 'metric' }), 'bottom-left')
+
+  // GeolocateControl pour le point bleu, le cercle de précision, la permission
+  // et le suivi — tout ça est déjà écrit et testé. Son bouton natif est masqué
+  // en CSS : c'est ⌖ de ControlesCarte qui le déclenche, pour ne pas avoir deux
+  // grammaires visuelles côte à côte.
+  geoloc = new GeolocateControl({
+    positionOptions: { enableHighAccuracy: true },
+    // En montagne le premier point GPS est souvent grossier puis s'affine :
+    // le suivi laisse la position se corriger au lieu de figer l'approximation.
+    trackUserLocation: true,
+    showUserLocation: true,
+  })
+  map.addControl(geoloc)
+
+  // Message séparé de `erreur` : celui-ci est effacé dès que les protections se
+  // rechargent (`sourcedata`), ce qui arrive au premier déplacement — l'avis de
+  // refus disparaissait avant d'avoir été lu. Il s'efface au clic suivant sur ⌖,
+  // qui est le seul geste qui le rend obsolète.
+  geoloc.on('error', (e) => {
+    erreurGeoloc.value = e?.code === 1
+      ? 'Localisation refusée — autorisez-la dans les réglages du navigateur.'
+      : 'Position introuvable.'
+  })
+  geoloc.on('geolocate', () => { erreurGeoloc.value = '' })
 
   map.on('load', () => {
     chargement.value = false
@@ -186,7 +214,13 @@ watch(() => props.groupesActifs, (actifs) => {
 // Pilotage depuis l'UI flottante.
 defineExpose({
   zoomer: (pas) => carte.value?.zoomTo(carte.value.getZoom() + pas, { duration: 250 }),
-  recentrer: () => carte.value?.fitBounds(EMPRISE, { padding: 16, duration: 700 }),
+
+  /** Centre sur la position de l'utilisateur (permission, point bleu et suivi
+   *  gérés par GeolocateControl). */
+  localiser: () => {
+    erreurGeoloc.value = ''
+    geoloc?.trigger()
+  },
 
   /** Cadre sur un résultat de recherche et le marque. */
   allerA: (lieu) => {
@@ -215,6 +249,7 @@ defineExpose({
     <div ref="conteneur" class="toile"></div>
     <p v-if="chargement" class="etat surface">Chargement des protections…</p>
     <p v-else-if="erreur" class="etat surface etat--erreur">{{ erreur }}</p>
+    <p v-else-if="erreurGeoloc" class="etat surface etat--erreur">{{ erreurGeoloc }}</p>
   </div>
 </template>
 
