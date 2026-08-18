@@ -2,6 +2,9 @@
 
 Géométries des zonages de protection + règles de bivouac associées, jointes par identifiant.
 
+Consultation cartographique : **https://tonio.github.io/bivouac/** — l'app est
+dans [`app/`](app/README.md), son déploiement aussi.
+
 ```sh
 ./fetch.sh              # 11 couches nationales -> data/*.geojson (~300 Mo, ~2 min)
 ./fetch_osm.sh          # refuges Vanoise depuis OSM

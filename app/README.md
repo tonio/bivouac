@@ -8,8 +8,9 @@ yarn dev        # http://localhost:5173
 yarn build      # dist/
 ```
 
-Les données viennent de `public/bivouac.pmtiles`, un symlink vers `../../out/`.
-Si la carte est vide, c'est que les tuiles n'ont pas été générées :
+En dev, les données viennent de `public/bivouac.pmtiles`, un symlink vers
+`../../out/` (en prod, voir [Déploiement](#déploiement)). Si la carte est vide,
+c'est que les tuiles n'ont pas été générées :
 
 ```sh
 cd .. && ./fetch.sh && ./fetch_osm.sh && ./zones_internes.py && ./build.py --pmtiles
@@ -37,7 +38,11 @@ sémantiques (`.legende`, `.fiche`, `.pastille`), jamais d'utilitaires.
 | `src/map/config.js` | Fonds de carte, palette, groupes de zonages. **Seul fichier à éditer** pour ajouter un fond ou un zonage. |
 | `src/map/style.js` | Construction du style MapLibre (expressions de couleur). |
 | `src/components/CarteBivouac.vue` | Carte, filtres, clic. |
-| `src/components/LegendeCarte.vue` | Sélecteur de fond, cases de zonages, échelle de couleur. |
+| `src/components/BarreHaute.vue` | Bascule de fond, bouton « Zones », recherche. |
+| `src/components/ChampRecherche.vue` | Autocomplétion Nominatim. |
+| `src/components/PanneauProtections.vue` | Cases à cocher par famille de zonage. |
+| `src/components/LegendeSeverite.vue` | Échelle de couleur et avertissement juridique. |
+| `src/components/ControlesCarte.vue` | Zoom et recadrage. |
 | `src/components/FicheZonage.vue` | Panneau d'infos : décode `regle_json` en libellés lisibles. |
 
 Le PMTiles porte deux couches — `zones` (polygones) et `points` (refuges) — car
@@ -123,11 +128,22 @@ apparaît en pied de liste, comme la politique l'exige.
 
 Trois blocages coûteux, corrigés — à ne pas réintroduire :
 
-1. **`optimizeDeps.exclude: ['maplibre-gl']` dans `vite.config.js` est
-   obligatoire.** Sans lui, le pre-bundling de Vite casse le web worker
-   (`/node_modules/.vite/deps/maplibre-gl-worker.mjs` en 404) et **aucune** tuile
-   n'est décodée — vectorielle comme GeoJSON. La carte reste vide *sans lever
-   d'erreur*, ce qui rend le diagnostic pénible.
+1. **Le web worker de MapLibre casse des deux côtés, pour des raisons opposées.**
+   Sans erreur console dans un cas comme dans l'autre : la carte reste sur
+   « Chargement des protections… », fond raster visible et zonages absents, parce
+   que les tuiles raster n'ont pas besoin du worker et les vectorielles si. Le
+   404 n'apparaît que dans l'onglet réseau.
+   - **En dev**, `optimizeDeps.exclude: ['maplibre-gl']` est obligatoire : le
+     pre-bundling de Vite sert `/node_modules/.vite/deps/maplibre-gl-worker.mjs`
+     en 404.
+   - **Au build**, cet `exclude` occulte le worker : MapLibre le résout par
+     `new URL('./maplibre-gl-worker.mjs', import.meta.url)`, donc depuis
+     `assets/`, où rien ne l'émet. D'où le plugin `workerMaplibre()` dans
+     `vite.config.js`, qui l'y copie avec son module partagé (les deux, ou rien —
+     le worker importe le second).
+
+   Corollaire : retirer l'`exclude` casse le dev, retirer le plugin casse la
+   prod. Les deux sont nécessaires.
 2. **MapLibre 6 n'a plus d'export `default`** : imports nommés uniquement
    (`import { Map, NavigationControl } from 'maplibre-gl'`).
 3. **`new Protocol().tile` doit être lié** (`.bind(protocole)`) : passé détaché il
@@ -163,6 +179,44 @@ Contrastes vérifiés au ratio WCAG dans les deux thèmes : `--fg-atenue` porte
 l'avertissement juridique et les placeholders en 12-14 px, d'où un ton assez
 sombre pour tenir 4.5:1 (4.73 en clair, 5.60 en sombre). L'assombrir moins
 casse la conformité.
+
+## Déploiement
+
+En ligne sur **https://tonio.github.io/bivouac/**, déployé par
+`.github/workflows/pages.yml` à chaque push sur `main`.
+
+Le pmtiles fait 93 Mo et n'est pas dans git — c'est un dérivé reproductible par
+`build.py`. Il vit dans la release `data-v1`, et le workflow le dépose dans
+`dist/` au build. Pages le sert donc **en même-origine** que l'app.
+
+Mettre à jour la donnée sans toucher au code — le tag est fixe, on remplace son
+asset :
+
+```sh
+cd .. && ./build.py --pmtiles
+gh release upload data-v1 out/bivouac.pmtiles --clobber
+```
+
+Le workflow ne régénère pas la donnée : `fetch.sh` télécharge ~300 Mo pour des
+zonages qui bougent quelques fois par an.
+
+**`base: '/bivouac/'`** tant que le site vit sous un sous-chemin. À remettre à
+`'/'` le jour où un domaine dédié pointe dessus — et l'URL du pmtiles suit
+d'elle-même, elle passe par `import.meta.env.BASE_URL` plutôt que par un chemin
+absolu, qui viserait la racine du domaine.
+
+### Pourquoi pas l'URL de la release directement
+
+Testé, inutilisable : un release asset redirige vers
+`release-assets.githubusercontent.com` avec une URL **signée qui expire en ~1 h**,
+et **sans en-tête CORS**. Les Range requests passent (206), mais le navigateur
+refuse la réponse. D'où la copie dans `dist/` : en même-origine, la question du
+CORS ne se pose plus, et Pages honore `Range` (vérifié, `206` +
+`content-range`) — ce dont PMTiles dépend entièrement.
+
+Une alternative si la donnée dépasse un jour la limite de 2 Go des releases, ou
+si le trafic justifie un CDN : Cloudflare R2 (10 Go gratuits, egress gratuit,
+CORS et Range configurables). Ce n'est qu'un changement d'URL.
 
 ## Fonctionnalités
 
