@@ -45,22 +45,41 @@ une couche de tuiles vectorielles ne peut contenir qu'un type de géométrie.
 
 ## Fonds de carte
 
-Deux fonds, tous deux utiles à la préparation : la topo pour le relief et les
-sentiers, la photo pour la nature du terrain (pierrier, herbe, forêt).
+Deux fonds dans l'interface, une bascule à deux états dans la barre haute (le
+libellé annonce la destination, pas l'état courant).
 
 | Fond | Source | Licence | Zoom max |
 |---|---|---|---|
-| Carte topographique (défaut) | `tile.opentopomap.org` | CC-BY-SA, attribution imposée mot pour mot | 17 |
-| Photo aérienne | `ORTHOIMAGERY.ORTHOPHOTOS` (Géoplateforme) | Licence Ouverte | 19 |
+| **Carte topographique** (défaut), vue large | `tile.openstreetmap.fr/hot` | ODbL, hébergé par OSM-France | 19 |
+| **Carte topographique**, à partir de z11 | `tile.opentopomap.org` | CC-BY-SA, attribution imposée mot pour mot | 17 |
+| **Photo aérienne** | `ORTHOIMAGERY.ORTHOPHOTOS` (Géoplateforme) | Licence Ouverte | 19 |
 
-**OpenTopoMap** est le fond « rando » : courbes de niveau cotées, ombrage du
-relief, sentiers et éboulis figurés — le rendu disponible librement le plus
-proche d'une Top25. CC-BY-SA autorise l'usage commercial ; en contrepartie
-l'attribution est imposée telle quelle et le partage à l'identique s'applique.
+### Un fond, deux paliers de zoom
 
-**OSM standard et le Plan IGN ont été retirés** : plats, sans courbes de niveau,
-ils n'apportaient rien pour préparer un bivouac. CyclOSM a été écarté aussi —
-orienté vélo, sans variante rando.
+« Topo » sert deux jeux de tuiles selon l'échelle, sans que l'utilisateur ait à
+choisir — il voit un seul fond, la carte reste lisible partout :
+
+- **Sous z11** : style HOT, beige-gris sobre. OpenTopoMap y applique une teinte
+  hypsométrique (plaines vert vif, sommets brun-rouge) qui rend les zonages
+  illisibles à l'échelle de la France.
+- **À partir de z11** : OpenTopoMap, pour les courbes de niveau cotées, l'ombrage,
+  les sentiers et les éboulis — le rendu le plus proche d'une Top25 disponible
+  librement.
+
+Le seuil est **mesuré, pas estimé** : la saturation moyenne d'une tuile alpine
+d'OpenTopoMap reste à ~0,73 jusqu'à z10, puis tombe à ~0,18 à z11, quand le style
+abandonne l'hypsométrie. Voir `SEUIL_TOPO` dans `config.js`.
+
+Techniquement, deux sources raster superposées avec un fondu croisé sur un niveau
+de zoom (`raster-opacity` interpolée), et non un `setStyle` au franchissement qui
+ferait clignoter la carte et rechargerait tout le style.
+
+**Écartés** : OSM standard, le Plan IGN et OSM-FR (plats, sans courbes de niveau),
+CyclOSM (orienté vélo, sans variante rando), CARTO Positron et Voyager (licence
+Enterprise requise pour un usage commercial), Esri Gray Canvas et Wikimedia
+(conditions floues, Wikimedia réservant ses tuiles à ses propres projets).
+SCAN25 — la vraie Top25 — reste hors de portée : la Géoplateforme la refuse sans
+habilitation, sa licence n'étant pas ouverte.
 
 Serveur bénévole, sans garantie de disponibilité et sans limite chiffrée mais
 avec une clause anti-téléchargement massif : les trois sous-domaines `a/b/c` sont

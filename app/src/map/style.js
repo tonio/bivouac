@@ -3,6 +3,7 @@
 import { FONDS, SEVERITES } from './config.js'
 
 const SRC_FOND = 'fond'
+const SRC_DETAIL = 'fond-detail'
 const SRC_DATA = 'bivouac'
 
 // ['match', ['get','severite'], 0, '#...', 1, '#...', ..., defaut]
@@ -27,6 +28,18 @@ export function creerStyle(fondId, pmtilesUrl) {
         maxzoom: fond.maxzoom,
         attribution: fond.attribution,
       },
+      // Second palier du même fond, s'il en déclare un : deux sources
+      // superposées plutôt qu'un setStyle au franchissement du seuil, qui
+      // ferait clignoter la carte et rechargerait tout le style.
+      ...(fond.detail && {
+        [SRC_DETAIL]: {
+          type: 'raster',
+          tiles: fond.detail.tiles,
+          tileSize: 256,
+          maxzoom: fond.detail.maxzoom,
+          attribution: fond.detail.attribution,
+        },
+      }),
       [SRC_DATA]: {
         type: 'vector',
         url: `pmtiles://${pmtilesUrl}`,
@@ -38,6 +51,23 @@ export function creerStyle(fondId, pmtilesUrl) {
     },
     layers: [
       { id: 'fond', type: 'raster', source: SRC_FOND },
+
+      // Fondu croisé sur un niveau de zoom : le palier de détail apparaît au
+      // seuil sans coupure visible, par-dessus le fond sobre qui reste chargé.
+      ...(fond.detail
+        ? [{
+            id: 'fond-detail',
+            type: 'raster',
+            source: SRC_DETAIL,
+            paint: {
+              'raster-opacity': [
+                'interpolate', ['linear'], ['zoom'],
+                fond.detail.seuil - 1, 0,
+                fond.detail.seuil, 1,
+              ],
+            },
+          }]
+        : []),
 
       {
         id: 'zones-remplissage',

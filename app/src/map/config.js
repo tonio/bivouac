@@ -4,31 +4,54 @@
 const IGN = 'https://data.geopf.fr/wmts?SERVICE=WMTS&VERSION=1.0.0&REQUEST=GetTile' +
   '&STYLE=normal&TILEMATRIXSET=PM&TILEMATRIX={z}&TILEROW={y}&TILECOL={x}'
 
+// Zoom à partir duquel OpenTopoMap devient lisible sous les zonages. Mesuré, pas
+// estimé : la saturation moyenne d'une tuile alpine reste à ~0,73 jusqu'à z10
+// (teinte hypsométrique, sommets en brun-rouge) puis tombe à ~0,18 à z11, quand
+// le rendu passe aux courbes de niveau sur fond clair.
+export const SEUIL_TOPO = 11
+
 // Deux fonds seulement, tous deux utiles à la préparation d'un bivouac : la topo
 // pour le relief et les sentiers, la photo pour la nature du terrain (pierrier,
 // herbe, forêt). OSM standard et le Plan IGN ont été retirés : plats, sans
 // courbes de niveau, ils n'apportaient rien ici.
 export const FONDS = [
   {
-    // Courbes de niveau cotées, ombrage du relief, sentiers et éboulis figurés —
-    // le rendu le plus proche d'une Top25 disponible librement.
+    // Un seul fond dans l'interface, deux sources selon l'échelle : l'utilisateur
+    // n'a pas à choisir, il voit « Topo » et la carte reste lisible partout.
     // SCAN25 (la vraie Top25) reste hors de portée : la Géoplateforme le refuse
     // sans habilitation, sa licence n'étant pas ouverte.
     id: 'topo',
     label: 'Carte topographique',
-    // Libellé court pour le segmenté de la barre haute, où la place manque.
+    // Libellé court pour la bascule de la barre haute, où la place manque.
     court: 'Topo',
+
+    // Vue large : fond sobre (beige-gris), sans relief coloré, pour que les
+    // zonages ressortent. Style « HOT » d'OSM-France, en ODbL.
     tiles: [
-      'https://a.tile.opentopomap.org/{z}/{x}/{y}.png',
-      'https://b.tile.opentopomap.org/{z}/{x}/{y}.png',
-      'https://c.tile.opentopomap.org/{z}/{x}/{y}.png',
+      'https://a.tile.openstreetmap.fr/hot/{z}/{x}/{y}.png',
+      'https://b.tile.openstreetmap.fr/hot/{z}/{x}/{y}.png',
     ],
-    // Attribution imposée telle quelle par la licence CC-BY-SA d'OpenTopoMap.
     attribution:
-      'Données : © les contributeurs <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a>, SRTM | ' +
-      'rendu : © <a href="https://opentopomap.org/">OpenTopoMap</a> (<a href="https://creativecommons.org/licenses/by-sa/3.0/">CC-BY-SA</a>)',
-    // OpenTopoMap s'arrête à 17 ; au-delà MapLibre sur-zoome la dernière tuile.
-    maxzoom: 17,
+      '© les contributeurs <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> | ' +
+      'rendu <a href="https://www.hotosm.org/">HOT</a>, hébergé par <a href="https://openstreetmap.fr/">OSM-France</a>',
+    maxzoom: 19,
+
+    // Vue rapprochée : courbes de niveau cotées, ombrage, sentiers et éboulis —
+    // le rendu le plus proche d'une Top25 disponible librement.
+    detail: {
+      seuil: SEUIL_TOPO,
+      tiles: [
+        'https://a.tile.opentopomap.org/{z}/{x}/{y}.png',
+        'https://b.tile.opentopomap.org/{z}/{x}/{y}.png',
+        'https://c.tile.opentopomap.org/{z}/{x}/{y}.png',
+      ],
+      // Attribution imposée telle quelle par la licence CC-BY-SA d'OpenTopoMap.
+      attribution:
+        'Données : © les contributeurs <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a>, SRTM | ' +
+        'rendu : © <a href="https://opentopomap.org/">OpenTopoMap</a> (<a href="https://creativecommons.org/licenses/by-sa/3.0/">CC-BY-SA</a>)',
+      // OpenTopoMap s'arrête à 17 ; au-delà MapLibre sur-zoome la dernière tuile.
+      maxzoom: 17,
+    },
   },
   {
     id: 'ign-ortho',

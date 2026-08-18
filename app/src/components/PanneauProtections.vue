@@ -1,10 +1,9 @@
 <script setup>
-import { FONDS, GROUPES } from '../map/config.js'
+import { GROUPES } from '../map/config.js'
 import LegendeSeverite from './LegendeSeverite.vue'
 
 defineEmits(['fermer'])
 
-const fond = defineModel('fond', { type: String, required: false, default: null })
 const groupes = defineModel('groupes', { type: Array, required: true })
 
 function basculer(id) {
@@ -22,21 +21,9 @@ function basculer(id) {
       <button type="button" aria-label="Fermer" @click="$emit('fermer')">×</button>
     </header>
 
-    <!-- Le fond de carte n'apparaît ici qu'en mobile, où la barre haute ne peut
-         pas porter le segmenté. -->
-    <div v-if="fond !== null" class="fonds" role="radiogroup" aria-label="Fond de carte">
-      <button
-        v-for="f in FONDS"
-        :key="f.id"
-        type="button"
-        role="radio"
-        :aria-checked="fond === f.id"
-        :class="{ actif: fond === f.id }"
-        @click="fond = f.id"
-      >
-        {{ f.court ?? f.label }}
-      </button>
-    </div>
+    <!-- Plus de sélecteur de fond ici : il n'existait que parce que la barre
+         haute masquait son segmenté en mobile. La bascule à deux états y tient,
+         réduite à sa vignette. -->
 
     <ul class="groupes">
       <li v-for="g in GROUPES" :key="g.id">
@@ -89,31 +76,6 @@ header button {
 
 header button:hover {
   color: var(--fg);
-}
-
-.fonds {
-  display: flex;
-  gap: var(--pad-xs);
-  padding: var(--pad-xs);
-  border-radius: 7px;
-  background: var(--bg-doux);
-}
-
-.fonds button {
-  flex: 1;
-  height: 2.25rem;
-  border: 0;
-  border-radius: var(--rayon-s);
-  background: none;
-  color: var(--fg-secondaire);
-  font: 500 0.75rem var(--police);
-  cursor: pointer;
-}
-
-.fonds button.actif {
-  background: var(--bg);
-  color: var(--fg);
-  box-shadow: var(--ombre);
 }
 
 .groupes {

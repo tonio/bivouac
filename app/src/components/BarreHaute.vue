@@ -1,4 +1,5 @@
 <script setup>
+import { computed } from 'vue'
 import { FONDS } from '../map/config.js'
 import ChampRecherche from './ChampRecherche.vue'
 
@@ -9,6 +10,13 @@ defineProps({
 defineEmits(['basculer-panneau', 'aller'])
 
 const fond = defineModel('fond', { type: String, required: true })
+
+// Le fond vers lequel la bascule enverra. Un modulo plutôt qu'un ternaire : si
+// un troisième fond revient un jour, le bouton devient un cycle sans réécriture.
+const suivant = computed(() => {
+  const i = FONDS.findIndex((f) => f.id === fond.value)
+  return FONDS[(i + 1) % FONDS.length]
+})
 </script>
 
 <template>
@@ -26,20 +34,18 @@ const fond = defineModel('fond', { type: String, required: true })
 
     <ChampRecherche class="recherche" :viewbox="viewbox" @aller="$emit('aller', $event)" />
 
-    <div class="surface fonds" role="radiogroup" aria-label="Fond de carte">
-      <button
-        v-for="f in FONDS"
-        :key="f.id"
-        type="button"
-        role="radio"
-        :aria-checked="fond === f.id"
-        :class="{ actif: fond === f.id }"
-        :title="f.label"
-        @click="fond = f.id"
-      >
-        {{ f.court ?? f.label }}
-      </button>
-    </div>
+    <!-- Deux fonds : une bascule, pas un segmenté. Le libellé annonce la
+         destination et non l'état courant, sinon on ne sait pas ce que le clic
+         va faire. -->
+    <button
+      type="button"
+      class="surface bascule"
+      :title="`Passer en ${suivant.label.toLowerCase()}`"
+      @click="fond = suivant.id"
+    >
+      <span class="vignette" :class="`vignette--${suivant.id}`" aria-hidden="true"></span>
+      <span>{{ suivant.court ?? suivant.label }}</span>
+    </button>
   </div>
 </template>
 
@@ -98,26 +104,47 @@ button.surface {
   background: var(--repere);
 }
 
-.fonds {
+.bascule {
   display: flex;
-  gap: var(--pad-xs);
+  align-items: center;
+  gap: var(--pad-s);
   height: 3rem;
   margin-left: auto;
-  padding: 0.3125rem;
+  padding: 0 var(--pad) 0 0.625rem;
   box-shadow: var(--ombre);
-}
-
-.fonds button {
-  padding: 0 1rem;
-  border-radius: var(--rayon-s);
-  color: var(--fg-secondaire);
   font-size: 0.8125rem;
   font-weight: 500;
+  white-space: nowrap;
 }
 
-.fonds button.actif {
-  background: var(--bg-doux);
-  color: var(--fg);
+.bascule:hover {
+  background: color-mix(in srgb, var(--bg) 92%, #fff);
+}
+
+/* Aperçu du fond visé : plus parlant qu'un mot seul quand on hésite. */
+.vignette {
+  width: 1.875rem;
+  height: 1.875rem;
+  flex: 0 0 auto;
+  border: 1px solid var(--bord-fort);
+  border-radius: var(--rayon-s);
+  background-size: cover;
+  background-position: center;
+}
+
+/* Courbes de niveau sur fond de carte topo. */
+.vignette--topo {
+  background-color: #f5f0e4;
+  background-image:
+    repeating-radial-gradient(circle at 62% 72%, #c8a678 0 1px, transparent 1px 5px);
+}
+
+/* Camaïeu de verts et de gris : forêt, pierrier, névé. */
+.vignette--ign-ortho {
+  background-image:
+    radial-gradient(circle at 28% 30%, #6f8a52 0 40%, transparent 42%),
+    radial-gradient(circle at 74% 68%, #9aa08f 0 38%, transparent 40%),
+    linear-gradient(150deg, #4f6b3e, #7d8b6c);
 }
 
 @media (max-width: 900px) {
@@ -156,9 +183,24 @@ button.surface {
     box-shadow: 0 -0.3125rem 0 var(--fg), 0 0.3125rem 0 var(--fg);
   }
 
-  /* Le segmenté de fond rejoint le panneau : pas de place en barre haute. */
-  .fonds {
+  /* Le segmenté n'avait pas la place en barre haute ; une bascule carrée si,
+     réduite à sa vignette. */
+  .bascule {
+    order: 3;
+    width: var(--cible);
+    height: var(--cible);
+    margin-left: 0;
+    padding: 0;
+    justify-content: center;
+  }
+
+  .bascule span:not(.vignette) {
     display: none;
+  }
+
+  .vignette {
+    width: 1.625rem;
+    height: 1.625rem;
   }
 }
 </style>
