@@ -2,6 +2,9 @@ import { defineConfig } from 'vite'
 import vue from '@vitejs/plugin-vue'
 
 export default defineConfig({
+  // Le site est servi sous tonio.github.io/bivouac/ pendant la bêta. À remettre
+  // à '/' le jour où un domaine dédié pointe dessus.
+  base: '/bivouac/',
   plugins: [vue()],
   optimizeDeps: {
     // Le pre-bundling casse le web worker de MapLibre :
