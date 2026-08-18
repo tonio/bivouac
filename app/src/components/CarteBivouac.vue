@@ -5,7 +5,7 @@ import { Map, Marker, ScaleControl, addProtocol, removeProtocol } from 'maplibre
 import { Protocol } from 'pmtiles'
 import 'maplibre-gl/dist/maplibre-gl.css'
 import { CENTRE, ZOOM, EMPRISE, GROUPES } from '../map/config.js'
-import { creerStyle, COUCHES_CLIQUABLES } from '../map/style.js'
+import { creerStyle, COUCHES_CLIQUABLES, SRC_DATA } from '../map/style.js'
 
 const props = defineProps({
   fond: { type: String, required: true },
@@ -86,8 +86,20 @@ onMounted(() => {
   })
 
   map.on('error', (e) => {
-    // Une tuile manquante ne doit pas masquer la carte : on signale sans casser.
-    erreur.value = e.error?.message ?? 'Erreur de chargement des tuiles'
+    // Seul l'échec des protections mérite un message : sans elles la carte ne
+    // répond plus à la question posée. Une tuile de fond ratée, non — le fond
+    // s'affiche quand même, MapLibre réessaie, et Safari iOS en fait échouer
+    // couramment quelques-unes (« Load failed ») sur un réseau mobile. Signaler
+    // ça affichait un bandeau rouge permanent sur une carte parfaitement
+    // lisible, déclenché par la dernière tuile perdue sur trois cents.
+    if (e.sourceId && e.sourceId !== SRC_DATA) return
+    erreur.value = e.error?.message ?? 'Erreur de chargement des protections'
+  })
+
+  // Une coupure passagère ne doit pas laisser le bandeau à l'écran une fois les
+  // protections revenues : `idle` signe une carte entièrement rendue.
+  map.on('idle', () => {
+    erreur.value = ''
   })
 
   // Clic : on remonte toutes les protections empilées sous le curseur, de la

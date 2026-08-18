@@ -4,6 +4,8 @@ import { FONDS, SEVERITES } from './config.js'
 
 const SRC_FOND = 'fond'
 const SRC_DETAIL = 'fond-detail'
+// Exportée en fin de fichier : CarteBivouac distingue l'échec des protections,
+// qui vide la carte de son propos, d'une tuile de fond ratée, qui ne se voit pas.
 const SRC_DATA = 'bivouac'
 
 // ['match', ['get','severite'], 0, '#...', 1, '#...', ..., defaut]
