@@ -93,13 +93,18 @@ onMounted(() => {
     // ça affichait un bandeau rouge permanent sur une carte parfaitement
     // lisible, déclenché par la dernière tuile perdue sur trois cents.
     if (e.sourceId && e.sourceId !== SRC_DATA) return
-    erreur.value = e.error?.message ?? 'Erreur de chargement des protections'
+    // Message à nous, pas celui de MapLibre : « Load failed » ne dit rien à
+    // l'utilisateur, et surtout pas que la carte affichée est incomplète.
+    erreur.value = 'Protections indisponibles — la carte est incomplète.'
   })
 
   // Une coupure passagère ne doit pas laisser le bandeau à l'écran une fois les
-  // protections revenues : `idle` signe une carte entièrement rendue.
-  map.on('idle', () => {
-    erreur.value = ''
+  // protections revenues. Le signal est `sourcedata` sur la bonne source, pas
+  // `idle` : `idle` ne dit que « plus rien en cours », ce qui arrive aussi
+  // entre deux lots de tuiles en échec — il effaçait le bandeau aussitôt
+  // affiché, y compris quand le pmtiles était réellement inaccessible.
+  map.on('sourcedata', (e) => {
+    if (e.sourceId === SRC_DATA && e.isSourceLoaded) erreur.value = ''
   })
 
   // Clic : on remonte toutes les protections empilées sous le curseur, de la
