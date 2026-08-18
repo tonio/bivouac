@@ -26,9 +26,6 @@ const LIB_HORAIRE = {
 const heure = (h) => (h ? LIB_HORAIRE[h] ?? h : null)
 const couleur = (s) => SEVERITES.find((x) => x.v === s)?.couleur ?? '#7f8c9b'
 
-// Un seul accordéon ouvert à la fois ; -1 = tous replié.
-const ouvert = ref(0)
-
 // Le repli ne concerne que la feuille mobile, où elle masquerait la carte que
 // l'on vient de toucher. En desktop, la poignée et le bouton « voir plus » sont
 // masqués en CSS : replier y rendrait le détail inatteignable.
@@ -59,7 +56,6 @@ onUnmounted(() => {
 const deplie = computed(() => !enFeuille.value || !replie.value)
 
 watch(() => props.selection, () => {
-  ouvert.value = 0
   replie.value = enFeuille.value
 })
 
@@ -186,13 +182,8 @@ const verdict = computed(() => {
     </button>
 
     <div v-show="deplie" class="liste">
-      <article v-for="(f, i) in fiches" :key="f.cle">
-        <button
-          type="button"
-          class="entete"
-          :aria-expanded="ouvert === i"
-          @click="ouvert = ouvert === i ? -1 : i"
-        >
+      <article v-for="f in fiches" :key="f.cle">
+        <div class="entete">
           <span class="pastille" :style="{ background: f.couleur }"></span>
           <span class="titres">
             <span class="nom">{{ f.nom }}</span>
@@ -201,10 +192,9 @@ const verdict = computed(() => {
             </span>
             <span v-if="f.resume" class="resume">{{ f.resume }}</span>
           </span>
-          <span class="chevron" aria-hidden="true">{{ ouvert === i ? '▴' : '▾' }}</span>
-        </button>
+        </div>
 
-        <div v-if="ouvert === i" class="detail">
+        <div class="detail">
           <dl v-if="f.detail.length">
             <template v-for="[k, v] in f.detail" :key="k">
               <dt>{{ k }}</dt>
@@ -342,13 +332,6 @@ article:last-of-type {
   display: flex;
   align-items: flex-start;
   gap: 0.75rem;
-  padding: 0;
-  border: 0;
-  background: none;
-  color: inherit;
-  font: inherit;
-  text-align: left;
-  cursor: pointer;
 }
 
 .pastille {
@@ -385,12 +368,6 @@ article:last-of-type {
   font-weight: 400;
   line-height: 1.55;
   text-wrap: pretty;
-}
-
-.chevron {
-  margin-top: 0.3125rem;
-  color: var(--fg-atenue);
-  font-size: 0.75rem;
 }
 
 .detail {

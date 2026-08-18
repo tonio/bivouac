@@ -69,6 +69,32 @@ onMounted(() => {
   // Accès à la carte depuis la console en dev (diagnostic du style, des sources).
   if (import.meta.env.DEV) window.__carte = map
 
+  // Attribution repliée dès le départ : dépliée, elle occupe trois lignes sur un
+  // écran étroit et masque l'échelle.
+  // MapLibre la rouvre à chaque `styledata`/`sourcedata` (son `_updateData`
+  // repose `maplibregl-compact-show` en reconstruisant le contenu), donc en
+  // continu pendant le chargement des zones — d'où l'attribution ouverte tout du
+  // long avec l'ancien repli, posé une seule fois dans `load`. On se rebranche
+  // sur les mêmes événements pour repasser derrière lui.
+  // Ni le CSS ni `[open]` ne suffisent : MapLibre pose l'attribut en même temps
+  // que la classe, y compris à l'ouverture automatique — rien dans le DOM ne
+  // distingue « ouvert par l'utilisateur ». D'où le drapeau ci-dessous, qui
+  // arrête de replier au premier clic sur ⓘ.
+  const attribution = () =>
+    map.getContainer().querySelector('.maplibregl-ctrl-attrib.maplibregl-compact')
+  let ouvertParUtilisateur = false
+  attribution()
+    ?.querySelector('.maplibregl-ctrl-attrib-button')
+    ?.addEventListener('click', () => { ouvertParUtilisateur = true }, { once: true })
+
+  const replierAttribution = () => {
+    if (ouvertParUtilisateur) return
+    attribution()?.classList.remove('maplibregl-compact-show')
+  }
+  replierAttribution()
+  map.on('styledata', replierAttribution)
+  map.on('sourcedata', replierAttribution)
+
   // Pas de NavigationControl : les boutons de zoom sont des éléments de l'UI
   // flottante (ControlesCarte), pour garder une seule grammaire visuelle.
   map.addControl(new ScaleControl({ maxWidth: 120, unit: 'metric' }), 'bottom-left')
@@ -76,13 +102,6 @@ onMounted(() => {
   map.on('load', () => {
     chargement.value = false
     appliquerFiltres(map, props.groupesActifs)
-
-    // En compact, MapLibre ouvre l'attribution au démarrage : sur un écran
-    // étroit elle occupe trois lignes et masque l'échelle. On la replie au
-    // bouton ⓘ, que l'utilisateur reste libre d'ouvrir.
-    document
-      .querySelector('.maplibregl-ctrl-attrib.maplibregl-compact')
-      ?.classList.remove('maplibregl-compact-show')
   })
 
   map.on('error', (e) => {
