@@ -43,7 +43,7 @@ export default defineConfig({
   },
   server: {
     fs: {
-      // public/bivouac.pmtiles est un symlink vers ../../out/ : sans cette
+      // public/bivouac.pmtiles est un symlink vers ../../pipeline/out/ : sans cette
       // autorisation Vite refuse de servir hors de la racine du projet.
       allow: ['..'],
     },

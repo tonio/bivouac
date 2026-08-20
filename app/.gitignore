@@ -1,5 +1,5 @@
 node_modules/
 dist/
 
-# symlink vers ../../out/ : la donnée est reproductible par ./build.py
+# symlink vers ../../pipeline/out/ : la donnée est reproductible par pipeline/build.py
 public/bivouac.pmtiles

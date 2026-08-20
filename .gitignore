@@ -1,10 +1,13 @@
 # Données téléchargées et générées : ~670 Mo, entièrement reproductibles par
-# ./fetch.sh + ./fetch_osm.sh + ./zones_internes.py + ./build.py
+# pipeline/fetch.sh + fetch_osm.sh + zones_internes.py + build.py
 # Rien de tout ça ne va dans git (ni en LFS : ce sont des dérivés, pas des sources).
-data/
-out/
+pipeline/data/
+pipeline/out/
 
 __pycache__/
 *.py[cod]
+
+# Artefacts des outils de navigateur (captures, logs de console)
+.playwright-mcp/
 
 # app/ a son propre .gitignore (node_modules, dist, symlink pmtiles)

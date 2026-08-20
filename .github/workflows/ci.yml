@@ -1,0 +1,42 @@
+name: ci
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+  workflow_dispatch:
+
+jobs:
+  # Les trois self-checks du dépôt. Aucun ne télécharge de donnée : les couches
+  # font ~300 Mo et ne bougent que quelques fois par an. test_regles.py saute
+  # alors le contrôle de cohérence des id_mnhn, et le signale en sortie.
+  checks:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+
+      - name: jointure des règles
+        run: ./pipeline/build.py --demo
+
+      - name: validation des fiches de règles
+        run: ./pipeline/test_regles.py
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: yarn
+          cache-dependency-path: app/yarn.lock
+
+      - run: yarn --cwd app install --frozen-lockfile
+
+      - name: traitement d'erreur de la carte
+        run: node app/src/map/erreur.test.js
+
+      # Le build vérifie que le front compile — le déploiement, lui, vit dans
+      # pages.yml et ne tourne que sur main.
+      - name: build du front
+        run: yarn --cwd app build

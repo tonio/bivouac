@@ -2139,7 +2139,7 @@
   ]
  },
  "FR3200257": {
-  "site": "Cirque de Gavarnie et les cirques et vallées avoisinants",
+  "reserve": "Cirque de Gavarnie et les cirques et vallées avoisinants",
   "type": "site_classe",
   "statut": "autorise_sous_conditions",
   "resume": "Contre-exemple documenté : ni le classement (19 173 ha) ni le classement UNESCO n'interdisent le bivouac. Le régime applicable est celui du cœur du parc national des Pyrénées — bivouac autorisé 19h-9h à plus d'une heure de marche d'un accès routier. Aucun arrêté municipal restrictif trouvé.",
@@ -2193,7 +2193,7 @@
   ]
  },
  "FR3200787": {
-  "site": "Gorges du Verdon (site classé)",
+  "reserve": "Gorges du Verdon (site classé)",
   "type": "site_classe",
   "statut": "interdit_sauf_exception",
   "resume": "Camping sauvage sous toute forme interdit sur les berges des lacs et dans les gorges, sanction annoncée 135 €. Bivouac interdit sur le sentier Blanc-Martel. Sentier de l'Imbut fermé par arrêté municipal. La référence exacte des arrêtés n'a pas été retrouvée.",
@@ -2256,7 +2256,7 @@
   ]
  },
  "FR3201271": {
-  "site": "Massif du Mont Blanc (site classé, 3 décisions)",
+  "reserve": "Massif du Mont Blanc (site classé, 3 décisions)",
   "type": "site_classe",
   "statut": "interdit_sauf_exception",
   "resume": "Camping interdit dans le site classé du Mont-Blanc, sauf au camp de base de Tête Rousse par dérogation nominative. Bivouac interdit sur et à proximité de la voie normale par Saint-Gervais. À quoi s'ajoutent l'interdiction municipale de Chamonix (hors bivouac d'altitude d'une nuit, coucher-lever du soleil) et celle de Saint-Gervais (toute la commune, 1er mai - 31 octobre).",
@@ -2363,7 +2363,7 @@
   ]
  },
  "FR3800381": {
-  "site": "Falaises du Mont Caume (Le Revest-les-Eaux, Var)",
+  "reserve": "Falaises du Mont Caume (Le Revest-les-Eaux, Var)",
   "type": "apb",
   "statut": "interdit",
   "resume": "Camping et bivouac interdits en tout temps par l'article 7. Escalade, y compris la descente en rappel, interdite en tout temps. Du 1er janvier au 15 juillet, la circulation hors sentiers est en outre interdite au sommet et au pied de la paroi sur 30 m.",
@@ -2438,7 +2438,7 @@
   ]
  },
  "FR3800745": {
-  "site": "Gorges de Châteaudouble et de la Nartuby d'Ampus (Var)",
+  "reserve": "Gorges de Châteaudouble et de la Nartuby d'Ampus (Var)",
   "type": "apb",
   "statut": "interdit",
   "resume": "Bivouac, camping-caravaning, camping-car et mobil-home strictement interdits sur toute la zone, sans limitation de période. Circulation des personnes interdite hors pistes et sentiers existants. Pénétration dans la grotte des Avals interdite. Escalade réglementée voie par voie, avec une interdiction du 1er janvier au 1er août au Baou des Prannes.",
@@ -2537,7 +2537,7 @@
   ]
  },
  "FR3800841": {
-  "site": "Grand Canyon du Verdon (apron du Rhône)",
+  "reserve": "Grand Canyon du Verdon (apron du Rhône)",
   "type": "apb",
   "statut": "renvoi_droit_commun",
   "resume": "Contrairement à ce que son nom suggère, cet APB ne réglemente PAS le bivouac : il protège l'apron du Rhône et n'encadre que les activités aquatiques, en fonction du débit du Verdon. Le bivouac dans les gorges est interdit par d'autres textes (arrêtés municipaux, réglementation du site classé).",
@@ -2601,7 +2601,7 @@
   ]
  },
  "FR3800988": {
-  "site": "Forêts d'altitude du Haut-Jura",
+  "reserve": "Forêts d'altitude du Haut-Jura",
   "type": "apb",
   "statut": "interdit_sauf_exception",
   "resume": "Bivouac interdit du 15 décembre au 30 juin par l'article 7 de l'arrêté. Sur la même période, la simple pénétration dans le périmètre est interdite, sauf à pied, seul, sans chien, sur les itinéraires cartographiés en annexe. Hors période, le bivouac n'est pas interdit par l'arrêté.",
@@ -2701,7 +2701,7 @@
   ]
  },
  "FR3801178": {
-  "site": "Forêts d'altitude du Haut-Doubs",
+  "reserve": "Forêts d'altitude du Haut-Doubs",
   "type": "apb",
   "statut": "interdit_sauf_exception",
   "resume": "APB signé le 31 décembre 2025, calqué sur celui du Haut-Jura : pénétration en forêt interdite du 15 décembre au 30 juin, bivouac interdit sur la même période. Communes de Chapelle-des-Bois, Chaux-Neuve et Mouthe.",
@@ -3349,7 +3349,7 @@
   ]
  },
  "FR3202215": {
-  "site": "Dune du Pilat / Dune du Pyla et de la forêt usagère (Gironde)",
+  "reserve": "Dune du Pilat / Dune du Pyla et de la forêt usagère (Gironde)",
   "type": "site_classe",
   "statut": "interdit",
   "resume": "Bivouacs et camping sauvage interdits, feux strictement interdits en tout lieu, véhicules motorisés interdits sur tout le site. Cinq arrêtés successifs référencés par le gestionnaire officiel.",

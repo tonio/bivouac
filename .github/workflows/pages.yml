@@ -49,9 +49,9 @@ jobs:
       - id: deployment
         uses: actions/deploy-pages@v4
 
-# Le pmtiles n'est pas régénéré ici : ./fetch.sh télécharge ~300 Mo et ./build.py
+# Le pmtiles n'est pas régénéré ici : pipeline/fetch.sh télécharge ~300 Mo et build.py
 # tourne plusieurs minutes, pour une donnée qui bouge quelques fois par an.
 # Mise à jour à la main quand les zonages changent — le tag data-v1 est fixe,
 # on remplace son asset plutôt que d'avoir à toucher au workflow :
-#   ./build.py --pmtiles
-#   gh release upload data-v1 out/bivouac.pmtiles --clobber
+#   ./pipeline/build.py --pmtiles
+#   gh release upload data-v1 pipeline/out/bivouac.pmtiles --clobber

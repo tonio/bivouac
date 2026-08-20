@@ -9,11 +9,11 @@ yarn build      # dist/
 ```
 
 En dev, les données viennent de `public/bivouac.pmtiles`, un symlink vers
-`../../out/` (en prod, voir [Déploiement](#déploiement)). Si la carte est vide,
+`../../pipeline/out/` (en prod, voir [Déploiement](#déploiement)). Si la carte est vide,
 c'est que les tuiles n'ont pas été générées :
 
 ```sh
-cd .. && ./fetch.sh && ./fetch_osm.sh && ./zones_internes.py && ./build.py --pmtiles
+cd ../pipeline && ./fetch.sh && ./fetch_osm.sh && ./zones_internes.py && ./build.py --pmtiles
 ```
 
 ## Choix techniques
@@ -186,18 +186,18 @@ En ligne sur **https://tonio.github.io/bivouac/**, déployé par
 `.github/workflows/pages.yml` à chaque push sur `main`.
 
 Le pmtiles fait 93 Mo et n'est pas dans git — c'est un dérivé reproductible par
-`build.py`. Il vit dans la release `data-v1`, et le workflow le dépose dans
+`pipeline/build.py`. Il vit dans la release `data-v1`, et le workflow le dépose dans
 `dist/` au build. Pages le sert donc **en même-origine** que l'app.
 
 Mettre à jour la donnée sans toucher au code — le tag est fixe, on remplace son
 asset :
 
 ```sh
-cd .. && ./build.py --pmtiles
+cd ../pipeline && ./build.py --pmtiles
 gh release upload data-v1 out/bivouac.pmtiles --clobber
 ```
 
-Le workflow ne régénère pas la donnée : `fetch.sh` télécharge ~300 Mo pour des
+Le workflow ne régénère pas la donnée : `pipeline/fetch.sh` télécharge ~300 Mo pour des
 zonages qui bougent quelques fois par an.
 
 **`base: '/bivouac/'`** tant que le site vit sous un sous-chemin. À remettre à

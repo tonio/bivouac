@@ -3,7 +3,7 @@
 À lire avant publication. Deux régimes de licence se mélangent ici, et l'ODbL
 impose des obligations concrètes, pas seulement une mention.
 
-Chaque objet de `out/bivouac.geojson` porte ses propres champs `source_nom`,
+Chaque objet de `pipeline/out/bivouac.geojson` porte ses propres champs `source_nom`,
 `source_url` et `source_licence` quand la source est spécifique (zones internes).
 Pour les couches nationales, l'attribution est celle du tableau ci-dessous.
 
@@ -50,11 +50,11 @@ Les données Cévennes et OSM sont en ODbL. Si tu publies un site :
 
 La Licence Ouverte n'impose que la paternité, sans réciprocité. Comme le jeu
 final mélange les deux, **le plus contraignant gagne** pour l'ensemble
-redistribué : traite `out/bivouac.geojson` comme de l'ODbL.
+redistribué : traite `pipeline/out/bivouac.geojson` comme de l'ODbL.
 
 ## Arrêtés et textes réglementaires
 
-Sources primaires effectivement lues pour construire `rules/parcs-nationaux.json` :
+Sources primaires effectivement lues pour construire `pipeline/rules/parcs-nationaux.json` :
 
 | Parc | Acte | Source |
 |---|---|---|
@@ -89,7 +89,7 @@ Codes cités : [Code de l'environnement](https://www.legifrance.gouv.fr/codes/te
 - [ ] Date de dernière vérification affichée (**2026-08-17**) — les arrêtés changent
 - [ ] Avertissement « sans valeur juridique, vérifier auprès du gestionnaire »
 - [ ] Ne pas laisser croire que Natura 2000 ou un PNR interdit le bivouac (ils
-      n'interdisent rien) — voir `rules/par-type.json`
+      n'interdisent rien) — voir `pipeline/rules/par-type.json`
 - [ ] Mentionner que les arrêtés préfectoraux incendie et municipaux ne sont
       **pas** dans les données, et qu'ils priment
 
