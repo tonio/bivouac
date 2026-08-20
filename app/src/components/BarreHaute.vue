@@ -21,15 +21,31 @@ const suivant = computed(() => {
 
 <template>
   <div class="barre">
-    <!-- Le titre ne servait à rien : il ouvre le panneau des protections. -->
+    <!-- Le titre ne servait à rien : il ouvre le panneau des protections.
+         `aria-label` est nécessaire car en mobile le libellé est masqué et les
+         deux glyphes sont décoratifs : sans lui, plus de nom accessible. -->
     <button
       type="button"
       class="surface zones"
       :aria-expanded="panneauOuvert"
+      aria-label="Zones de protection"
       @click="$emit('basculer-panneau')"
     >
-      <span class="point"></span>
+      <!-- Même tente que le favicon et l'icône d'application : le bouton qui
+           ouvre les zonages porte le signe du projet. Inline plutôt qu'un
+           <img src="icone-mono.svg"> pour suivre `currentColor` (thème sombre,
+           état survolé) sans seconde requête. -->
+      <svg class="tente" viewBox="0 0 64 64" aria-hidden="true" focusable="false">
+        <path
+          fill="currentColor"
+          fill-rule="evenodd"
+          d="M32 11.5 55.5 48.5H8.5L32 11.5Zm0 14.8L23 48.5h18L32 26.3Z"
+        />
+        <rect x="7" y="49.5" width="50" height="4" rx="2" fill="currentColor" />
+      </svg>
       <span>Zones</span>
+      <!-- Burger réservé au mobile, où le libellé disparaît : voir la media query. -->
+      <span class="burger" aria-hidden="true"></span>
     </button>
 
     <ChampRecherche class="recherche" :viewbox="viewbox" @aller="$emit('aller', $event)" />
@@ -97,11 +113,16 @@ button.surface {
   background: color-mix(in srgb, var(--bg) 92%, #fff);
 }
 
-.point {
-  width: 0.5625rem;
-  height: 0.5625rem;
-  border-radius: 50%;
-  background: var(--repere);
+.burger {
+  display: none;
+}
+
+.tente {
+  width: 1.125rem;
+  height: 1.125rem;
+  flex: 0 0 auto;
+  /* La tente reprend la couleur d'accent, comme l'icône d'application. */
+  color: var(--accent);
 }
 
 .bascule {
@@ -171,11 +192,19 @@ button.surface {
     justify-content: center;
   }
 
-  .zones span:not(.point) {
+  .zones span:not(.burger) {
     display: none;
   }
 
-  .zones .point {
+  /* Le bouton devient carré et sans libellé : on repasse au burger, qui dit
+     « ouvre un panneau ». La tente identifie le projet, elle n'annonce pas une
+     action — elle resterait muette une fois seule dans le bouton. */
+  .zones .tente {
+    display: none;
+  }
+
+  .zones .burger {
+    display: block;
     width: 1.0625rem;
     height: 0.125rem;
     border-radius: 1px;

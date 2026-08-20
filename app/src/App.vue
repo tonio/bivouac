@@ -6,6 +6,7 @@ import PanneauProtections from './components/PanneauProtections.vue'
 import LegendeSeverite from './components/LegendeSeverite.vue'
 import ControlesCarte from './components/ControlesCarte.vue'
 import FicheZonage from './components/FicheZonage.vue'
+import BandeauMaj from './components/BandeauMaj.vue'
 import { FONDS, GROUPES } from './map/config.js'
 
 const fond = ref(FONDS[0].id)
@@ -59,6 +60,8 @@ const viewbox = ref(null)
     />
 
     <FicheZonage :selection="selection" @fermer="selection = null" />
+
+    <BandeauMaj />
   </div>
 </template>
 

@@ -2,14 +2,26 @@
 <html lang="fr">
   <head>
     <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <!-- viewport-fit=cover : en PWA plein écran, la carte va sous l'encoche et
+         la barre système ; les marges sûres sont reprises en CSS. -->
+    <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
     <title>Bivouac en France — règles par territoire</title>
-    <link rel="preconnect" href="https://fonts.googleapis.com" />
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link
-      href="https://fonts.googleapis.com/css2?family=Instrument+Sans:wght@400;500;600&family=Instrument+Serif&display=swap"
-      rel="stylesheet"
+    <meta
+      name="description"
+      content="Où bivouaquer en France, et à quelles conditions : règles par zonage de protection, avec leur référence juridique."
     />
+
+    <!-- Chemins relatifs : le site est servi depuis /bivouac/ sur Pages, un
+         chemin absolu chercherait les icônes à la racine du domaine. -->
+    <link rel="icon" href="favicon.svg" type="image/svg+xml" />
+    <link rel="apple-touch-icon" href="icone-192.png" />
+    <link rel="mask-icon" href="icone-mono.svg" color="#23604a" />
+    <link rel="manifest" href="manifest.webmanifest" />
+    <!-- Suit le thème : la barre d'adresse s'accorde au fond réellement affiché. -->
+    <meta name="theme-color" content="#23604a" media="(prefers-color-scheme: light)" />
+    <meta name="theme-color" content="#14181a" media="(prefers-color-scheme: dark)" />
+    <!-- Les polices sont auto-hébergées (src/polices.css) : plus de requête
+         vers fonts.googleapis.com, qui bloquait le premier rendu. -->
   </head>
   <body>
     <div id="app"></div>

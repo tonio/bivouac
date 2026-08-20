@@ -93,6 +93,22 @@ Codes cités : [Code de l'environnement](https://www.legifrance.gouv.fr/codes/te
 - [ ] Mentionner que les arrêtés préfectoraux incendie et municipaux ne sont
       **pas** dans les données, et qu'ils priment
 
+## Polices
+
+Les deux polices sont **auto-hébergées** dans `app/src/polices/` (fichiers woff2
+récupérés depuis fonts.gstatic.com), et non chargées depuis Google Fonts : une
+dépendance tierce de moins dans le chemin critique, et aucune adresse IP de
+visiteur transmise à Google.
+
+| Police | Auteur | Licence |
+|---|---|---|
+| Instrument Sans | Instrument / Rodrigo Fuenzalida & Jordan Egstad | [SIL OFL 1.1](https://openfontlicense.org/) |
+| Instrument Serif | Instrument / Rodrigo Fuenzalida | [SIL OFL 1.1](https://openfontlicense.org/) |
+
+L'OFL autorise la redistribution avec le logiciel, y compris commerciale, à
+condition de ne pas vendre les fontes seules et de conserver la licence. Elle
+n'impose pas de mention visible dans l'interface.
+
 ## Remerciements
 
 Le parc national des Cévennes est le seul à publier sa réglementation en

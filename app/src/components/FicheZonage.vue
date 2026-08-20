@@ -187,7 +187,6 @@ const verdict = computed(() => {
       class="verdict"
       :style="{ background: verdict.fond, color: verdict.texte }"
     >
-      <p class="sureligne" :style="{ color: verdict.accent }">Ici, la règle la plus contraignante</p>
       <p class="verdict-titre">{{ verdict.label }}</p>
       <p class="verdict-nom">{{ verdict.nom }}</p>
     </div>

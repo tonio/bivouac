@@ -180,6 +180,44 @@ l'avertissement juridique et les placeholders en 12-14 px, d'où un ton assez
 sombre pour tenir 4.5:1 (4.73 en clair, 5.60 en sombre). L'assombrir moins
 casse la conformité.
 
+## PWA et hors ligne
+
+Installable, avec un service worker généré par `vite-plugin-pwa`. Ce qu'il
+précache : la coquille — bundle, polices, icônes, `index.html`, soit ~1,7 Mo en
+17 entrées. Ce qu'il ne précache **pas** : `bivouac.pmtiles`.
+
+Cette exclusion est le point central. Le pmtiles fait 93 Mo et `pmtiles.js` le
+lit par **requêtes Range** sur des tranches d'octets. Le précacher
+téléchargerait le fichier entier (mesuré : une requête sans en-tête `Range`
+renvoie les 96 694 171 octets), et un cache Workbox standard ne sait de toute
+façon pas resservir une tranche à partir d'une réponse complète. D'où
+`globIgnores` sur le fichier et `navigateFallbackDenylist` sur `.pmtiles`.
+
+Conséquence assumée, à connaître : **hors ligne, l'app démarre et son interface
+répond, mais la carte n'a pas ses protections.** Le fond de carte peut réapparaître
+si les tuiles sont encore dans le cache runtime (`NetworkFirst`, 600 tuiles /
+7 jours) ; les zonages, non.
+
+⚠️ Limite connue, non résolue : dans ce cas la carte s'affiche vide **avec sa
+légende** (« Interdit », « Autorisé sous conditions »…), ce qui peut se lire
+« rien d'interdit ici » au lieu de « données manquantes ». Le bandeau
+« Protections indisponibles » existe et fonctionne quand la source tombe en
+cours de route, mais pas au démarrage hors ligne : `pmtiles.js` avale l'échec du
+fetch de l'en-tête, et MapLibre n'émet alors aucun `error` portant un
+`sourceId`. `isSourceLoaded()` renvoie même `true` dans ce cas (vérifié en
+navigateur), donc le tester ne suffit pas. À reprendre avant de communiquer sur
+un usage hors ligne.
+
+Mise à jour en `prompt` et non `autoUpdate` : les règles affichées ont une portée
+juridique, un rechargement surprise en pleine lecture d'une fiche est le mauvais
+moment. `BandeauMaj.vue` propose « Actualiser » et signale la disponibilité hors
+ligne.
+
+Les polices sont auto-hébergées (`src/polices.css` + `src/polices/`) : plus de
+requête vers `fonts.googleapis.com`, qui bloquait le premier rendu et exposait
+l'IP des visiteurs. Elles vivent dans `src/` et non `public/` pour que Vite les
+hache et réécrive leur URL selon `base`.
+
 ## Déploiement
 
 En ligne sur **https://tonio.github.io/bivouac/**, déployé par
