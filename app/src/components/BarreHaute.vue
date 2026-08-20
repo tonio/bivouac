@@ -69,9 +69,12 @@ const suivant = computed(() => {
 .barre {
   position: absolute;
   z-index: 3;
-  top: 1.5rem;
-  right: 1.5rem;
-  left: 1.5rem;
+  /* La carte passe sous l'encoche (viewport-fit=cover), les commandes non :
+     sans ces marges sûres, la recherche se glisse sous la Dynamic Island en
+     PWA iOS. Les variables valent 0 hors iOS encoché. */
+  top: calc(var(--sur-haut) + 1.5rem);
+  right: calc(var(--sur-droite) + 1.5rem);
+  left: calc(var(--sur-gauche) + 1.5rem);
   display: flex;
   align-items: center;
   gap: 0.75rem;
@@ -170,9 +173,9 @@ button.surface {
 
 @media (max-width: 900px) {
   .barre {
-    top: 1rem;
-    right: 0.875rem;
-    left: 0.875rem;
+    top: calc(var(--sur-haut) + 1rem);
+    right: calc(var(--sur-droite) + 0.875rem);
+    left: calc(var(--sur-gauche) + 0.875rem);
     gap: 0.625rem;
   }
 

@@ -262,13 +262,13 @@ const verdict = computed(() => {
 .fiche {
   position: absolute;
   z-index: 3;
-  top: 13.75rem;
-  right: 1.5rem;
+  top: calc(var(--sur-haut) + 13.75rem);
+  right: calc(var(--sur-droite) + 1.5rem);
   display: flex;
   flex-direction: column;
   gap: 1rem;
   width: 24.5rem;
-  max-height: calc(100% - 15.25rem);
+  max-height: calc(100% - var(--sur-haut) - var(--sur-bas) - 15.25rem);
   overflow-y: auto;
   padding: 1.25rem;
   box-shadow: var(--ombre-fiche);
@@ -464,9 +464,10 @@ ul {
 @media (max-width: 900px) {
   .fiche {
     top: auto;
-    right: 0.875rem;
-    bottom: 0.875rem;
-    left: 0.875rem;
+    right: calc(var(--sur-droite) + 0.875rem);
+    /* Feuille du bas : c'est l'indicateur d'accueil qu'il faut dégager ici. */
+    bottom: calc(var(--sur-bas) + 0.875rem);
+    left: calc(var(--sur-gauche) + 0.875rem);
     width: auto;
     max-height: 33rem;
     gap: 0.875rem;

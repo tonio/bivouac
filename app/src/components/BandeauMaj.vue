@@ -39,7 +39,7 @@ const majSW = registerSW({
   position: absolute;
   /* Au-dessus de la marge sûre : en PWA plein écran, le bas de l'écran est
      occupé par la barre de gestes. */
-  bottom: calc(env(safe-area-inset-bottom, 0px) + var(--pad));
+  bottom: calc(var(--sur-bas) + var(--pad));
   left: 50%;
   transform: translateX(-50%);
   z-index: 5;

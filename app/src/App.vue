@@ -74,42 +74,44 @@ const viewbox = ref(null)
   overflow: hidden;
 }
 
+/* Les 5.5rem se comptent SOUS la barre haute, elle-même décalée des marges
+   sûres : les panneaux flottants héritent donc du même décalage. */
 .panneau {
   position: absolute;
   z-index: 2;
-  top: 5.5rem;
-  left: 1.5rem;
+  top: calc(var(--sur-haut) + 5.5rem);
+  left: calc(var(--sur-gauche) + 1.5rem);
   width: 18.5rem;
-  max-height: calc(100% - 12rem);
+  max-height: calc(100% - var(--sur-haut) - var(--sur-bas) - 12rem);
 }
 
 .legende {
   position: absolute;
   z-index: 1;
-  bottom: 3.5rem;
-  left: 1.5rem;
+  bottom: calc(var(--sur-bas) + 3.5rem);
+  left: calc(var(--sur-gauche) + 1.5rem);
   width: 18.5rem;
 }
 
 .controles {
   position: absolute;
   z-index: 2;
-  top: 5.5rem;
-  right: 1.5rem;
+  top: calc(var(--sur-haut) + 5.5rem);
+  right: calc(var(--sur-droite) + 1.5rem);
 }
 
 @media (max-width: 900px) {
   .panneau {
-    top: 4.875rem;
-    left: 0.875rem;
+    top: calc(var(--sur-haut) + 4.875rem);
+    left: calc(var(--sur-gauche) + 0.875rem);
     width: 18.75rem;
-    max-width: calc(100% - 1.75rem);
-    max-height: calc(100% - 7rem);
+    max-width: calc(100% - var(--sur-gauche) - var(--sur-droite) - 1.75rem);
+    max-height: calc(100% - var(--sur-haut) - var(--sur-bas) - 7rem);
   }
 
   .controles {
-    top: 4.875rem;
-    right: 0.875rem;
+    top: calc(var(--sur-haut) + 4.875rem);
+    right: calc(var(--sur-droite) + 0.875rem);
   }
 
   /* La légende n'est plus permanente : elle est dépliée dans le panneau. */

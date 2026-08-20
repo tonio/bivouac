@@ -267,7 +267,7 @@ defineExpose({
 
 .etat {
   position: absolute;
-  top: 5.5rem;
+  top: calc(var(--sur-haut) + 5.5rem);
   left: 50%;
   transform: translateX(-50%);
   margin: 0;

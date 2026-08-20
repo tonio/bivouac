@@ -208,6 +208,24 @@ fetch de l'en-tête, et MapLibre n'émet alors aucun `error` portant un
 navigateur), donc le tester ne suffit pas. À reprendre avant de communiquer sur
 un usage hors ligne.
 
+### Encoche et marges sûres
+
+`viewport-fit=cover` dans l'`index.html` fait passer la **carte** sous l'encoche
+et sous la barre de gestes : elle occupe tout l'écran, ce qui est le comportement
+voulu en PWA iOS. Les **commandes**, elles, doivent rester atteignables — sans
+marges sûres, la recherche se glisse sous la Dynamic Island.
+
+Quatre variables dans `app.css` portent les insets (`--sur-haut`, `--sur-bas`,
+`--sur-gauche`, `--sur-droite`), et tout élément flottant les additionne à son
+décalage : barre haute, panneau des protections, contrôles de zoom, légende,
+fiche (feuille du bas en mobile), message d'état, bandeau de mise à jour, plus
+les conteneurs de contrôles MapLibre (échelle et attribution, en bas).
+
+`env()` n'apparaît qu'à un seul endroit, dans la définition des variables, et
+vaut 0 partout hors iOS encoché : le rendu est inchangé ailleurs. Mesuré avec des
+insets de 59 px en haut et 34 px en bas — la carte reste à 0, la barre haute
+passe de 16 à 75 px, l'échelle remonte de 34 px.
+
 Mise à jour en `prompt` et non `autoUpdate` : les règles affichées ont une portée
 juridique, un rechargement surprise en pleine lecture d'une fiche est le mauvais
 moment. `BandeauMaj.vue` propose « Actualiser » et signale la disponibilité hors

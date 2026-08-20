@@ -29,6 +29,15 @@
   /* Cible tactile : 3rem en mobile, 2.5rem en pointeur fin. */
   --cible: 3rem;
 
+  /* Marges sûres de l'appareil, à ajouter aux positions des éléments flottants.
+     La carte, elle, reste plein cadre et passe sous l'encoche : c'est tout
+     l'intérêt de `viewport-fit=cover`. `env()` vaut 0 hors iOS encoché, donc
+     ces variables sont neutres partout ailleurs. */
+  --sur-haut: env(safe-area-inset-top, 0px);
+  --sur-bas: env(safe-area-inset-bottom, 0px);
+  --sur-gauche: env(safe-area-inset-left, 0px);
+  --sur-droite: env(safe-area-inset-right, 0px);
+
   --police: 'Instrument Sans', system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif;
   --police-titre: 'Instrument Serif', Georgia, serif;
   --police-mono: ui-monospace, 'SF Mono', Menlo, monospace;
@@ -119,6 +128,24 @@ a {
 .maplibregl-ctrl-attrib,
 .maplibregl-ctrl-attrib a {
   color: #333;
+}
+
+/* Échelle et attribution vivent en bas de carte, là où iOS place la barre de
+   gestes : on les remonte au-dessus de la marge sûre. La carte, elle, continue
+   de s'étendre dessous. */
+.maplibregl-ctrl-bottom-left,
+.maplibregl-ctrl-bottom-right {
+  padding-bottom: var(--sur-bas);
+}
+
+.maplibregl-ctrl-bottom-left,
+.maplibregl-ctrl-top-left {
+  padding-left: var(--sur-gauche);
+}
+
+.maplibregl-ctrl-bottom-right,
+.maplibregl-ctrl-top-right {
+  padding-right: var(--sur-droite);
 }
 
 /* GeolocateControl est là pour le point bleu, le cercle de précision et la
