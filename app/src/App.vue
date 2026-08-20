@@ -74,6 +74,23 @@ const viewbox = ref(null)
   overflow: hidden;
 }
 
+/* Voile derrière la barre d'état. `black-translucent` dessine l'heure et les
+   icônes système en BLANC par-dessus le contenu : sur la carte topo, claire,
+   elles disparaissent. Un dégradé sombre, seulement sur la hauteur de la marge
+   sûre, les rend lisibles sans masquer la carte. Nul hors iOS encoché, où
+   --sur-haut vaut 0 : la hauteur du voile tombe à zéro. */
+.ecran::before {
+  content: '';
+  position: absolute;
+  z-index: 4;
+  top: 0;
+  right: 0;
+  left: 0;
+  height: var(--sur-haut);
+  background: linear-gradient(rgb(0 0 0 / 0.38), rgb(0 0 0 / 0));
+  pointer-events: none;
+}
+
 /* Les 5.5rem se comptent SOUS la barre haute, elle-même décalée des marges
    sûres : les panneaux flottants héritent donc du même décalage. */
 .panneau {

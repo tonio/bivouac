@@ -20,6 +20,15 @@
     <!-- Suit le thème : la barre d'adresse s'accorde au fond réellement affiché. -->
     <meta name="theme-color" content="#23604a" media="(prefers-color-scheme: light)" />
     <meta name="theme-color" content="#14181a" media="(prefers-color-scheme: dark)" />
+
+    <!-- iOS ignore `display: standalone` du manifeste : sans ces deux balises,
+         il réserve la bande de la barre d'état et la peint avec le fond du
+         `body` — une bande beige au-dessus de la carte, et `100dvh` s'arrête
+         sous l'encoche. `black-translucent` fait passer le contenu dessous ;
+         les marges sûres du CSS gardent les commandes atteignables. -->
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+    <meta name="apple-mobile-web-app-title" content="Bivouac" />
     <!-- Les polices sont auto-hébergées (src/polices.css) : plus de requête
          vers fonts.googleapis.com, qui bloquait le premier rendu. -->
   </head>

@@ -210,10 +210,22 @@ un usage hors ligne.
 
 ### Encoche et marges sûres
 
-`viewport-fit=cover` dans l'`index.html` fait passer la **carte** sous l'encoche
-et sous la barre de gestes : elle occupe tout l'écran, ce qui est le comportement
-voulu en PWA iOS. Les **commandes**, elles, doivent rester atteignables — sans
-marges sûres, la recherche se glisse sous la Dynamic Island.
+Trois choses sont nécessaires, et `viewport-fit=cover` seul ne suffit pas —
+vérifié sur un appareil réel, où la carte s'arrêtait sous une bande beige :
+
+1. **`apple-mobile-web-app-capable`** : iOS ignore le `display: standalone` du
+   manifeste. Sans cette balise, il réserve la bande de la barre d'état et la
+   peint avec le fond du `body`, et `100dvh` s'arrête sous l'encoche.
+2. **`apple-mobile-web-app-status-bar-style: black-translucent`** : fait passer
+   le contenu sous la barre d'état au lieu de la laisser opaque.
+3. **`viewport-fit=cover`** + les marges sûres en CSS, pour que la carte aille
+   sous l'encoche pendant que les **commandes** restent atteignables — sans
+   elles, la recherche se glisse sous la Dynamic Island.
+
+`black-translucent` dessine l'heure et les icônes système en **blanc** par-dessus
+le contenu : illisibles sur la carte topo, qui est claire. D'où le voile
+`.ecran::before`, un dégradé sombre haut de `--sur-haut` exactement — donc de
+hauteur nulle hors iOS encoché.
 
 Quatre variables dans `app.css` portent les insets (`--sur-haut`, `--sur-bas`,
 `--sur-gauche`, `--sur-droite`), et tout élément flottant les additionne à son
