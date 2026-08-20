@@ -52,6 +52,11 @@ function pwa() {
       // La donnée ne passe jamais par le SW : laisser le réseau (et donc les
       // requêtes Range) opérer sans interception.
       navigateFallbackDenylist: [/\.pmtiles$/],
+      // Sans ça, le SW fraîchement activé ne prend pas la main sur les pages
+      // déjà ouvertes : « Actualiser » rechargeait l'ancien index.html servi
+      // par l'ancien SW. Constaté en vrai — les balises Apple ajoutées pour le
+      // plein écran iOS n'arrivaient pas, il a fallu désinstaller l'app.
+      clientsClaim: true,
       runtimeCaching: [
         {
           // Les tuiles du fond de carte restent en ligne, mais un aller-retour

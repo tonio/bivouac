@@ -238,6 +238,18 @@ vaut 0 partout hors iOS encoché : le rendu est inchangé ailleurs. Mesuré avec
 insets de 59 px en haut et 34 px en bas — la carte reste à 0, la barre haute
 passe de 16 à 75 px, l'échelle remonte de 34 px.
 
+`clientsClaim: true` n'est pas cosmétique : sans lui le SW fraîchement activé
+ne prend pas la main sur les pages déjà ouvertes, et « Actualiser » recharge
+l'ancien `index.html` servi par l'ancien SW. Comme `index.html` est le seul
+fichier précaché non haché — c'est lui qui porte les balises meta — une modif du
+`<head>` n'atteignait jamais un client installé. Reproduit et corrigé : avec
+`clientsClaim`, une nouvelle balise meta arrive après un clic sur « Actualiser ».
+
+⚠️ Sur iOS, cela ne suffit pas pour les balises `apple-mobile-web-app-*` : iOS les
+lit **au moment de l'ajout à l'écran d'accueil** et n'en tient plus compte
+ensuite. Toute modification de ces balises impose de **supprimer et réinstaller**
+l'app. À savoir avant de conclure qu'un correctif plein écran ne marche pas.
+
 Mise à jour en `prompt` et non `autoUpdate` : les règles affichées ont une portée
 juridique, un rechargement surprise en pleine lecture d'une fiche est le mauvais
 moment. `BandeauMaj.vue` propose « Actualiser » et signale la disponibilité hors
