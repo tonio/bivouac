@@ -53,7 +53,7 @@ le jeu final est à traiter comme de l'ODbL.
 | **Écrins** | oui | 19h–9h | pas de station debout | >1h de marche, **ou** près de 3 refuges nommés | gratuit |
 | **Mercantour** | oui | 19h–9h | non autoportante | >1h de marche ; Merveilles/Fontanalba : 2 aires | gratuit |
 | **Pyrénées** | oui | 19h–9h | petite tente | >1h de marche ; Néouvielle : aires Orédon/Aubert | gratuit |
-| **Vanoise** | restreint | **19h–8h** | pas de station debout | **aires de refuges gardés uniquement** | **5 €/emplacement, résa obligatoire** |
+| **Vanoise** | restreint | **19h–8h** | pas de station debout | **aires de refuges gardés uniquement** | **~5 €/emplacement, résa obligatoire** (tarif fixé par délibération du CA, non par arrêté — à confirmer au refuge) |
 | **Cévennes** | restreint | 19h–9h | légère **ou sans tente** | **≤50 m d'un GR/GRP**, hors 10 tronçons interdits | gratuit |
 | **Forêts** | oui | **coucher −1h → lever +1h** | petite tente | à proximité des voies et sentiers | gratuit |
 | **Réunion** | restreint | coucher → matinée | **hamac admis** | libre sauf 5 zones interdites | gratuit |
@@ -72,8 +72,8 @@ Sanction usuelle 68 €/personne (contravention de 3e classe, C. env. art. R331-
 | Type | Statut | Pourquoi |
 |---|---|---|
 | Site classé (2657) | **à vérifier** | R111-33 interdit le « camping pratiqué isolément », **sauf dérogation** — et vise le camping, pas le bivouac. Ne pas lire comme une interdiction de bivouaquer (voir plus bas) |
-| Conservatoire du littoral (814) | **interdit** | C. env. L322-1 + interdiction de camper sur les rivages |
-| RNN / RNR / RNC (388) | interdit sauf exception | Un décret ou une délibération par site. **Jusqu'à 1 500 €** (L332-25). 3 réserves vérifiées individuellement dans `rules/reserves.json` |
+| Conservatoire du littoral (814) | **interdit** | Aucun texte national ne l'interdit nommément : l'interdiction devient verbalisable via un **arrêté municipal ou préfectoral** (L322-10-2, **135 €**, 4e classe) |
+| RNN / RNR / RNC (388) | interdit sauf exception | Un décret ou une délibération par site. Bivouac : **3e classe, 68 €** (R332-70, qui vise expressément le bivouac) — pas les 9 000 € de L332-25, qui suppose une atteinte notable. 8 réserves vérifiées individuellement dans `rules/reserves.json` |
 | Réserve biologique ONF (285) | interdit sauf exception | RBI quasi systématiquement fermée ; RBD variable |
 | APPB (1103) | **à vérifier** | Un arrêté préfectoral par site, opposable. Souvent saisonnier (nidification). Jusqu'à 750 € |
 | PNR (59) | droit commun | **Un PNR n'a pas de pouvoir de police** — sa charte n'est pas opposable aux visiteurs |
@@ -108,11 +108,21 @@ Les ~4500 **sites inscrits** relèvent d'un régime distinct (R111-33 1°, sans 
 | Réserve | Régime réel |
 |---|---|
 | **Hauts de Chartreuse** | Bivouac **autorisé** coucher→lever, 1 nuit. Hors juillet-août : tente légère admise. **1er juil – 31 août : tente interdite** (arrêté préfectoral du 16/07/2024, 9 communes), belle étoile toujours permise |
-| **Néouvielle** | Uniquement aux aires d'Orédon et d'Aubert, 19h–9h, gratuit sans réservation |
-| **Hauts Plateaux du Vercors** | Arrêté interpréfectoral, conditions à vérifier |
+| **Néouvielle** | Uniquement aux aires d'Orédon et d'Aubert, 19h–9h. Régime permanent depuis l'**AP n°65-2025-07-04-00005** du 04/07/2025 |
+| **Hauts Plateaux du Vercors** | **17h–9h**, 1 nuit, « si possible aux abords des 7 cabanes-abris ». Campement (tente laissée montée en journée) interdit. Feu interdit en extérieur toute l'année — AP interpréfectoral du 28/12/2016, art. 14, 15 et 19-2 |
+| **Gorges de l'Ardèche** | Interdit sauf **2 aires nommées par le décret** — Gaud et Gournier, 500 personnes chacune, **1 nuit**, titre d'accès obligatoire sous peine d'expulsion. 9,50 à 16,50 €/personne |
+| **Ristolas - Mont-Viso** | 18h–9h toute l'année, 1 nuit/site, à **moins de 20 m** des sentiers balisés (confinement, pas éloignement), >500 m du refuge du Viso |
+| **Grande Sassière** | 1er juin – 31 août, 19h–7h, **un seul replat** en rive gauche du barrage. L'arrêté de 1973 exempte la tente sans station debout de l'interdiction de campement |
+| **Ballons Comtois** | **Interdit** hors du refuge de la Grande Goutte — aucune exemption pour la tente basse (art. 24 du décret) |
+| **Py**, **Mantet**, **Nohèdes**, **Prats-de-Mollo** | Campement interdit, bivouac **autorisé par le décret** autour des refuges et le long du GR 10 (ou des sentiers balisés). **Aucun horaire réglementaire** — le « 19h–9h » qui circule est le régime du parc national, recopié à tort |
+| **Sixt-Fer-à-Cheval / Passy** | 19h–9h, placement libre, **réservation gratuite mais obligatoire** de juin à septembre. Aucun arrêté préfectoral n'existe : le cadre est celui du gestionnaire |
+| **Haute Chaîne du Jura** | Arrêté préfectoral du 16/10/2017 |
+| **Aiguilles Rouges**, **Carlaveyron**, **Vallon de Bérard** | AP **DDT-2026-0472** du 04/06/2026 — réservation gratuite mais **obligatoire** de juin à septembre sur `reserve-bivouac74.fr`, jauges par secteur |
+| **Contamines-Montjoie** | AP **DDT-2026-0474** du 04/06/2026 — même dispositif de réservation |
 
-3 réserves sur 388 : l'absence d'une réserve ici ne confirme pas l'interdiction, elle signale qu'elle n'a pas
-été vérifiée.
+57 sites vérifiés un par un — 28 RNN, 7 RNC, 9 RNR, 5 APPB, 4 réserves biologiques, 4 sites classés — dont 44
+en fiabilité haute (texte réglementaire lu). L'absence d'un site ici ne confirme pas l'interdiction, elle
+signale qu'il n'a pas été vérifié.
 
 ## Zonages internes aux parcs
 
@@ -147,7 +157,7 @@ Détail complet, licences et texte d'attribution à afficher : **[SOURCES.md](SO
 
 Géométries : [Géoplateforme IGN](https://data.geopf.fr/wfs/ows), couches `patrinat_*` (PatriNat/OFB/MNHN), Licence Ouverte 2.0 · [data.gouv.fr](https://www.data.gouv.fr/datasets/contours-des-11-parcs-nationaux-de-france) · zonages internes : [Parc national des Cévennes](https://github.com/PnCevennes/data_reglementation) (ODbL) et [OpenStreetMap](https://www.openstreetmap.org/copyright) (ODbL)
 
-Arrêtés en texte intégral : [AIDA/INERIS](https://aida.ineris.fr/) — [Écrins n°192/2013](https://www.ecrins-parcnational.fr/sites/ecrins-parcnational.com/files/fiche_doc/9678/14-06-192ardir-reglementationbivouac.pdf) · [Cévennes n°20140007](https://aida.ineris.fr/reglementation/arrete-ndeg-20140007-200114-reglementant-bivouac-coeur-parc-national-cevennes) · [Mercantour n°2018-07](https://aida.ineris.fr/reglementation/arrete-ndeg-2018-07-010618-reglementant-pratique-bivouac-coeur-parc-national) · [Vanoise 09/07/2015](https://aida.ineris.fr/reglementation/arrete-090715-concernant-bivouac-coeur-parc-national-vanoise)
+Arrêtés en texte intégral : [AIDA/INERIS](https://aida.ineris.fr/) — [Écrins n°192/2013](https://www.ecrins-parcnational.fr/sites/ecrins-parcnational.com/files/fiche_doc/9678/14-06-192ardir-reglementationbivouac.pdf) · [Cévennes n°20140007](https://aida.ineris.fr/reglementation/arrete-ndeg-20140007-200114-reglementant-bivouac-coeur-parc-national-cevennes) · [Mercantour n°2018-07](https://aida.ineris.fr/reglementation/arrete-ndeg-2018-07-010618-reglementant-pratique-bivouac-coeur-parc-national) · [Vanoise n°2019-029](https://vanoise-parcnational.fr/sites/vanoise-parcnational.fr/files/raa/arrete_bivouac.pdf) (abroge celui du 09/07/2015)
 
 Sites officiels : [portail des parcs nationaux](https://www.parcsnationaux.fr/fr/des-decouvertes/visiter-et-semerveiller/la-reglementation-et-les-conseils/le-bivouac) · [Vanoise](https://www.vanoise-parcnational.fr/fr/des-decouvertes/sejourner-dans-le-parc/lart-du-bivouac-responsable-en-vanoise) · [Pyrénées](https://www.pyrenees-parcnational.fr/fr/des-decouvertes/sejourner-dans-le-parc-national/ou-dormir-en-montagne/bivouac) · [Cévennes](https://www.cevennes-parcnational.fr/fr/le-parc-national-des-cevennes/la-reglementation-du-coeur/les-regles-pour-tous) · [Réunion](https://www.reunion-parcnational.fr/fr/le-parc-national-de-la-reunion/reglementation/bivouac-en-coeur-de-parc-national) · [Forêts](https://www.forets-parcnational.fr/fr/parc-national-de-forets/la-reglementation-du-coeur) · [Calanques](https://www.calanques-parcnational.fr/fr/actualites/camping-sauvage-et-bivouac-rappel-des-reglementations-et-des-bons-gestes)
 

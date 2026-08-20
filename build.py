@@ -89,9 +89,11 @@ def main():
             else:
                 regle, statut = base, base.get("statut", "verifier_arrete")
                 libelle = base.get("libelle", layer)
-                # Une réserve documentée l'emporte sur la règle du type.
+                # Un site documenté l'emporte sur la règle du type. Le champ
+                # `type` de la fiche dit à quelle couche elle s'applique — un
+                # id_mnhn peut exister dans plusieurs couches superposées.
                 propre = reserves.get(src_props.get("id_mnhn"))
-                if propre and layer in ("rnn", "rnr", "rnc"):
+                if propre and propre["type"] == layer:
                     regle, statut = propre, propre["statut"]
 
             feat["properties"] = {
@@ -250,6 +252,9 @@ def demo():
         assert r["statut"] in SEVERITE, f"{rid} : statut inconnu {r['statut']}"
         for champ in ("tente", "horaires", "localisation", "duree", "cout", "feu"):
             assert champ in r, f"{rid} ({r['reserve']}) : champ '{champ}' manquant"
+        # `type` porte la jointure : faux ou absent, la fiche est ignorée en
+        # silence et le site retombe sur la règle générique du type.
+        assert r.get("type") in LAYERS, f"{rid} ({r['reserve']}) : type {r.get('type')!r}"
 
     # Chartreuse : la règle générique « interdit sauf exception » est fausse ici,
     # le bivouac y est autorisé — avec interdiction de la tente en juillet-août.

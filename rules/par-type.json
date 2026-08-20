@@ -15,79 +15,316 @@
         "Code pénal, art. R610-5 : sanction du non-respect d'un arrêté (38 €)"
       ],
       "terrain_prive": "Accord du propriétaire requis. Sans accord, le bivouac est possible mais constitue une occupation sans titre.",
-      "cout": {"payant": false, "reservation_obligatoire": false}
+      "cout": {
+        "payant": false,
+        "reservation_obligatoire": false
+      }
     }
   },
-
   "pnr": {
     "libelle": "Parc naturel régional",
     "nb_sites": 59,
     "statut": "renvoi_droit_commun",
     "resume": "Aucune interdiction propre. Un PNR n'a pas de pouvoir de police : sa charte n'est pas opposable aux particuliers. Le bivouac relève du droit commun et des arrêtés municipaux, commune par commune.",
-    "explication_juridique": "Le PNR est un syndicat mixte régi par les art. L333-1 et s. du code de l'environnement. Sa charte engage les collectivités signataires, pas les visiteurs. C'est la différence majeure avec un parc national.",
-    "tente": {"autorisee": true, "type": "aucune_restriction", "station_debout_autorisee": null, "autoportante_autorisee": null},
-    "horaires": {"debut": null, "fin": null, "detail": "Aucune restriction horaire réglementaire au niveau du PNR ; des arrêtés municipaux peuvent en imposer"},
-    "localisation": {"contrainte": "libre", "distance_min_acces_routier": null, "corridor_m": null, "refuge_obligatoire": false},
-    "duree": {"nuits_max": null, "consecutif_meme_lieu": null},
-    "cout": {"payant": false, "montant_eur": null, "unite": null, "reservation_obligatoire": false},
-    "feu": {"feu_ouvert": false, "rechaud_portatif": true, "detail": "Interdiction du code forestier à moins de 200 m des bois ; arrêtés préfectoraux incendie fréquents en été"},
-    "attention": "Un PNR chevauche souvent des zonages qui, eux, interdisent : réserves naturelles, APB, sites classés. Toujours croiser avec les autres couches. Certains PNR publient des recommandations ou des aires de bivouac conventionnées (ex. Chartreuse, Vercors) — non réglementaires mais utiles.",
-    "base_legale": ["C. env. art. L333-1 et s.", "Droit commun : C. urb. art. R111-32 à R111-35"],
-    "sources": [{"type": "reference", "url": "https://www.parcs-naturels-regionaux.fr/"}]
+    "explication_juridique": "Le PNR est un syndicat mixte régi par les art. L333-1 et s. du code de l'environnement. Le V de l'art. L333-1 est explicite : « L'État et les collectivités territoriales ainsi que les établissements publics de coopération intercommunale à fiscalité propre ayant approuvé la charte appliquent les orientations et les mesures de la charte dans l'exercice de leurs compétences. » L'article n'énonce aucune obligation à la charge des personnes privées. Le Conseil d'État (21 avril 2022) a confirmé que l'opposabilité de la charte joue par l'intermédiaire des décisions administratives, jamais directement contre le particulier. C'est la différence majeure avec un parc national.",
+    "tente": {
+      "autorisee": true,
+      "type": "aucune_restriction",
+      "station_debout_autorisee": null,
+      "autoportante_autorisee": null
+    },
+    "horaires": {
+      "debut": null,
+      "fin": null,
+      "detail": "Aucune restriction horaire réglementaire au niveau du PNR ; des arrêtés municipaux peuvent en imposer"
+    },
+    "localisation": {
+      "contrainte": "libre",
+      "distance_min_acces_routier": null,
+      "corridor_m": null,
+      "refuge_obligatoire": false
+    },
+    "duree": {
+      "nuits_max": null,
+      "consecutif_meme_lieu": null
+    },
+    "cout": {
+      "payant": false,
+      "montant_eur": null,
+      "unite": null,
+      "reservation_obligatoire": false
+    },
+    "feu": {
+      "feu_ouvert": false,
+      "rechaud_portatif": true,
+      "detail": "Interdiction du code forestier à moins de 200 m des bois ; arrêtés préfectoraux incendie fréquents en été"
+    },
+    "attention": "Une page « le bivouac est interdit / toléré de 19 h à 9 h » publiée par un PNR n'est PAS une règle de droit : elle ne devient opposable que reprise dans un arrêté municipal ou préfectoral. Les 8 arrêtés du Queyras le démontrent — les maires visent la charte du Parc dans leurs considérants précisément parce qu'elle ne suffit pas. Toujours croiser avec les autres couches : un PNR chevauche souvent des zonages qui, eux, interdisent (réserves naturelles, APB, sites classés).",
+    "base_legale": [
+      "C. env. art. L333-1 et s.",
+      "Droit commun : C. urb. art. R111-32 à R111-35"
+    ],
+    "sources": [
+      {
+        "type": "reference",
+        "url": "https://www.parcs-naturels-regionaux.fr/"
+      },
+      {
+        "type": "visa",
+        "ref": "C. env. art. L333-1, V (la charte engage les seules collectivités signataires)",
+        "url": "https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000033034029/"
+      },
+      {
+        "type": "jurisprudence",
+        "ref": "Conseil d'État, 21 avril 2022 — l'opposabilité de la charte joue par l'intermédiaire des décisions administratives, pas contre le particulier"
+      },
+      {
+        "type": "officiel",
+        "ref": "PNR du Queyras — les 8 arrêtés municipaux de la démarche collective",
+        "url": "https://www.pnr-queyras.fr/bivouac/"
+      }
+    ],
+    "pouvoir_reglementaire_reel": {
+      "principe": "« Le PNR n'a pas de police » ne doit pas masquer quatre configurations où une contrainte opposable existe bel et bien dans un périmètre de PNR.",
+      "superposition_rnn": "Le cas le plus fréquent et le plus lourd : Hauts de Chartreuse, Hauts-Plateaux du Vercors, Ristolas-Mont-Viso, Chastreix-Sancy, Chaudefour, Tanet-Gazon-du-Faing. La police est préfectorale (décret de création + arrêté) et les sanctions relèvent des art. R332-69 à R332-81 C. env. Le syndicat mixte du PNR est souvent gestionnaire de la réserve : il applique une réglementation d'État, il ne la crée pas.",
+      "appb": "Arrêté préfectoral de protection de biotope — acte opposable indépendant de la charte. Ex. Vallon de Bouchouse (juillet 2011, Ristolas), Le Louschbach / Tête des Faux.",
+      "rncfs": "Réserve nationale de chasse et de faune sauvage : aux Bauges, bivouac et camping interdits sous toutes formes.",
+      "maitrise_fonciere": "En tant que propriétaire, affectataire ou gestionnaire de terrains et de refuges, un PNR fixe des conditions d'accès, une réservation et un tarif : c'est du droit domanial et contractuel, opposable comme condition d'usage du service, mais aucune contravention pénale ne peut en découler sans arrêté de police. C'est le fondement réel du dispositif corse et des aires aménagées."
+    },
+    "arretes_municipaux_documentes": [
+      {
+        "massif": "Chartreuse",
+        "commune": "Chichilianne (Isère)",
+        "ref": "Arrêté municipal 2022-103-01 du 3 janvier 2022, réglementant le bivouac dans la RNN des Hauts Plateaux du Vercors pour des motifs de protection de l'environnement",
+        "regle": "Bivouac interdit toute l'année sur la pelouse sommitale du Mont Aiguille. Exceptions : police, secours et sauvetage, personnels d'entretien et de surveillance de la réserve.",
+        "fondement": "CGCT art. L2212-1 et L2212-2 (police générale du maire), et non C. urb. R111-34 — ce qui permet de viser le « bivouac » comme tel plutôt que le « camping ».",
+        "sanction": "C. pén. art. R610-5 — contravention de 1re classe, 38 €",
+        "url": "https://chichilianne.fr/wp-content/uploads/sites/379/2024/11/2022-103-01-Bivouac-Mt-Aiguille.pdf",
+        "fiabilite": "haute — texte intégral lu"
+      },
+      {
+        "massif": "Queyras",
+        "commune": "Saint-Véran (Hautes-Alpes)",
+        "ref": "Arrêté municipal 19-2023 du 12 juillet 2023",
+        "regle": "Bivouac itinérant toléré à plus d'une heure de marche du village et des hameaux, sauf exception du site du Pont du Moulin. Interdit aux abords des cabanes pastorales et chalets d'alpage sans accord. Pose après 18 h, démontage avant 9 h, une seule nuit par secteur. Feux de camp interdits hors places à feux homologuées ; réchauds autorisés.",
+        "url": "https://www.pnr-queyras.fr/ecmedias/2023/08/SaintVeran_19-2023-BIVOUAC-ET-FEU-tampon.pdf",
+        "fiabilite": "haute — texte intégral lu"
+      },
+      {
+        "massif": "Queyras",
+        "commune": "Ceillac (Hautes-Alpes)",
+        "ref": "Arrêté municipal 2023-31 du 2 août 2023",
+        "regle": "Camping sous tente, dans un véhicule ou tout autre abri interdit sur tout le territoire communal, sauf accord du propriétaire et déclaration en mairie (groupes ≤ 20 campeurs ou 6 abris). Bivouac itinérant toléré au-delà d'une heure de marche du village et des hameaux, avec autorisation du propriétaire. Pose après 18 h, démontage avant 9 h.",
+        "sanction": "Amende de la 1re à la 5e classe selon la nature de la contravention (C. pén. et C. env.)",
+        "url": "https://www.pnr-queyras.fr/ecmedias/2023/08/Ceillac_2023-31-Arrete-Camping-Bivouac-tampon.pdf",
+        "fiabilite": "haute — texte intégral lu"
+      },
+      {
+        "massif": "Queyras",
+        "commune": "Abriès-Ristolas (Hautes-Alpes)",
+        "ref": "Arrêté municipal 20230627-01 du 27 juin 2023",
+        "regle": "Toléré à plus d'une heure de marche du village et des hameaux ; interdit aux abords des cabanes pastorales et chalets d'alpage sans accord. Pose après 18 h, démontage avant 9 h, une nuit par secteur. Feux interdits hors places homologuées ; réchauds autorisés.",
+        "url": "https://www.pnr-queyras.fr/ecmedias/2023/08/Abries-Ristolas_20230627-01-ARRETE-REGL-BIVOUAC-ET-FEU-tampon.pdf",
+        "fiabilite": "haute — texte intégral lu"
+      },
+      {
+        "massif": "Queyras",
+        "commune": "Molines-en-Queyras (Hautes-Alpes)",
+        "ref": "Arrêté municipal 31/2023 du 22 juin 2023",
+        "regle": "Même trame : plus d'une heure de marche du village et des hameaux, interdit près des cabanes pastorales et chalets d'alpage sans accord. Pose après 18 h, démontage avant 9 h. Feux interdits hors places homologuées ; réchauds autorisés.",
+        "url": "https://www.pnr-queyras.fr/ecmedias/2023/08/Molines_arrete31_Bivouac-Feu.pdf",
+        "fiabilite": "haute — texte intégral lu"
+      },
+      {
+        "massif": "Queyras",
+        "commune": "Aiguilles, Arvieux, Château-Ville-Vieille, Guillestre (Hautes-Alpes)",
+        "ref": "Arrêtés A-2023-48, 2023-22, 2023-37 et du 18 juillet 2003 — même démarche collective, PDF publiés par le PNR mais non lus intégralement",
+        "regle": "Même trame présumée (à confirmer par lecture des actes).",
+        "url": "https://www.pnr-queyras.fr/bivouac/",
+        "fiabilite": "moyenne — actes référencés, non lus"
+      }
+    ],
+    "aires_amenagees": [
+      {
+        "massif": "Massif des Bauges",
+        "aires": [
+          "La Féclaz : L'Orionde (tentes exclusivement), Le Sire, parking du téléski du Gust, La Place aux Loups, Larcoutier, parking de la Doriaz",
+          "Revard : aire de la Crémaillère, La Tour de l'Angle Est, Crolles",
+          "Saint-François-de-Sales : Chalet de la Plate, Cabane aux oiseaux",
+          "Margériaz (Aillon-le-Jeune) : Place à Baban — 3 emplacements, plateforme bois, cabane équipée pour les repas, toilettes sèches, gratuit toute l'année, réservation possible mais non obligatoire"
+        ],
+        "opposable": false,
+        "note": "11 aires autorisées, dispositif PNR + communes de Savoie Grand Revard. Le camping est interdit hors aires désignées dans 8 communes et dans la RNCFS. Tarifs et modalités de réservation non publiés pour la plupart des aires.",
+        "fiabilite": "moyenne"
+      },
+      {
+        "massif": "Volcans d'Auvergne — massif du Sancy",
+        "aires": [
+          "Picherande",
+          "Chastreix",
+          "Chambon-sur-Lac",
+          "Super-Besse",
+          "Mont-Dore (Salon du Capucin)"
+        ],
+        "opposable": false,
+        "note": "5 aires gratuites, sans information de réservation ni de capacité publiée. Règles associées : tente tolérée entre 20 h et 8 h uniquement, feux interdits. Le bivouac est par ailleurs interdit sur les sommets et les pentes des volcans (recommandation du PNRVA, opposable seulement si reprise en arrêté).",
+        "fiabilite": "moyenne"
+      },
+      {
+        "massif": "Corse — GR20",
+        "aires": [
+          "16 refuges du PNR de Corse : Ortu di u Piobbu, Carrozzu, Ascu Stagnu, Tighjettu, Ciottulu di i Mori, Manganu, Petra Piana, L'Onda, Vizzavona, E Capanelle, Prati, Usciolu, Cuscionu, Asinao, Paliri, Conca"
+        ],
+        "opposable": false,
+        "note": "Réservation obligatoire depuis 2023 pour toute nuitée, bivouac compris, sur https://pnr-resa.corsica/ — 9 €/personne/nuit pour un emplacement avec sa propre tente, 14 € en dortoir. Fondement domanial et contractuel (le PNRC est gestionnaire des terrains d'assiette), non pénal.",
+        "fiabilite": "moyenne"
+      }
+    ],
+    "nuance": "L'affirmation très relayée « le bivouac sauvage est interdit sur le GR20 » n'est étayée par aucun texte identifié : ce qui est établi, c'est la réservation obligatoire et la tarification des emplacements par le PNR de Corse, opposables comme conditions d'accès au service et non comme une infraction pénale. Une source spécialisée relève que le Parc ne fait que des recommandations aux communes, la plupart n'ayant pris aucun arrêté. À traiter avec prudence."
   },
-
   "n2000_zps": {
     "libelle": "Natura 2000 — Zone de protection spéciale (directive Oiseaux)",
     "nb_sites": 407,
     "statut": "renvoi_droit_commun",
     "resume": "Aucune interdiction de bivouac en tant que telle. Natura 2000 est un outil de gestion contractuelle, pas de police.",
     "explication_juridique": "Le régime Natura 2000 (C. env. art. L414-1 et s.) repose sur des DOCOB et des contrats, et sur l'évaluation d'incidences pour les projets et manifestations. Il ne crée pas d'interdiction individuelle de bivouaquer.",
-    "tente": {"autorisee": true, "type": "aucune_restriction", "station_debout_autorisee": null, "autoportante_autorisee": null},
-    "horaires": {"debut": null, "fin": null},
-    "localisation": {"contrainte": "libre", "distance_min_acces_routier": null, "corridor_m": null, "refuge_obligatoire": false},
-    "duree": {"nuits_max": null, "consecutif_meme_lieu": null},
-    "cout": {"payant": false, "montant_eur": null, "unite": null, "reservation_obligatoire": false},
-    "feu": {"feu_ouvert": false, "rechaud_portatif": true},
+    "tente": {
+      "autorisee": true,
+      "type": "aucune_restriction",
+      "station_debout_autorisee": null,
+      "autoportante_autorisee": null
+    },
+    "horaires": {
+      "debut": null,
+      "fin": null
+    },
+    "localisation": {
+      "contrainte": "libre",
+      "distance_min_acces_routier": null,
+      "corridor_m": null,
+      "refuge_obligatoire": false
+    },
+    "duree": {
+      "nuits_max": null,
+      "consecutif_meme_lieu": null
+    },
+    "cout": {
+      "payant": false,
+      "montant_eur": null,
+      "unite": null,
+      "reservation_obligatoire": false
+    },
+    "feu": {
+      "feu_ouvert": false,
+      "rechaud_portatif": true
+    },
     "attention": "Une manifestation ou un rassemblement organisé peut relever de l'évaluation d'incidences (C. env. art. R414-19). Un bivouac de groupe organisé n'est donc pas toujours neutre. Par ailleurs les ZPS recouvrent très souvent des réserves ou des APB qui interdisent.",
-    "base_legale": ["C. env. art. L414-1 et s.", "C. env. art. R414-19 (évaluation d'incidences)"],
-    "sources": [{"type": "reference", "url": "https://inpn.mnhn.fr/programme/natura2000"}]
+    "base_legale": [
+      "C. env. art. L414-1 et s.",
+      "C. env. art. R414-19 (évaluation d'incidences)"
+    ],
+    "sources": [
+      {
+        "type": "reference",
+        "url": "https://inpn.mnhn.fr/programme/natura2000"
+      }
+    ]
   },
-
   "n2000_sic": {
     "libelle": "Natura 2000 — Site d'importance communautaire / ZSC (directive Habitats)",
     "nb_sites": 1355,
     "statut": "renvoi_droit_commun",
     "resume": "Identique aux ZPS : aucune interdiction propre de bivouac. Gestion contractuelle, pas de police.",
     "explication_juridique": "Voir n2000_zps. Même régime juridique (C. env. art. L414-1 et s.).",
-    "tente": {"autorisee": true, "type": "aucune_restriction", "station_debout_autorisee": null, "autoportante_autorisee": null},
-    "horaires": {"debut": null, "fin": null},
-    "localisation": {"contrainte": "libre", "distance_min_acces_routier": null, "corridor_m": null, "refuge_obligatoire": false},
-    "duree": {"nuits_max": null, "consecutif_meme_lieu": null},
-    "cout": {"payant": false, "montant_eur": null, "unite": null, "reservation_obligatoire": false},
-    "feu": {"feu_ouvert": false, "rechaud_portatif": true},
+    "tente": {
+      "autorisee": true,
+      "type": "aucune_restriction",
+      "station_debout_autorisee": null,
+      "autoportante_autorisee": null
+    },
+    "horaires": {
+      "debut": null,
+      "fin": null
+    },
+    "localisation": {
+      "contrainte": "libre",
+      "distance_min_acces_routier": null,
+      "corridor_m": null,
+      "refuge_obligatoire": false
+    },
+    "duree": {
+      "nuits_max": null,
+      "consecutif_meme_lieu": null
+    },
+    "cout": {
+      "payant": false,
+      "montant_eur": null,
+      "unite": null,
+      "reservation_obligatoire": false
+    },
+    "feu": {
+      "feu_ouvert": false,
+      "rechaud_portatif": true
+    },
     "attention": "Couche la plus étendue du jeu de données (1355 sites). Sa présence seule n'est pas un signal d'interdiction — ne pas la traiter comme telle dans une carte, au risque de faire croire à une interdiction inexistante.",
-    "base_legale": ["C. env. art. L414-1 et s."],
-    "sources": [{"type": "reference", "url": "https://inpn.mnhn.fr/programme/natura2000"}]
+    "base_legale": [
+      "C. env. art. L414-1 et s."
+    ],
+    "sources": [
+      {
+        "type": "reference",
+        "url": "https://inpn.mnhn.fr/programme/natura2000"
+      }
+    ]
   },
-
   "rnn": {
     "libelle": "Réserve naturelle nationale",
     "nb_sites": 186,
     "statut": "interdit_sauf_exception",
     "resume": "Le camping et le bivouac sont interdits dans la très grande majorité des réserves. Chaque réserve a son propre décret de création qui fixe la règle — vérification site par site indispensable.",
     "explication_juridique": "C. env. art. L332-1 et s. Le décret de création peut réglementer ou interdire le camping (art. L332-3). Les art. R332-70 et R332-73 encadrent les activités. Le gestionnaire peut prendre des arrêtés complémentaires.",
-    "tente": {"autorisee": false, "type": "interdite", "station_debout_autorisee": false, "autoportante_autorisee": false, "detail": "Interdiction par défaut ; quelques réserves aménagent des aires dédiées"},
-    "horaires": {"debut": null, "fin": null, "detail": "Sans objet en cas d'interdiction ; les réserves qui autorisent calquent souvent 19h–9h"},
-    "localisation": {"contrainte": "aires_designees", "distance_min_acces_routier": null, "corridor_m": null, "refuge_obligatoire": false},
-    "duree": {"nuits_max": 0, "consecutif_meme_lieu": false},
-    "cout": {"payant": false, "montant_eur": null, "unite": null, "reservation_obligatoire": false},
-    "feu": {"feu_ouvert": false, "rechaud_portatif": false, "detail": "Le feu est interdit dans la quasi-totalité des réserves, réchaud inclus dans certaines"},
-    "sanction": "Jusqu'à 1 500 € (C. env. art. L332-25) — le régime le plus sévère des zonages courants, bien au-delà des 68 € des parcs nationaux",
+    "tente": {
+      "autorisee": false,
+      "type": "interdite",
+      "station_debout_autorisee": false,
+      "autoportante_autorisee": false,
+      "detail": "Interdiction par défaut ; quelques réserves aménagent des aires dédiées"
+    },
+    "horaires": {
+      "debut": null,
+      "fin": null,
+      "detail": "Sans objet en cas d'interdiction ; les réserves qui autorisent calquent souvent 19h–9h"
+    },
+    "localisation": {
+      "contrainte": "aires_designees",
+      "distance_min_acces_routier": null,
+      "corridor_m": null,
+      "refuge_obligatoire": false
+    },
+    "duree": {
+      "nuits_max": 0,
+      "consecutif_meme_lieu": false
+    },
+    "cout": {
+      "payant": false,
+      "montant_eur": null,
+      "unite": null,
+      "reservation_obligatoire": false
+    },
+    "feu": {
+      "feu_ouvert": false,
+      "rechaud_portatif": false,
+      "detail": "Le feu est interdit dans la quasi-totalité des réserves, réchaud inclus dans certaines"
+    },
+    "sanction": "Bivouac : contravention de 3e classe — 68 € forfaitaires, 450 € au maximum (C. env. art. R332-70, qui vise expressément le bivouac, le stationnement et le camping) — soit le même ordre qu'en cœur de parc national. L'art. L332-25 (6 mois et 9 000 €) ne s'applique qu'en cas d'atteinte non négligeable au développement de la faune et de la flore ou au patrimoine géologique : ce n'est pas le régime du bivouac ordinaire.",
     "exemples_documentes": {
       "RNN du Néouvielle": {
         "statut": "restreint_zones",
         "regle": "Bivouac autorisé 19h–9h uniquement sur les aires aménagées aux abords des lacs d'Orédon et d'Aubert ; interdit ailleurs",
-        "cout": {"payant": false, "reservation_obligatoire": false}
+        "cout": {
+          "payant": false,
+          "reservation_obligatoire": false
+        }
       },
       "RNN de la Haute Chaîne du Jura": {
         "statut": "autorise_sous_conditions",
@@ -101,118 +338,945 @@
       }
     },
     "methode_verification": "Le champ `acte_deb` de la couche donne la référence du décret ; `url_fiche` pointe la fiche INPN du site. Récupérer le décret sur Légifrance et chercher les termes « camping », « bivouac », « campement ».",
-    "base_legale": ["C. env. art. L332-1 et s.", "C. env. art. L332-3", "C. env. art. R332-70, R332-73", "C. env. art. L332-25 (sanctions)"],
-    "sources": [{"type": "reference", "url": "https://www.reserves-naturelles.org/"}]
+    "base_legale": [
+      "C. env. art. L332-1 et s.",
+      "C. env. art. L332-3",
+      "C. env. art. R332-70, R332-73",
+      "C. env. art. L332-25 (sanctions)"
+    ],
+    "sources": [
+      {
+        "type": "reference",
+        "url": "https://www.reserves-naturelles.org/"
+      }
+    ]
   },
-
   "rnr": {
     "libelle": "Réserve naturelle régionale",
     "nb_sites": 195,
-    "statut": "interdit_sauf_exception",
-    "resume": "Même logique que les RNN, mais l'acte de création est une délibération du conseil régional. Interdiction fréquente du camping et du bivouac.",
-    "explication_juridique": "C. env. art. L332-2-1. La région classe et fixe la réglementation par délibération.",
-    "tente": {"autorisee": false, "type": "interdite", "station_debout_autorisee": false, "autoportante_autorisee": false},
-    "horaires": {"debut": null, "fin": null},
-    "localisation": {"contrainte": "aires_designees", "distance_min_acces_routier": null, "corridor_m": null, "refuge_obligatoire": false},
-    "duree": {"nuits_max": 0, "consecutif_meme_lieu": false},
-    "cout": {"payant": false, "montant_eur": null, "unite": null, "reservation_obligatoire": false},
-    "feu": {"feu_ouvert": false, "rechaud_portatif": false},
-    "sanction": "Jusqu'à 1 500 € (C. env. art. L332-25)",
-    "methode_verification": "Délibération régionale, référencée via `url_fiche` (fiche INPN). Moins bien centralisé que les RNN.",
-    "base_legale": ["C. env. art. L332-2-1", "C. env. art. L332-25"]
+    "statut": "verifier_arrete",
+    "resume": "Une délibération régionale par réserve, avec un règlement annexé numéroté article par article. Le camping (tente, véhicule, tout autre abri) est interdit dans la quasi-totalité des règlements consultés, mais le bivouac est un régime DISTINCT et souvent AUTORISÉ, encadré par des horaires. Ne pas lire l'appartenance à une RNR comme une interdiction de bivouaquer.",
+    "explication_juridique": "C. env. art. L332-2-1 : la région classe et fixe la réglementation par délibération. Le classement est prononcé pour une durée déterminée (10, 20 ou 30 ans selon les cas), renouvelable par tacite reconduction sauf demande expresse du propriétaire présentée 3 à 6 mois avant l'échéance (C. env. art. R332-35). Le règlement est annexé à la délibération ; le gestionnaire est désigné par le président du conseil régional (C. env. art. L332-8, R332-42) et le plan de gestion élaboré dans les 3 ans (R332-43). Les territoires classés ne peuvent être ni détruits ni modifiés dans leur état ou leur aspect (C. env. art. L332-9), une autorisation spéciale relevant du conseil régional après avis du comité consultatif, des conseils municipaux et du CSRPN (R332-44).",
+    "tente": {
+      "autorisee": null,
+      "type": "aucune_restriction",
+      "station_debout_autorisee": null,
+      "autoportante_autorisee": null,
+      "detail": "Dépend entièrement de la délibération. Sur 9 RNR vérifiées une par une : 6 autorisent le bivouac (Partias, Daluis, Pibeste-Aoulhet, Aulon, Nyer, Montious en zone de protection), 3 l'interdisent en pratique (Val Suzon, Gorges du Gardon, Gorges de la Loire), et 1 le fait dépendre de la zone (Montious : autorisé en zone de protection, interdit en zone de protection renforcée). Une seule mentionne explicitement le type de tente : Montious, « en tente légère »."
+    },
+    "horaires": {
+      "debut": null,
+      "fin": null,
+      "detail": "Quand le bivouac est autorisé, la fenêtre est TOUJOURS bornée, et sa valeur varie par région : 19h-9h en Provence-Alpes-Côte d'Azur (Partias, Daluis) et en Occitanie/Montious ; 20h-8h dans les Hautes-Pyrénées (Pibeste-Aoulhet, Aulon) ; du coucher au lever du soleil dans les Pyrénées-Orientales (doctrine commune des réserves catalanes). Les horaires du gestionnaire peuvent différer de l'acte sur une aire aménagée (Daluis : 19h-9h dans l'acte, 18h-10h sur l'aire de Roua)."
+    },
+    "localisation": {
+      "contrainte": "aires_designees",
+      "distance_min_acces_routier": null,
+      "corridor_m": null,
+      "refuge_obligatoire": false,
+      "detail": "Trois schémas rencontrés : (1) libre dans le périmètre (Partias) ; (2) borné par une distance à la route — 1 heure de marche de la route circulable la plus proche (Daluis) ; (3) restreint à des zones délimitées par le PLAN DE CIRCULATION annexé au plan de gestion (Pibeste-Aoulhet, Montious). Dans le cas (3), le plan de circulation est rarement publié en ligne : c'est la principale limite pratique pour cartographier ces règles."
+    },
+    "duree": {
+      "nuits_max": 1,
+      "consecutif_meme_lieu": false,
+      "detail": "Aucun règlement consulté ne chiffre un nombre de nuits : la limite d'une nuit découle mécaniquement de la fenêtre horaire et de l'interdiction du campement"
+    },
+    "cout": {
+      "payant": false,
+      "montant_eur": null,
+      "unite": null,
+      "reservation_obligatoire": false,
+      "detail": "Gratuit sauf aire aménagée. Seul cas payant identifié : aire de Roua (RNR des gorges de Daluis), 6 €/personne demandés et réservation obligatoire toute l'année, 16 personnes maximum."
+    },
+    "feu": {
+      "feu_ouvert": false,
+      "rechaud_portatif": null,
+      "detail": "Le feu est interdit dans TOUS les règlements consultés, avec des exceptions limitées à la gestion de la réserve, aux activités agropastorales, aux places à feu réglementées par arrêté préfectoral et aux cabanes (Partias 3.3-6°, Montious 3.7-6°). Le réchaud portatif n'est presque jamais visé nommément : ne pas l'affirmer autorisé par défaut. Une seule RNR vérifiée l'autorise explicitement — Montious, art. 3.7-6° : « L'utilisation de réchaud est autorisée conformément à la règlementation en vigueur. »"
+    },
+    "sanction": "Bivouac : contravention de 3e classe — 68 € forfaitaires, 450 € au maximum (C. env. art. R332-70, qui vise expressément le bivouac, le stationnement et le camping). L'art. L332-25 (6 mois et 9 000 €) ne s'applique qu'en cas d'atteinte non négligeable au développement de la faune et de la flore ou au patrimoine géologique — pas au bivouac ordinaire.",
+    "methode_verification": "1. Chercher « délibération classement réserve naturelle régionale <nom> » + le site du gestionnaire, qui publie très souvent le PDF du règlement. 2. À défaut, interroger AIDA/INERIS (https://aida.ineris.fr/recherche?search=réserve+naturelle+régionale+<nom>) : la base y référence les délibérations RNR avec leurs annexes, mais l'annexe portant le règlement est parfois absente ou en 404. 3. Dans le PDF, chercher « campement », « bivouac », « le feu ». 4. Attention : plusieurs règlements sont des PDF SCANNÉS sans couche texte (Pibeste-Aoulhet, Montious) — une recherche textuelle y renvoie zéro résultat sans que cela signifie l'absence de règle. 5. La fiche INPN (url_fiche) répondait 403 pendant cette vérification (indisponibilité MNHN).",
+    "base_legale": [
+      "C. env. art. L332-2-1",
+      "C. env. art. L332-8, L332-9, L332-20",
+      "C. env. art. L332-22-1, L332-25 à L332-27 (sanctions)",
+      "C. env. art. R332-30 à R332-48, R332-68 à R332-81",
+      "C. env. art. R332-35 (durée du classement)"
+    ],
+    "structure_type_du_reglement": "Les règlements suivent une trame très constante, ce qui permet de cibler la lecture : un article « circulation et stationnement des personnes » porte le campement et le bivouac (Nyer 3.4, Val Suzon 3.4, Montious 3.4, Daluis 3.7, Partias 3.10, Pibeste 3.13) ; un article « atteintes au milieu » porte le feu (Nyer 3.8-5°, Val Suzon 3.7-5°, Daluis 3.8-5°, Partias 3.3-6°, Pibeste 3.5-5°, Montious 3.7-6°) ; un article porte les animaux domestiques ; un article final porte les sanctions.",
+    "formule_recurrente": "La clause de style la plus fréquente est : « Le campement sous une tente, dans un véhicule ou dans tout autre abri est interdit. Le bivouac est autorisé [entre X et Y heures / dans les zones définies au plan de circulation]. » Le droit distingue donc explicitement campement (installation durable, interdite) et bivouac (installation temporaire nocturne, souvent admise). C'est la même logique que pour les sites classés, mais ici écrite noir sur blanc dans l'acte.",
+    "attention": "Deux pièges de superposition. (1) Un arrêté PRÉFECTORAL peut annuler l'autorisation portée par la délibération régionale : dans les Alpes-Maritimes, l'arrêté du 20 juin 2023 a supprimé le bivouac sauvage dans tout le département, ce qui vide en pratique l'art. 3.7 de l'acte de classement de Daluis. (2) Le zonage interne : Montious a une zone de protection (bivouac autorisé) et une zone de protection renforcée (bivouac interdit, hors-sentier interdit) — la maille de la couche patrinat_rnr ne distingue pas ces zones.",
+    "exemples_documentes": {
+      "RNR des Partias (05)": {
+        "statut": "autorise_sous_conditions",
+        "regle": "Campement interdit, bivouac autorisé 19h-9h ; feu seulement sur places à feu réglementées et dans les cabanes",
+        "acte": "Délibération PACA n° 19-975 du 13/12/2019, art. 3.10"
+      },
+      "RNR des gorges de Daluis (06)": {
+        "statut": "restreint_zones",
+        "regle": "Acte : bivouac 19h-9h à plus d'1 h de marche de la route. En pratique, arrêté préfectoral du 20/06/2023 : plus de bivouac sauvage dans les Alpes-Maritimes — seule l'aire de Roua reste ouverte, 18h-10h, résa obligatoire, 6 €/pers., 16 pers. max",
+        "acte": "Acte de classement, annexes de la délibération n° 12-1286, art. 3.7"
+      },
+      "RNR du Massif du Pibeste-Aoulhet (65)": {
+        "statut": "restreint_zones",
+        "regle": "Campement interdit ; bivouac = « campement temporaire de 20 h à 8 h », autorisé dans les zones du plan de circulation",
+        "acte": "Délibération Midi-Pyrénées n° 12/02/07.01 du 09/02/2012, annexe II, art. 3.13"
+      },
+      "RNR d'Aulon (65)": {
+        "statut": "autorise_sous_conditions",
+        "regle": "Pas de camping ; bivouac réglementé autorisé entre 20h et 8h ; pas de feu ; chiens en laisse ; ne pas quitter les sentiers balisés",
+        "acte": "Délibération Midi-Pyrénées du 16/02/2001 (source gestionnaire)"
+      },
+      "RNR du Massif du Montious (65)": {
+        "statut": "restreint_zones",
+        "regle": "Zone de protection : bivouac autorisé en TENTE LÉGÈRE 19h-9h sur une zone délimitée au plan de circulation ; réchaud explicitement autorisé. Zone de protection renforcée : campement et bivouac interdits, circulation à pied interdite hors itinéraire balisé",
+        "acte": "Réglementation RNR Montious, art. 3.4.1-4°, 3.4.2-3°, 3.7-6° (délibération Occitanie du 16/07/2020)"
+      },
+      "RNR de Nyer (66)": {
+        "statut": "autorise_sous_conditions",
+        "regle": "Campement interdit, « le bivouac est autorisé » sans horaire dans l'acte ; le gestionnaire applique la doctrine des réserves catalanes : coucher-lever du soleil, autour des refuges et le long des sentiers balisés",
+        "acte": "Délibération Languedoc-Roussillon n° CR-07/15.256 du 18/10/2007, art. 3.4"
+      },
+      "RNR du Val Suzon (21)": {
+        "statut": "interdit",
+        "regle": "Campement interdit ; bivouac autorisable seulement par le président du conseil régional, dans des lieux précisément définis et pour les besoins de la GESTION de la réserve — aucun bivouac de loisir",
+        "acte": "Délibération Bourgogne n° 2011-3-7642-350 du 30/06/2011, art. 3.4"
+      },
+      "RNR des gorges du Gardon (30)": {
+        "statut": "interdit",
+        "regle": "Bivouac interdit ; camping interdit au titre du site classé ; APPB fermant 3 sites (328 ha) du 15 janvier au 30 juin pour l'aigle de Bonelli",
+        "acte": "Délibération Languedoc-Roussillon (classement 2001) + APPB + AP Gard n° 2004-104 7 du 13/04/2004"
+      },
+      "RNR des gorges de la Loire (42)": {
+        "statut": "interdit",
+        "regle": "Liste fermée : seuls pêche, chasse, cueillette traditionnelle et prise de vue non commerciale sont des loisirs admis ; « toutes les autres activités de loisirs non mentionnées sont interdites ». 23 km de sentiers autorisés",
+        "acte": "Délibération Rhône-Alpes du 12/07/2012"
+      }
+    },
+    "sources": [
+      {
+        "type": "reference",
+        "url": "https://reserves-naturelles.org/"
+      },
+      {
+        "type": "reference",
+        "ref": "AIDA/INERIS — base des délibérations RNR",
+        "url": "https://aida.ineris.fr/"
+      }
+    ]
   },
-
   "rnc": {
     "libelle": "Réserve naturelle de Corse",
     "nb_sites": 7,
     "statut": "interdit_sauf_exception",
     "resume": "Compétence de la Collectivité de Corse. Régime comparable aux RNR.",
     "explication_juridique": "C. env. art. L332-2-2 : la collectivité territoriale de Corse exerce la compétence de classement.",
-    "tente": {"autorisee": false, "type": "interdite", "station_debout_autorisee": false, "autoportante_autorisee": false},
-    "horaires": {"debut": null, "fin": null},
-    "localisation": {"contrainte": "aires_designees", "distance_min_acces_routier": null, "corridor_m": null, "refuge_obligatoire": false},
-    "duree": {"nuits_max": 0, "consecutif_meme_lieu": false},
-    "cout": {"payant": false, "montant_eur": null, "unite": null, "reservation_obligatoire": false},
-    "feu": {"feu_ouvert": false, "rechaud_portatif": false},
-    "sanction": "Jusqu'à 1 500 € (C. env. art. L332-25)",
-    "base_legale": ["C. env. art. L332-2-2"]
+    "tente": {
+      "autorisee": false,
+      "type": "interdite",
+      "station_debout_autorisee": false,
+      "autoportante_autorisee": false
+    },
+    "horaires": {
+      "debut": null,
+      "fin": null
+    },
+    "localisation": {
+      "contrainte": "aires_designees",
+      "distance_min_acces_routier": null,
+      "corridor_m": null,
+      "refuge_obligatoire": false
+    },
+    "duree": {
+      "nuits_max": 0,
+      "consecutif_meme_lieu": false
+    },
+    "cout": {
+      "payant": false,
+      "montant_eur": null,
+      "unite": null,
+      "reservation_obligatoire": false
+    },
+    "feu": {
+      "feu_ouvert": false,
+      "rechaud_portatif": false
+    },
+    "sanction": "Bivouac : contravention de 3e classe — 68 € forfaitaires, 450 € au maximum (C. env. art. R332-70, qui vise expressément le bivouac, le stationnement et le camping). L'art. L332-25 (6 mois et 9 000 €) ne s'applique qu'en cas d'atteinte non négligeable au développement de la faune et de la flore ou au patrimoine géologique — pas au bivouac ordinaire.",
+    "base_legale": [
+      "C. env. art. L332-2-2"
+    ]
   },
-
   "apb": {
     "libelle": "Arrêté de protection de biotope (APPB)",
     "nb_sites": 1103,
     "statut": "verifier_arrete",
-    "resume": "Chaque APB est un arrêté préfectoral au contenu propre. Beaucoup interdisent la circulation, le campement ou la fréquentation, parfois seulement sur une période (nidification). Vérification obligatoire au cas par cas.",
-    "explication_juridique": "C. env. art. R411-15 à R411-17. Le préfet fixe les mesures nécessaires à la conservation des biotopes. Les interdictions sont directement opposables aux particuliers — contrairement à une charte de PNR.",
-    "tente": {"autorisee": null, "type": "aucune_restriction", "station_debout_autorisee": null, "autoportante_autorisee": null, "detail": "Dépend entièrement de l'arrêté"},
-    "horaires": {"debut": null, "fin": null, "detail": "Certains APB comportent une interdiction saisonnière (période de nidification, ex. 15 février – 15 août pour les rapaces en falaise) plutôt qu'horaire"},
-    "localisation": {"contrainte": "libre", "distance_min_acces_routier": null, "corridor_m": null, "refuge_obligatoire": false, "detail": "Certains APB interdisent toute pénétration dans le périmètre"},
-    "duree": {"nuits_max": null, "consecutif_meme_lieu": null},
-    "cout": {"payant": false, "montant_eur": null, "unite": null, "reservation_obligatoire": false},
-    "feu": {"feu_ouvert": false, "rechaud_portatif": null},
-    "sanction": "Contravention de 4e classe — jusqu'à 750 € (C. env. art. R415-1)",
-    "methode_verification": "Le champ `acte_deb` donne la référence de l'arrêté préfectoral ; `url_fiche` pointe la fiche INPN. Les arrêtés sont publiés au recueil des actes administratifs de la préfecture — pas de base nationale consolidée. C'est le principal point de friction pour un traitement automatisé.",
-    "base_legale": ["C. env. art. R411-15 à R411-17", "C. env. art. R415-1 (sanctions)"]
-  },
-
-  "rb": {
-    "libelle": "Réserve biologique (ONF) — dirigée (RBD) ou intégrale (RBI)",
-    "nb_sites": 285,
-    "statut": "interdit_sauf_exception",
-    "resume": "En réserve biologique intégrale, la fréquentation hors sentiers et le bivouac sont généralement interdits. En réserve dirigée, régime variable fixé par l'arrêté ministériel.",
-    "explication_juridique": "Créées par arrêté ministériel sur proposition de l'ONF, en forêt publique. Le régime forestier s'applique en plus (C. for. art. L161-1 et s.).",
-    "tente": {"autorisee": false, "type": "interdite", "station_debout_autorisee": false, "autoportante_autorisee": false, "detail": "RBI : interdiction quasi systématique. RBD : à vérifier."},
-    "horaires": {"debut": null, "fin": null},
-    "localisation": {"contrainte": "aires_designees", "distance_min_acces_routier": null, "corridor_m": null, "refuge_obligatoire": false},
-    "duree": {"nuits_max": 0, "consecutif_meme_lieu": false},
-    "cout": {"payant": false, "montant_eur": null, "unite": null, "reservation_obligatoire": false},
-    "feu": {"feu_ouvert": false, "rechaud_portatif": false, "detail": "Feu interdit — code forestier, à moins de 200 m des bois"},
-    "attention": "En forêt domaniale hors réserve, l'ONF tolère généralement le bivouac d'une nuit, discret, sans feu, hors zones interdites par arrêté. C'est une tolérance, pas un droit.",
-    "base_legale": ["Arrêté ministériel de création", "Code forestier art. L161-1 et s.", "C. for. art. L131-1 (feu)"],
-    "sources": [{"type": "reference", "url": "https://www.onf.fr/"}]
-  },
-
-  "site_classe": {
-    "libelle": "Site classé",
-    "nb_sites": 2657,
-    "statut": "verifier_arrete",
-    "resume": "Le camping est interdit de plein droit, sauf dérogation. Mais le texte vise le « camping pratiqué isolément », pas le bivouac : une nuit démontée au matin n'est pas explicitement interdite, et la pratique est largement tolérée en montagne.",
-    "explication_juridique": "C. urb. art. R111-33 : « Le camping pratiqué isolément ainsi que la création de terrains de camping sont interdits […] 2° dans les sites classés ou en instance de classement en application de l'article L341-2 du code de l'environnement, sauf dérogation accordée par les autorités compétentes. » Deux limites à retenir : la dérogation est prévue par le texte lui-même, et la notion visée est le camping, non le bivouac.",
+    "resume": "Chaque APB est un arrêté préfectoral au contenu propre. Une partie nomme explicitement le bivouac ou le campement et l'interdit — soit toute l'année, soit sur une période sensible. D'autres interdisent purement et simplement de pénétrer dans le périmètre, ce qui exclut le bivouac de fait. Cinq familles récurrentes couvrent la grande majorité des cas.",
+    "explication_juridique": "C. env. art. R411-15 à R411-17. Le préfet fixe les mesures nécessaires à la conservation des biotopes des espèces protégées. Les interdictions sont directement opposables aux particuliers — contrairement à une charte de PNR. L'APB ne crée pas de servitude foncière et n'ouvre pas droit à indemnité : c'est une police administrative spéciale.",
     "tente": {
       "autorisee": null,
       "type": "aucune_restriction",
       "station_debout_autorisee": null,
       "autoportante_autorisee": null,
-      "detail": "Aucune règle propre au bivouac. Une tente montée le soir et démontée au matin relève du bivouac ; installée à demeure, elle devient du camping interdit."
+      "detail": "Dépend entièrement de l'arrêté. Quand un APB interdit le bivouac, il l'interdit sous toute forme, tente ou non : les formulations relevées visent « le bivouac » ou « le campement sous quelque forme que ce soit », sans distinguer la belle étoile. La distinction tente/belle étoile propre aux réserves (cf. Hauts de Chartreuse) n'apparaît pas dans les APB lus."
     },
-    "horaires": {"debut": null, "fin": null, "detail": "Aucune fenêtre réglementaire : c'est la durée et l'installation qui distinguent bivouac et camping"},
-    "localisation": {"contrainte": "libre", "distance_min_acces_routier": null, "corridor_m": null, "refuge_obligatoire": false},
-    "duree": {"nuits_max": 1, "consecutif_meme_lieu": false, "detail": "Au-delà d'une nuit au même endroit, la qualification de camping devient difficile à contester"},
-    "cout": {"payant": false, "montant_eur": null, "unite": null, "reservation_obligatoire": false},
-    "feu": {"feu_ouvert": false, "rechaud_portatif": true},
-    "sanction": "C. urb. et C. env. art. L341-19 et s. (atteinte à un site classé)",
-    "nuance": "Ne pas présenter le site classé comme une interdiction de bivouaquer. Beaucoup de hauts lieux de la randonnée française sont classés (cirque de Gavarnie, gorges du Verdon, Mont-Blanc, pointe du Raz) et le bivouac y est pratiqué et toléré. Le classement protège contre l'altération du site, il ne crée pas d'interdiction de dormir dehors. Attention en revanche au cumul : un site classé recouvre souvent une réserve ou un cœur de parc, qui eux réglementent réellement.",
-    "attention": "Un arrêté municipal ou préfectoral peut interdire le bivouac sur un site classé fréquenté — c'est le cas sur plusieurs sites emblématiques. Vérifier localement.",
-    "base_legale": ["C. urb. art. R111-33 (2°)", "C. env. art. L341-1 et s.", "C. env. art. L341-2 (classement)"],
-    "note_donnees": "La couche patrinat_sc contient les ~2700 sites classés. Les ~4500 sites inscrits (régime distinct : R111-33 1°, sans dérogation prévue) ne sont pas dans ce jeu de données."
+    "horaires": {
+      "debut": null,
+      "fin": null,
+      "detail": "Les APB ne raisonnent pas en horaires mais en périodes de l'année (nidification, hivernage). Aucun des arrêtés lus ne fixe de fenêtre horaire de type 19h-9h."
+    },
+    "localisation": {
+      "contrainte": "libre",
+      "distance_min_acces_routier": null,
+      "corridor_m": null,
+      "refuge_obligatoire": false,
+      "detail": "Variable : certains APB interdisent toute pénétration dans le périmètre (Haut-Jura, 15 déc - 30 juin), d'autres cantonnent la circulation aux sentiers existants (Châteaudouble), d'autres n'imposent qu'un recul de 30 m par rapport à une paroi (Mont Caume)."
+    },
+    "duree": {
+      "nuits_max": null,
+      "consecutif_meme_lieu": null
+    },
+    "cout": {
+      "payant": false,
+      "montant_eur": null,
+      "unite": null,
+      "reservation_obligatoire": false
+    },
+    "feu": {
+      "feu_ouvert": false,
+      "rechaud_portatif": null,
+      "detail": "Formulation récurrente : interdiction d'« utiliser du feu en dehors des lieux prévus à cet effet », donc y compris réchaud, et toute l'année (Haut-Jura art. 7, APPB Grand Tétras Jura 2005 art. 13). S'y ajoute le code forestier (200 m des bois) et les arrêtés préfectoraux incendie."
+    },
+    "sanction": "Contravention de 4e classe — jusqu'à 750 € (C. env. art. R415-1). Certains arrêtés visent en outre L415-3 (délit : jusqu'à 3 ans et 150 000 € en cas d'atteinte à la conservation d'espèces protégées ou de leurs habitats) — c'est le cas de l'APPB Grand Canyon du Verdon, art. 8.",
+    "methode_verification": "La couche n'a PAS de champ `acte_deb` (contrairement aux RNN). Utiliser `date_crea`, qui est la date exacte de l'arrêté, + `operateur` pour la DREAL/DDT compétente, et contrôler avec `surf_off` qui reprend la surface citée à l'article 1er. Détail et cas vérifiés : voir _meta.methode_retrouver_arrete.",
+    "base_legale": [
+      "C. env. art. R411-15 à R411-17",
+      "C. env. art. R415-1 (contravention)",
+      "C. env. art. L415-3 (délit)"
+    ],
+    "attention": "Un APB peut être plus contraignant qu'une réserve naturelle sur la période sensible : l'APPB des forêts d'altitude du Haut-Jura interdit toute pénétration humaine sur 4334 ha du 15 décembre au 30 juin, ce qu'aucune RNN de ce jeu de données ne fait. Ne pas déduire de la faible sanction (750 €) une faible contrainte.",
+    "familles": {
+      "_avertissement": "Typologie établie sur les arrêtés effectivement lus (voir la clé « sites »), et sur les intitulés des 1103 entrées de la couche. Les proportions sont indicatives et fondées sur le comptage des noms de sites, pas sur la lecture des 1103 textes.",
+      "falaise_rapaces": {
+        "libelle": "APB falaise / oiseaux rupestres",
+        "reperage_couche": "nom_site contenant « falaise(s) », « rocher(s) », « oiseaux rupestres », « rapaces », « corniches », parfois « gorges ». Environ 90 entrées repérables par le nom, dont les plus étendues : FR3800167 Grands rapaces du Lubéron (17 053 ha), FR3800192 Protection des oiseaux rupestres (11 536 ha, Ardèche/Drôme), FR3800749 Corniches calcaires du Doubs (1829 ha), FR3800859 Corniches calcaires du Jura (1640 ha).",
+        "especes_visees": "Faucon pèlerin, aigle royal, hibou grand-duc, martinet à ventre blanc, hirondelle de rochers, monticole bleu, vautour percnoptère, aigle de Bonelli, circaète Jean-le-Blanc, tichodrome échelette.",
+        "typiquement_interdit": [
+          "L'escalade, y compris la descente en rappel — souvent TOUTE L'ANNÉE et non seulement en période de nidification.",
+          "Le vol libre (parapente, deltaplane) au décollage depuis le site et le survol à moins de 150 m.",
+          "Le camping et le bivouac, quand l'arrêté les nomme (Mont Caume : toute l'année ; Châteaudouble : toute l'année).",
+          "La circulation des véhicules, y compris VTT et bicyclettes.",
+          "En période de nidification : la circulation des personnes hors sentiers existants, au sommet et au pied de la paroi (Mont Caume : bande de 30 m depuis le bord)."
+        ],
+        "formulation_juridique_recurrente": "Article de tête « En tout temps, toutes les actions ou activités susceptibles de modifier ou de détruire le biotope [...] sont interdites, et notamment : », puis énumération. Le bivouac apparaît le plus souvent dans l'article consacré à la circulation et aux loisirs, sous la forme « Le camping et le bivouac sont interdits » (Mont Caume art. 7) ou « Les activités de bivouac, camping-caravaning, camping-car, mobil-home ou toutes autres formes dérivées sont strictement interdites sur la zone couverte par l'arrêté » (Châteaudouble art. 2).",
+        "periodes_reellement_relevees": {
+          "_note": "Les dates varient fortement d'un département à l'autre. Le brief supposait « 15 février – 15 juin/30 juin/15 août » : aucune de ces bornes n'est ressortie des arrêtés lus. Ne pas présenter de période « type ».",
+          "1er janvier – 15 juillet": "APPB Falaises du Mont Caume (Var), arrêté du 6 juillet 1993, art. 3, 4 et 7 : période de nidification retenue pour la restriction de circulation hors sentiers et les travaux.",
+          "1er janvier – 1er août": "APPB Gorges de Châteaudouble (Var), arrêté du 15 octobre 2009, art. 3 : interdiction d'escalade des voies des falaises du Baou des Prannes.",
+          "1er décembre – 31 juillet": "APPB Falaises du Vercors (Isère), arrêté du 5 janvier 2026 : les « bulles de quiétude » géolocalisées sont actives du 1er décembre au 31 juillet, et inactives du 1er août au 30 novembre. Non vérifié en texte intégral (PDF scanné, cf. _recherche du site).",
+          "toute l'année": "Très fréquent pour l'escalade et le bivouac eux-mêmes : Mont Caume (escalade + camping + bivouac interdits en tout temps), Châteaudouble (bivouac en tout temps, escalade de la Baume Saint Jean et de Priane sud en tout temps)."
+        },
+        "arretes_reels_cites": [
+          {
+            "site": "Falaises du Mont Caume (Var)",
+            "id_mnhn": "FR3800381",
+            "ref": "Arrêté préfectoral du 6 juillet 1993",
+            "url": "https://www.var.gouv.fr/contenu/telechargement/30191/202782/file/1993%2007%2006_APPB_Falaises%20Mont%20Caume%20Le%20Revest.pdf",
+            "lu_integralement": true
+          },
+          {
+            "site": "Gorges de Châteaudouble et Nartuby d'Ampus (Var)",
+            "id_mnhn": "FR3800745",
+            "ref": "Arrêté préfectoral du 15 octobre 2009",
+            "url": "https://www.var.gouv.fr/contenu/telechargement/30171/202682/file/2009%2010%2015_APB_Chateaudouble-Ampus.pdf",
+            "lu_integralement": true
+          },
+          {
+            "site": "Biotope des grands rapaces du Lubéron (Vaucluse)",
+            "id_mnhn": "FR3800167",
+            "ref": "Arrêté préfectoral du 25 avril 1990",
+            "url": "https://www.parcduluberon.fr/en/nos-actions/milieux-naturels-et-biodiversite/faune-r3/conservation-vautour-percnoptere/",
+            "lu_integralement": false,
+            "note": "Le PDF trouvé sur Wikimedia Commons (Grands_rapaces_du_Lubéron.pdf) n'est que la carte DIREN, pas le texte. Contenu connu par la source PNR Luberon : interdiction de l'escalade, de la photographie animalière et du survol motorisé sur plus de 17 000 ha. Le bivouac n'y est pas documenté."
+          }
+        ],
+        "source_pratique": "Les listes de falaises interdites tenues par la FFME et les CAF départementaux sont l'entrée la plus à jour côté pratiquants, mais ce sont des relais, pas la source de droit : https://www.ffme.fr/ et https://dijon.ffcam.fr/protection-des-biotopes.html"
+      },
+      "zones_humides_laro_limicoles": {
+        "libelle": "APB zones humides, îlots et laro-limicoles littoraux",
+        "reperage_couche": "nom_site contenant « marais », « étang(s) », « grèves », « îlot(s) », « île », « dune », « cordon dunaire », « tourbière ». Très nombreuses entrées ; parmi les plus étendues : FR3800515 Marais Poitevin secteur ouest (3751 ha), FR3800293 Venise Verte (2614 ha), FR3800058 Étangs de Saint Viatre (2473 ha), FR3801161 Grèves de la Loire de la Daguenière à Montsoreau (2399 ha), FR3800131 Plan d'eau de Plobsheim (698 ha).",
+        "especes_visees": "Sternes (naine, pierregarin, caugek), gravelot à collier interrompu, avocette élégante, mouette mélanocéphale, goéland railleur, échasse blanche, butor étoilé.",
+        "typiquement_interdit": [
+          "Le débarquement et l'accostage sur les îlots et bancs de sable pendant la nidification — c'est la mesure centrale de cette famille.",
+          "La pénétration sur les grèves et les zones exondées.",
+          "Le camping et le bivouac, quand ils sont nommés ; sinon exclus de fait par l'interdiction de pénétrer.",
+          "Le dérangement : chiens non tenus, cerfs-volants, engins nautiques à moteur, feux d'artifice à moins de 300 m."
+        ],
+        "formulation_juridique_recurrente": "« Le débarquement et la circulation des personnes sont interdits sur [les îlots / la partie terrestre] du <date> au <date> », la période couvrant la nidification. Le mot bivouac est moins souvent employé que dans la famille falaise : l'interdiction de pénétrer suffit.",
+        "periodes_reellement_relevees": {
+          "15 avril – 31 août": "Îlots du golfe du Morbihan : interdiction de débarquement sur les parties terrestres.",
+          "1er avril – 31 août": "Île aux Moutons et ses îlots (Finistère) : restriction d'accès pour la nidification.",
+          "1er mars – 31 août": "Période de nidification retenue pour l'interdiction des tirs pyrotechniques à moins de 300 m d'une zone de protection de biotope."
+        },
+        "arretes_reels_cites": [
+          {
+            "site": "Île Dumet et ses abords (Loire-Atlantique)",
+            "ref": "APB île Dumet",
+            "url": "https://www.cpie-loireoceane.com/2025/07/arrete-de-protection-de-biotope-ile-dumet-et-ses-abords/",
+            "lu_integralement": false
+          },
+          {
+            "site": "Île aux Moutons et ses îlots (Finistère)",
+            "ref": "Interdiction temporaire d'accès au DPM",
+            "url": "https://demo.georchestra.org/geonetwork/srv/api/records/fr-120066022-jdd-1665bba5-06fd-44e8-8489-c7ee2c4d0c02?language=all",
+            "lu_integralement": false
+          },
+          {
+            "site": "Embouchure du fleuve Var (Alpes-Maritimes)",
+            "ref": "Arrêté du 28 mai 2019 portant création d'une zone de protection de biotope « Embouchure du fleuve Var »",
+            "url": "https://www.legifrance.gouv.fr/jorf/id/JORFTEXT000038529723",
+            "lu_integralement": false,
+            "note": "Rare cas d'APB publié au JORF et donc consultable sur Légifrance — la plupart ne le sont pas."
+          },
+          {
+            "site": "Îlots et grèves de la Loire auvergno-bourguignonne",
+            "ref": "APPB Saône-et-Loire",
+            "url": "https://www.saone-et-loire.gouv.fr/Actions-de-l-Etat/Environnement-risques-naturels-et-technologiques/Protection-de-la-nature-et-de-la-biodiversite/Autres-espaces-naturels-proteges/Arrete-prefectoral-de-protection-de-biotope-Ilots-et-greves-de-la-Loire-auvergno-bourguignonne",
+            "lu_integralement": false
+          }
+        ],
+        "fiabilite_famille": "moyenne — aucun arrêté de cette famille lu en texte intégral. Les dates viennent de fiches de gestionnaires et de résumés officiels, pas des articles eux-mêmes."
+      },
+      "galliformes_montagne": {
+        "libelle": "APB tétras (grand tétras, tétras-lyre) et zones de quiétude hivernale",
+        "reperage_couche": "nom_site contenant « forêts d'altitude », « tétras », ou nommant un massif jurassien ou alpin boisé. Les deux plus gros : FR3800988 Forêts d'altitude du Haut-Jura (4334 ha, 27 mai 2019) et FR3801178 Forêts d'altitude du Haut-Doubs (2049 ha, 31 décembre 2025). Aussi FR3800636 Les Aravis (569 ha), FR3800220 Montagne de Bise Cornettes Chauffé Arvouin (1280 ha), FR3800221 Mont de Grange (1396 ha).",
+        "especes_visees": "Grand tétras (Tetrao urogallus), tétras-lyre, gélinotte des bois, chevêchette d'Europe, chouette de Tengmalm, pic tridactyle, lagopède alpin.",
+        "typiquement_interdit": [
+          "LA PÉNÉTRATION DES PERSONNES dans le périmètre pendant la période sensible — c'est la famille la plus radicale : ce n'est pas le bivouac qui est visé mais la simple présence.",
+          "Le bivouac, nommé explicitement dans la version 2019 du Haut-Jura (art. 7).",
+          "Les chiens, strictement interdits pendant la période sensible, en laisse le reste de l'année.",
+          "Le ski de fond et la randonnée hivernale hors pistes damées et itinéraires raquettes balisés.",
+          "La circulation et le stationnement des véhicules à moteur.",
+          "Les manifestations publiques nocturnes et sonorisées : interdites TOUTE L'ANNÉE.",
+          "Le survol par aéronef télépiloté (drone), toute l'année.",
+          "Le feu en dehors des lieux prévus à cet effet, toute l'année."
+        ],
+        "formulation_juridique_recurrente": "Deux articles emboîtés. D'abord un article « Mesures applicables à l'ensemble des usagers sur la période du 15 décembre au 30 juin » : « la pénétration des personnes à l'intérieur des zones de protection définies à l'article 1 est interdite du 15 décembre au 30 juin », avec une liste limitative d'exceptions (propriétaires, missions de police/secours, forestiers, et personnes à pied seules sans chien sur les itinéraires cartographiés en annexe). Puis un article « Autres mesures de protection liées au dérangement » qui énumère, parmi les interdictions « en tout lieu de l'APPB » : « le bivouac pendant la période sensible du 15 décembre au 30 juin ».",
+        "periodes_reellement_relevees": {
+          "15 décembre – 30 juin": "Haut-Jura (2019) et Haut-Doubs (2025) : pénétration interdite, bivouac interdit, chiens interdits. C'est la période de référence actuelle du massif jurassien.",
+          "1er décembre – 30 juin": "Version antérieure : APPB Grand Tétras du Jura, arrêté n°1883 du 19 décembre 2005 modifiant l'arrêté n°327 du 14 avril 1992. Cette version ne mentionnait PAS le bivouac ; elle interdisait l'affût photographique (art. 7), le ski hors pistes damées (art. 8) et les activités sportives de groupe (art. 9) sur cette période.",
+          "évolution_documentee": "Le passage de 2005 à 2019 a décalé la borne de début du 1er au 15 décembre ET ajouté l'interdiction explicite du bivouac. Utile pour dater une source : une page web qui parle du 1er décembre cite la version périmée."
+        },
+        "arretes_reels_cites": [
+          {
+            "site": "Forêts d'altitude du Haut-Jura",
+            "id_mnhn": "FR3800988",
+            "ref": "Arrêté n° 39-2019-05-27-003 du 27 mai 2019 portant création de l'APPB des forêts d'altitude du Haut-Jura",
+            "url": "https://www.bourgogne-franche-comte.developpement-durable.gouv.fr/IMG/pdf/appb_forets_altitude_haut-jura_vspq_cle2f9a1f.pdf",
+            "lu_integralement": true,
+            "note": "11 pages, scan sans couche texte. Le plus précis des APB lus."
+          },
+          {
+            "site": "Biotopes à Grand Tétras du Jura (version antérieure)",
+            "ref": "Arrêté préfectoral n°1883 du 19 décembre 2005 modifiant l'arrêté n°327 du 14 avril 1992",
+            "url": "https://www.mignovillard.fr/wp-content/uploads/2018/05/fr380013220051219.pdf",
+            "lu_integralement": true,
+            "note": "Texte intégral en clair (pdftotext fonctionne). Abrogé/remplacé par l'arrêté de 2019 pour les massifs concernés."
+          },
+          {
+            "site": "Forêts d'altitude du Haut-Doubs",
+            "id_mnhn": "FR3801178",
+            "ref": "Arrêté préfectoral du 31 décembre 2025 (date_crea de la couche)",
+            "url": "https://groupe-tetras-jura.org/2026/06/05/un-nouvel-appb-pour-les-forets-daltitude-du-haut-doubs/",
+            "lu_integralement": false,
+            "note": "Communes de Chapelle-des-Bois, Chaux-Neuve et Mouthe. Même régime annoncé que le Haut-Jura (pénétration interdite 15 déc - 30 juin). Consultation : https://www.bourgogne-franche-comte.developpement-durable.gouv.fr/consultation-sur-une-creation-d-aire-naturelle-a11087.html"
+          }
+        ],
+        "piege_majeur": "Dans les Alpes, la plupart des « zones de quiétude » du tétras-lyre ne sont PAS des APB et n'interdisent rien juridiquement : ce sont des démarches volontaires (cordes, panneaux, campagnes « Partageons la poudreuse », « Traces douces », « Chuuut… c'est l'hiver ») portées par les PNR, les fédérations de chasse, la FFCAM et les parcs. Vérifié sur Bauges, Belledonne, Chartreuse (Col du Coq–Pravouta, Fournel), Écrins (crête de la Seyte), Mercantour, Queyras, Vanoise (Mont Jovet), Vercors (Pas des Écondus–Pré Peyret, Cornafion, Virets-Ramées, Côte 2000). Source : https://www.ffcam.fr/protection-faune-hivernale.html — le Jura est l'exception, avec de vrais APPB opposables. Ne pas afficher ces zones alpines comme des interdictions."
+      },
+      "grottes_chauves_souris": {
+        "libelle": "APB grottes, mines et gîtes à chiroptères",
+        "reperage_couche": "nom_site contenant « grotte », « gîte », « mine », « galerie », « chiroptère », « chauves-souris », « aven », « tunnel », « carrière souterraine ». C'est la famille la plus NOMBREUSE en nombre de sites et la plus petite en surface : une soixantaine d'entrées de moins de 25 ha, souvent moins de 1 ha (FR3800355 Grotte d'Aliou 0,2 ha, FR3800144 Grotte a Sapara 0,1 ha, FR3801138 Grotte de Boisdichon 0,2 ha).",
+        "especes_visees": "Minioptère de Schreibers, murin de Capaccini, petit et grand murin, rhinolophe euryale, grand rhinolophe, barbastelle.",
+        "typiquement_interdit": [
+          "LA PÉNÉTRATION DE TOUTE PERSONNE dans la cavité — interdiction totale et permanente, sauf autorisation préfectorale pour motif scientifique ou de sécurité.",
+          "Le stationnement devant l'entrée de la grotte (mesure spécifique relevée à Châteaudouble : « Tout stationnement devant l'entrée de la grotte est également interdit »).",
+          "Toute modification de l'entrée, tout éclairage, tout feu, tout bruit dans la cavité.",
+          "La spéléologie, y compris encadrée, hors calendrier annuel arrêté par le comité de suivi."
+        ],
+        "formulation_juridique_recurrente": "« La pénétration de toute personne dans la grotte [...] est interdite, sauf pour des besoins de sécurité et des besoins scientifiques, sur autorisation préfectorale selon un calendrier annuel arrêté par le Comité de suivi défini à l'article 8 du présent arrêté. » — relevé mot pour mot dans l'APPB Gorges de Châteaudouble (art. 2) pour la grotte des Avals / des Marinouns.",
+        "periode": "Le plus souvent AUCUNE période : l'interdiction est permanente, parce que la cavité sert à la fois de gîte de reproduction (été) et d'hibernation (hiver). C'est la différence avec les familles falaise et tétras.",
+        "consequence_bivouac": "Ces APB sont trop petits pour concerner un itinéraire de randonnée, mais ils interdisent absolument de dormir dans la cavité — cas concret pour qui cherche un abri sous roche par mauvais temps. Un porche de grotte apparemment idéal peut être un APB.",
+        "arretes_reels_cites": [
+          {
+            "site": "Gorges de Châteaudouble — grotte des Avals / des Marinouns (Var)",
+            "id_mnhn": "FR3800745",
+            "ref": "Arrêté préfectoral du 15 octobre 2009, art. 2",
+            "url": "https://www.var.gouv.fr/contenu/telechargement/30171/202682/file/2009%2010%2015_APB_Chateaudouble-Ampus.pdf",
+            "lu_integralement": true,
+            "citation": "La pénétration de toute personne dans la grotte des avals (grotte des Marinouns ou grotte aux chauves-souris) est interdite, sauf pour des besoins de sécurité et des besoins scientifiques, sur autorisation préfectorale selon un calendrier annuel arrêté par le Comité de suivi défini à l'article 8 du présent arrêté. Tout stationnement devant l'entrée de la grotte est également interdit."
+          },
+          {
+            "site": "Gîtes à chauves-souris de la vallée de la Loue (Doubs)",
+            "id_mnhn": "FR3801157 / FR3801158 / FR3801159",
+            "ref": "Arrêtés du 16 juin 2025 (grotte de Nahin, pont de Rennes-sur-Loue, viaduc de Cléron)",
+            "url": "https://www.bourgogne-franche-comte.developpement-durable.gouv.fr/arretes-prefectoraux-de-protection-de-biotope-appb-a7172.html",
+            "lu_integralement": false,
+            "note": "Exemple de la vague récente d'APB chiroptères 2024-2026, y compris sur des ouvrages d'art (ponts, viaducs, tunnels) et non seulement des grottes naturelles."
+          }
+        ]
+      },
+      "frayeres_cours_eau": {
+        "libelle": "APB frayères, cours d'eau et écrevisse à pattes blanches",
+        "reperage_couche": "nom_site contenant « rivière », « ruisseau », « bassin versant », « frayère », « écrevisse », « cours de », « vallée du ». C'est la famille qui pèse le plus en SURFACE cumulée : FR3800698 Écrevisse à pattes blanches et truite fario (4919 ha), FR3801087 Brandifrout (4072 ha), FR3800742 Écrevisse (39) (3891 ha), FR3800743 Écrevisse (25) (3639 ha), FR3800783 Rivière Allier (2863 ha), FR3800264 Garonne/Ariège/Hers Vif/Salat (1659 ha), FR3800269 Frayère à esturgeons Garonne (251 ha).",
+        "especes_visees": "Écrevisse à pattes blanches (Austropotamobius pallipes), truite fario, esturgeon européen, alose, lamproie, apron du Rhône (Zingel asper), chabot, moule perlière.",
+        "typiquement_interdit": [
+          "Le rejet, le dépôt et le déversement de toute substance dans le cours d'eau ou son bassin — cœur du dispositif, dirigé contre les activités agricoles et industrielles plus que contre les usagers.",
+          "Les travaux modifiant le lit, les berges ou la ripisylve, le curage, l'extraction de granulats.",
+          "Le piétinement du lit et la circulation dans l'eau, sur les secteurs sensibles : c'est la mesure qui touche les pratiquants (canyoning, randonnée aquatique, baignade en eau vive).",
+          "La circulation des véhicules dans le lit et sur les berges."
+        ],
+        "formulation_juridique_recurrente": "Interdictions visant les atteintes au milieu aquatique, avec des seuils techniques (débit) plutôt que des dates. Le bivouac n'est en général PAS mentionné — c'est la famille où l'APB est le moins pertinent pour un bivouaqueur, sauf par l'interdiction d'accès aux berges.",
+        "cas_exemplaire_a_ne_pas_mal_lire": "L'APPB « Grand Canyon du Verdon » (FR3800841, arrêté du 15 novembre 2012, 1216 ha) est souvent présenté comme un APB rapaces/vautours protégeant les gorges. C'est FAUX : il protège l'APRON DU RHÔNE, un poisson. Lu en texte intégral, il ne comporte AUCUNE disposition sur le bivouac ou le camping. Ses art. 2, 6 et 7 interdisent, en dessous d'un débit de 3 m³/s, la descente en canoë/kayak/raft, le canyoning, l'hydrospeed, la randonnée aquatique, la nage en eau vive, le floating et la marche dans l'eau sur deux secteurs, et imposent trois cheminements à sec (forêt du Bauchier, plage de l'Imbut, belvédère de Bauchier après le Baou Béni). L'interdiction de bivouac dans les gorges du Verdon existe bien, mais elle vient d'autres textes (arrêtés municipaux, cœur du site classé), pas de cet APB.",
+        "arretes_reels_cites": [
+          {
+            "site": "Grand Canyon du Verdon (apron du Rhône)",
+            "id_mnhn": "FR3800841",
+            "ref": "Arrêté préfectoral du 15 novembre 2012, art. 2, 6, 7 (mesures) et 8 (sanctions)",
+            "url": "https://www.var.gouv.fr/contenu/telechargement/30138/202486/file/2012%2011%2015_APPB_Grand%20Canyon%20du%20Verdon%20%281%29.pdf",
+            "lu_integralement": true,
+            "citation_sanction": "Sont punies des peines prévues au code de l'environnement, notamment aux articles L. 415-3 et R. 415-1, les infractions aux dispositions du présent arrêté."
+          },
+          {
+            "site": "Frayère à esturgeons (Garonne)",
+            "id_mnhn": "FR3800269",
+            "ref": "Arrêté du 7 novembre 1985",
+            "url": "https://www.nouvelle-aquitaine.developpement-durable.gouv.fr/",
+            "lu_integralement": false
+          },
+          {
+            "site": "Écrevisse à pattes blanches et faune patrimoniale associée (Jura, 39)",
+            "id_mnhn": "FR3800742",
+            "ref": "Arrêté du 1er juillet 2009",
+            "url": "https://www.bourgogne-franche-comte.developpement-durable.gouv.fr/arretes-prefectoraux-de-protection-de-biotope-appb-a7172.html",
+            "lu_integralement": false
+          }
+        ]
+      }
+    }
   },
-
+  "rb": {
+    "libelle": "Réserve biologique (ONF) — dirigée (RBD) ou intégrale (RBI)",
+    "nb_sites": 285,
+    "statut": "interdit_sauf_exception",
+    "resume": "Le camping et le bivouac sont interdits par une clause désormais quasi standardisée dans les arrêtés de création et de plan de gestion — le plus souvent « le camping et le bivouac sont interdits, sauf autorisation délivrée par l'Office national des forêts » pour des études. L'exception existe cependant : la RBI du Vercors autorise le bivouac de 17h à 9h. L'arrêté est donc à lire au cas par cas, mais le sens par défaut est bien l'interdiction.",
+    "explication_juridique": "La réserve biologique est créée par arrêté du ministre chargé des forêts, généralement conjoint avec le ministre chargé de l'écologie, sur proposition du directeur général de l'ONF, en forêt relevant du régime forestier. Base : C. for. art. L133-1 (aujourd'hui L212-2 pour l'aménagement des forêts domaniales) ; l'arrêté « vaut arrêté réglant l'aménagement » des forêts concernées, ce qui le rend opposable aux tiers. Les deux textes doctrinaux visés par les arrêtés sont la convention générale du 3 février 1981 entre l'État et l'ONF concernant les réserves biologiques domaniales, et l'instruction ONF 98-T-37 du 30 décembre 1998 sur les réserves biologiques intégrales, approuvée par le ministre chargé des forêts et le ministre chargé de l'environnement. RBD : gestion active pour conserver des milieux ou espèces remarquables. RBI : soustraite à la sylviculture, libre expression des processus naturels. Réserve biologique MIXTE quand elle associe les deux (ex. Petit Luberon : 915 ha RBI + 873 ha RBD).",
+    "tente": {
+      "autorisee": false,
+      "type": "interdite",
+      "station_debout_autorisee": false,
+      "autoportante_autorisee": false,
+      "detail": "Interdiction dans les arrêtés récents, RBD comme RBI — la distinction RBD/RBI porte sur la sylviculture, pas sur le bivouac. Vérifié interdit : Mont Ventoux (RBI), Petit Luberon (RBI et RBD), Champ du Feu (RBD), Sainte-Baume, Valbelle (RBD), Haute Chaume (RBD), Engins (RBI). Vérifié AUTORISÉ : Vercors (RBI), 17h-9h."
+    },
+    "horaires": {
+      "debut": null,
+      "fin": null,
+      "detail": "Sans objet en cas d'interdiction. Seule exception documentée : RBI du Vercors, bivouac autorisé entre 17 heures et 9 heures (art. 5 de l'arrêté du 16/10/2009) — fenêtre plus large que les 19h-9h usuels."
+    },
+    "localisation": {
+      "contrainte": "couloir_sentier",
+      "distance_min_acces_routier": null,
+      "corridor_m": null,
+      "refuge_obligatoire": false,
+      "detail": "Point souvent plus contraignant que le bivouac lui-même : la circulation pédestre est fréquemment limitée aux sentiers balisés. Mont Ventoux, art. 5 : « la circulation pédestre est autorisée sur les sentiers de randonnée ayant été balisés avec l'autorisation de l'ONF » — et il est interdit de baliser de nouveaux itinéraires ou d'ouvrir tout nouveau sentier. Petit Luberon : hors-sentier interdit toute l'année. Sainte-Baume, art. 7 : circulation à pied interdite dans les parcelles 1 à 10 sauf sur les sentiers balisés. L'ONF résume pour les RBI : « la circulation pédestre, principalement sur sentiers balisés, reste le plus souvent possible ». Ce n'est donc pas une interdiction générale d'accès : l'accès piéton est libre, les activités sont réglementées."
+    },
+    "duree": {
+      "nuits_max": 0,
+      "consecutif_meme_lieu": false,
+      "detail": "Une nuit unique est déjà du bivouac au sens de l'arrêté du mont Ventoux, donc interdite"
+    },
+    "cout": {
+      "payant": false,
+      "montant_eur": null,
+      "unite": null,
+      "reservation_obligatoire": false
+    },
+    "feu": {
+      "feu_ouvert": false,
+      "rechaud_portatif": false,
+      "detail": "Les arrêtés ne créent en général pas d'interdiction propre du feu : ils renvoient à « l'interdiction générale d'apport de feu en forêt » du code forestier (art. L131-1, y compris parties non boisées et à moins de 200 m des bois). La formulation « tout apport de feu » est large et couvre le réchaud — c'est pourquoi rechaud_portatif est ici à false et non à null. Sainte-Baume art. 10 et Ventoux art. 7 le disent expressément."
+    },
+    "attention": "Trois nuances à ne pas perdre. (1) L'accès piéton n'est pas fermé : l'ONF écrit que « la priorité est la protection du patrimoine naturel. Les diverses activités humaines ne sont pas systématiquement interdites, mais encadrées et au besoin réglementées ». Afficher une RB comme une zone d'accès interdit serait faux. (2) Ce qui gêne le plus le randonneur en RB n'est pas toujours l'interdiction du bivouac mais l'obligation de rester sur les sentiers balisés. (3) La distinction RBD/RBI ne prédit PAS le régime du bivouac : la seule RB vérifiée qui l'autorise est une RBI (Vercors), et plusieurs RBD l'interdisent (Champ du Feu, Valbelle, Haute Chaume, Petit Luberon RBD).",
+    "base_legale": [
+      "Arrêté ministériel ou interministériel de création (vaut arrêté d'aménagement)",
+      "C. for. art. L212-2 (ex-L133-1) — aménagement des forêts domaniales",
+      "C. for. art. R261-1 (ex-R133-5) — contravention de 4e classe, 750 €",
+      "C. for. art. L131-1 — interdiction d'apport de feu en forêt et à moins de 200 m",
+      "Convention générale du 3 février 1981 entre l'État et l'ONF sur les réserves biologiques domaniales",
+      "Instruction ONF 98-T-37 du 30 décembre 1998 sur les réserves biologiques intégrales, approuvée par les ministres chargés des forêts et de l'environnement"
+    ],
+    "sources": [
+      {
+        "type": "reference",
+        "url": "https://www.onf.fr/"
+      },
+      {
+        "type": "officiel",
+        "ref": "ONF — les réserves biologiques, des espaces protégés d'exception (distinction RBD/RBI, régime d'accès)",
+        "url": "https://www.onf.fr/vivre-la-foret/+/a3a::les-reserves-biologiques-des-espaces-proteges-dexception.html"
+      },
+      {
+        "type": "reference",
+        "ref": "Bulletin officiel du ministère chargé de l'écologie — arrêtés RB antérieurs à ~2020, non parus au JO",
+        "url": "https://www.bulletin-officiel.developpement-durable.gouv.fr/"
+      },
+      {
+        "type": "reference",
+        "ref": "Bulletin officiel du ministère de l'Agriculture — arrêtés RB récents",
+        "url": "https://info.agriculture.gouv.fr/boagri/"
+      }
+    ],
+    "clause_type": "Formule relevée à l'identique dans cinq arrêtés indépendants : Mont Ventoux (art. 5), Champ du Feu (art. 5), Sainte-Baume (art. 7), Valbelle (art. 5), Haute Chaume (art. 6) — « le camping et le bivouac sont interdits », avec ou sans « sauf autorisation délivrée par l'Office national des forêts pour des études ». L'arrêté du mont Ventoux DÉFINIT au passage le bivouac : « le camping et le bivouac (campement installé pour une seule nuit) sont interdits ». Cette parenthèse est précieuse : elle ferme l'argument selon lequel une seule nuit démontée au matin échapperait à l'interdiction.",
+    "sanction": "Contravention de 4e classe — jusqu'à 750 €. Les arrêtés renvoyaient à l'art. R133-5 du code forestier (Vercors art. 7, Ventoux art. 6) ; les arrêtés récents visent l'art. R261-1 du code forestier après recodification (Valbelle art. 8, Haute Chaume art. 9). Le cumul est possible et parfois explicite : l'arrêté du Vercors précise que ses peines s'appliquent « sans préjudice des sanctions encourues en cas d'infraction à la réglementation de la RNN » (régime des réserves naturelles : 3e classe pour le bivouac, C. env. art. R332-70).",
+    "autres_interdictions_frequentes": "Au-delà du bivouac, la clause de style des arrêtés récents interdit : la cueillette (parfois avec une tolérance familiale de 5 litres par personne et par jour de petits fruits ou champignons) ; la chasse au petit gibier ; tout agrainage, nourrissage ou dispositif d'attraction du gibier ; la circulation des véhicules à moteur sauf gestion et secours ; les feux ; les drones de loisir ; les activités bruyantes ; les activités nocturnes (Haute Chaume) ; les chiens non tenus en laisse, voire les chiens tout court dans certaines parcelles (Sainte-Baume : interdits dans les parcelles 32 et 33 du vallon de Castelette). Toute étude ou action non prévue au plan de gestion est soumise à autorisation de l'ONF. Les arrêtés RBI avertissent en outre que l'ONF ne réalise AUCUNE intervention de sécurisation du milieu naturel hors des abords des sentiers balisés — risque réel de chute d'arbres.",
+    "tolerance_foret_domaniale_hors_reserve": {
+      "affirmation_precedente": "« En forêt domaniale hors réserve, l'ONF tolère généralement le bivouac d'une nuit, discret, sans feu, hors zones interdites par arrêté. »",
+      "verdict": "NON SOURÇABLE en l'état — à retirer ou à requalifier.",
+      "constat": "Recherche menée sur onf.fr : la section « Que faire en forêt » / « Règles et bonnes pratiques en forêt » compte onze articles (loisirs motorisés, chien sans laisse, cueillette de myrtilles, dunes, déchets, charte du promeneur, oiseaux du littoral, brame du cerf, champignons et châtaignes, houx et gui, muguet) et AUCUN sur le camping, le bivouac ou la nuit en forêt. L'ONF ne publie donc pas de position officielle autorisant le bivouac d'une nuit en forêt domaniale. Les pages qui l'affirment sont des sites tiers (blogs de randonnée, sites d'équipement), sans référence à un acte ni à une publication ONF.",
+      "ce_qui_est_reellement_etabli": [
+        "La forêt domaniale est une propriété privée de l'État soumise au régime forestier : le camping y relève de C. urb. art. R111-32, qui exige « l'accord de celui qui a la jouissance du sol » — donc de l'ONF. Il n'existe pas de droit au bivouac en forêt domaniale ; il n'existe pas non plus d'interdiction générale.",
+        "L'interdiction d'apport de feu en forêt et à moins de 200 m des bois est en revanche ferme et générale (C. for. art. L131-1).",
+        "Les arrêtés préfectoraux d'accès aux massifs peuvent interdire le bivouac sur des départements entiers et pour des saisons entières : Vaucluse, bivouac et camping sauvage interdits du 15 juin au 15 septembre dans TOUS les massifs forestiers, 750 € d'amende ; Alpes-Maritimes, arrêté du 20 juin 2023 supprimant le bivouac sauvage dans le département. Ces deux exemples sont sourcés et sont, en été, la contrainte dominante — bien avant le statut de réserve.",
+        "L'ONF peut prendre des mesures locales de police de la fréquentation, par exemple la fin du stationnement nocturne sur les parkings de la forêt domaniale de Fontainebleau."
+      ],
+      "reformulation_proposee": "En forêt domaniale hors réserve, le bivouac n'est ni autorisé par un texte ni interdit par principe : la forêt domaniale est une propriété de l'État et le camping y requiert l'accord du gestionnaire (C. urb. R111-32). L'ONF ne publie pas de doctrine nationale de tolérance — l'affirmation courante « une nuit, sans feu, discret » est une pratique répandue, pas une règle sourçable. Le feu est en revanche interdit en forêt et à moins de 200 m (C. for. L131-1), et les arrêtés préfectoraux d'accès aux massifs interdisent le bivouac sur des départements entiers en saison à risque (Vaucluse : 15 juin – 15 septembre ; Alpes-Maritimes depuis le 20 juin 2023)."
+    },
+    "methode_verification": "Les arrêtés récents (depuis ~2021) sont sur Légifrance, en général publiés par lots : chercher « arrêté <date> réserve biologique <nom> » sur legifrance.gouv.fr, l'article des interdictions étant l'art. 5, 6 ou 7 et l'article des sanctions le dernier. Les arrêtés plus anciens (2008-2015) ne sont PAS au Journal officiel — ils portent la mention « Texte non paru au Journal officiel » et sont publiés au Bulletin officiel du ministère chargé de l'écologie (bulletin-officiel.developpement-durable.gouv.fr) ainsi qu'au recueil des actes administratifs du département, et affichés en mairie. Les arrêtés très récents passent par le Bulletin officiel du ministère de l'Agriculture (info.agriculture.gouv.fr/boagri). Le site onf.fr publie une fiche par réserve avec le PDF de l'arrêté et du règlement, mais ses URL sont instables (beaucoup de 404).",
+    "exemples_documentes": {
+      "RBI du Vercors (26/38)": {
+        "statut": "autorise_sous_conditions",
+        "regle": "« Le bivouac entre 17 heures et 9 heures » figure parmi les activités AUTORISÉES",
+        "acte": "Arrêté du 16 octobre 2009, NOR DEVN0930137A, art. 5",
+        "url": "https://www.bulletin-officiel.developpement-durable.gouv.fr/documents/Bulletinofficiel-0023959/met_20090024_0100_0001.pdf"
+      },
+      "RBI du mont Ventoux (84)": {
+        "statut": "interdit",
+        "regle": "« Le camping et le bivouac (campement installé pour une seule nuit) sont interdits, sauf autorisation délivrées par l'ONF dans le cadre d'études » ; circulation pédestre limitée aux sentiers balisés autorisés par l'ONF",
+        "acte": "Arrêté du 10 novembre 2010, NOR DEVL1106331A, art. 5 et 6",
+        "url": "https://www.bulletin-officiel.developpement-durable.gouv.fr/documents/Bulletinofficiel-0024860/met_20110005_0100_0003.pdf"
+      },
+      "RB mixte du Petit Luberon (84)": {
+        "statut": "interdit",
+        "regle": "Bivouac interdit toute l'année ; hors-sentier interdit toute l'année ; bivouac et camping sauvage également interdits du 15 juin au 15 septembre dans tous les massifs du Vaucluse (750 €)",
+        "acte": "Arrêtés de 1986, 1995 et 2017",
+        "url": "https://www.rando84.com/wp-content/uploads/2024/03/Message-rando-sur-le-petit-luberon.pdf"
+      },
+      "RBD du Champ du Feu (67)": {
+        "statut": "interdit",
+        "regle": "Art. 5 : sont interdits notamment « le camping et le bivouac », les feux, le kite-ski, l'usage des drones de loisir, la circulation des véhicules à moteur ; cueillette familiale tolérée jusqu'à 5 litres par personne et par jour",
+        "acte": "Arrêté du 24 mars 2025, art. 5",
+        "url": "https://www.legifrance.gouv.fr/loda/id/JORFTEXT000051384390/2026-05-23"
+      },
+      "RB de la Sainte-Baume (83)": {
+        "statut": "interdit",
+        "regle": "Art. 7 : « le camping et le bivouac sont interdits » ; circulation à pied interdite dans les parcelles 1 à 10 sauf sur les sentiers balisés ; chiens interdits dans les parcelles 32 et 33 du vallon de Castelette, en laisse ailleurs",
+        "acte": "Arrêté du 24 mars 2025, art. 7 et 10",
+        "url": "https://www.legifrance.gouv.fr/jorf/id/JORFTEXT000051384236"
+      },
+      "RBD de Valbelle (83)": {
+        "statut": "interdit",
+        "regle": "Art. 5 : « le camping et le bivouac sont interdits, sauf autorisation délivrée par l'Office national des forêts pour des études ». Art. 8 : contravention de 4e classe (C. for. R261-1)",
+        "acte": "Arrêté du 24 mars 2025, art. 5 et 8",
+        "url": "https://www.legifrance.gouv.fr/jorf/id/JORFTEXT000051384181"
+      },
+      "RBD de la Haute Chaume (60)": {
+        "statut": "interdit",
+        "regle": "Art. 6 : « le camping et le bivouac sont interdits » ainsi que « les activités nocturnes » ; vélos et chevaux seulement sur les chemins de plus de 2,5 m. Art. 9 : C. for. R261-1, 4e classe",
+        "acte": "Arrêté du 24 mars 2025, art. 6 et 9",
+        "url": "https://www.legifrance.gouv.fr/loda/id/JORFTEXT000051384332/"
+      },
+      "RBI d'Engins (38)": {
+        "statut": "interdit",
+        "regle": "L'ONF liste comme interdits « le pastoralisme, la chasse au petit gibier, le bivouac (et bien sûr le feu comme dans toute la forêt y compris ses milieux ouverts) » ; accès piéton libre mais activités réglementées",
+        "acte": "Fiche ONF de la réserve",
+        "url": "https://www.onf.fr/vivre-la-foret/+/2119::reserve-biologique-integrale-dengins.html"
+      }
+    }
+  },
+  "site_classe": {
+    "libelle": "Site classé",
+    "nb_sites": 2657,
+    "statut": "verifier_arrete",
+    "resume": "Le camping pratiqué isolément est interdit de plein droit, sauf dérogation. Le texte vise le camping et non le bivouac, et la pratique reste tolérée sur beaucoup de sites de montagne. Mais sur les sites très fréquentés, un arrêté municipal ou préfectoral transforme cette tolérance en interdiction ferme : c'est le cas à Chamonix, Saint-Gervais, dans les gorges du Verdon, sur la dune du Pilat et dans les Calanques.",
+    "explication_juridique": "C. urb. art. R111-33 : « Le camping pratiqué isolément ainsi que la création de terrains de camping sont interdits : [...] 2° Sauf dérogation accordée par l'autorité administrative après avis de la commission départementale de la nature, des paysages et des sites, dans les sites classés ou en instance de classement ». Deux limites : la dérogation est prévue par le texte lui-même, et la notion visée est le camping, non le bivouac.",
+    "tente": {
+      "autorisee": null,
+      "type": "aucune_restriction",
+      "station_debout_autorisee": null,
+      "autoportante_autorisee": null,
+      "detail": "Aucune règle propre au bivouac dans le classement lui-même. Une tente montée le soir et démontée au matin relève du bivouac ; installée à demeure, elle devient du camping interdit. Vérifier systématiquement les arrêtés locaux : voir arretes_locaux."
+    },
+    "horaires": {
+      "debut": null,
+      "fin": null,
+      "detail": "Aucune fenêtre réglementaire au titre du classement. En revanche les arrêtés locaux en fixent une : Chamonix (coucher -> lever du soleil), Aiguilles Rouges (19h-9h)."
+    },
+    "localisation": {
+      "contrainte": "libre",
+      "distance_min_acces_routier": null,
+      "corridor_m": null,
+      "refuge_obligatoire": false
+    },
+    "duree": {
+      "nuits_max": 1,
+      "consecutif_meme_lieu": false,
+      "detail": "Au-delà d'une nuit au même endroit, la qualification de camping devient difficile à contester"
+    },
+    "cout": {
+      "payant": false,
+      "montant_eur": null,
+      "unite": null,
+      "reservation_obligatoire": false
+    },
+    "feu": {
+      "feu_ouvert": false,
+      "rechaud_portatif": true,
+      "detail": "Sauf arrêté local plus strict : réchaud et cigarette interdits dans les Calanques et sur la dune du Pilat."
+    },
+    "sanction": "C. env. art. L341-19 : jusqu'à 2 ans d'emprisonnement et 300 000 € d'amende pour qui ne respecte pas l'interdiction de camper sur un site classé. Chiffre confirmé par la plaquette officielle DDT74 / préfecture de Haute-Savoie sur le Mont-Blanc (https://www.chamoniarde.com/images/files/FlyerAPHNGB.pdf). C'est la sanction la plus lourde de tous les zonages de ce jeu de données, très au-delà des 1500 € des réserves et des 750 € des APB — même si en pratique la verbalisation se fait le plus souvent sur le fondement d'un arrêté municipal (contravention de 135 €).",
+    "nuance": "Ne pas présenter le site classé comme une interdiction générale de bivouaquer. Beaucoup de hauts lieux de la randonnée française sont classés (cirque de Gavarnie, gorges du Verdon, Mont-Blanc, pointe du Raz) et le bivouac y est pratiqué. Le classement protège contre l'altération du site. Mais l'inverse est aussi vrai : sur les sites listés dans arretes_locaux, l'interdiction est bien réglementaire et sourcée, et le mécanisme de dérogation du R111-33 2° est réellement utilisé — le camp de base de Tête Rousse au Mont-Blanc n'existe que par une « dérogation accordée au titre du site classé ».",
+    "attention": "Le cumul reste le facteur principal : un site classé recouvre souvent une réserve, un cœur de parc ou un APB, qui eux réglementent réellement.",
+    "base_legale": [
+      "C. urb. art. R111-33 (2°)",
+      "C. env. art. L341-1 et s.",
+      "C. env. art. L341-2 (classement)",
+      "C. env. art. L341-19 (sanction)"
+    ],
+    "note_donnees": "La couche patrinat_sc contient les ~2700 sites classés. `acte_deb` n'est renseigné que pour 114 sites sur 2657 et pour aucun des sites emblématiques — il ne constitue pas une piste exploitable, contrairement à ce que suggère la doc actuelle.",
+    "regime_sites_inscrits": {
+      "_correction": "Le README et rules/par-type.json affirment que les sites inscrits relèvent d'un régime « plus strict sur le papier, sans dérogation prévue ». C'est INEXACT.",
+      "texte": "R111-33 1° : « Sauf dérogation accordée, après avis de l'architecte des Bâtiments de France et de la commission départementale de la nature, des paysages et des sites, par l'autorité compétente mentionnée aux articles L. 422-1 à L. 422-3, sur les rivages de la mer et dans les sites inscrits en application de l'article L. 341-1 du code de l'environnement ».",
+      "consequence": "Les sites inscrits ET les rivages de la mer relèvent du même alinéa, et une dérogation y est expressément prévue. La différence avec le 2° (sites classés) n'est pas l'existence de la dérogation mais l'autorité qui la délivre et l'avis requis : au 1° l'autorité compétente en matière d'urbanisme après avis de l'ABF et de la CDNPS ; au 2° l'autorité administrative (préfet) après avis de la CDNPS seule. Le régime des sites classés est en réalité le plus protecteur des deux, car le classement relève du ministre ou du Conseil d'État et la sanction de L341-19 s'y attache.",
+      "donnees": "Les ~4500 sites inscrits ne sont pas dans ce jeu de données (la couche patrinat_sc ne porte que les sites classés). L'interdiction du 1° s'applique aussi à TOUS les rivages de la mer, ce qui est déjà couvert par l'entrée cdl mais concerne en réalité tout le littoral, bien au-delà des 814 terrains du Conservatoire.",
+      "sources": [
+        {
+          "url": "https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000034355031",
+          "note": "R111-33 en vigueur depuis le 01/04/2017, 4 alinéas seulement"
+        },
+        {
+          "url": "https://www.doctrine.fr/l/texts/codes/LEGITEXT000006074075/articles/LEGIARTI000031721242",
+          "note": "texte des alinéas 1° et 2° cité mot pour mot"
+        }
+      ]
+    },
+    "regle_200m_captage": {
+      "_pourquoi": "Interdiction précise, nationale, autonome de tout zonage, et très largement ignorée des pratiquants — y compris en montagne où l'on bivouaque volontiers près d'une source captée.",
+      "texte": "C. urb. art. R111-33 4° : le camping pratiqué isolément et la création de terrains de camping sont interdits « Sauf dérogation accordée après avis favorable du conseil départemental de l'environnement et des risques sanitaires et technologiques, dans un rayon de 200 mètres autour des points d'eau captée pour la consommation, sans préjudice des périmètres de protection institués en application de l'article L. 1321-2 du code de la santé publique ».",
+      "portee_pratique": [
+        "Rayon de 200 m autour de tout point d'eau capté pour la consommation humaine — captage de source, forage, prise d'eau, y compris les petits captages communaux de fond de vallée et d'alpage.",
+        "S'applique PARTOUT en France, indépendamment de tout zonage de protection de la nature : c'est du droit de l'urbanisme, pas du droit de l'environnement.",
+        "Se cumule avec les périmètres de protection de captage du code de la santé publique (L1321-2), qui sont, eux, institués par arrêté préfectoral de DUP et peuvent être bien plus larges que 200 m et interdire beaucoup plus que le camping.",
+        "La dérogation existe mais exige l'avis favorable du CoDERST : autant dire qu'elle n'est jamais accordée pour un bivouac individuel."
+      ],
+      "limite_donnees": "Les points de captage et leurs périmètres de protection ne sont pas dans ce jeu de données. Ils sont partiellement diffusés par les ARS et les agences de l'eau, et les périmètres DUP sont versés au géoportail de l'urbanisme comme servitudes d'utilité publique (catégorie AS1). Piste d'ajout la plus utile pour une future couche, car l'interdiction est nette et la géométrie existe.",
+      "sources": [
+        {
+          "url": "https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000034355031"
+        },
+        {
+          "url": "https://www.doctrine.fr/l/texts/codes/LEGITEXT000006074075/articles/LEGIARTI000031721242"
+        }
+      ]
+    },
+    "arretes_locaux": {
+      "_avertissement": "Liste des sites classés emblématiques où le bivouac est réellement encadré. La distinction interdiction_reglementaire_sourcee / tolerance_de_fait est portée par le champ `nature` de chaque entrée. Elle n'est pas exhaustive : ~35 000 communes peuvent prendre un arrêté (C. urb. R111-34).",
+      "mont_blanc_chamonix_saint_gervais": {
+        "nature": "interdiction_reglementaire_sourcee",
+        "sites_classes_concernes": [
+          "FR3201271 Massif du Mont Blanc (3 décisions)"
+        ],
+        "regle": "Trois couches d'interdiction se superposent. (1) APHN « Mont-Blanc – Site d'exception » : bivouac interdit sur et à proximité de la voie normale par Saint-Gervais, camping interdit hors camp de base de Tête Rousse. (2) Arrêté municipal de Chamonix : camping, caravaning et bivouac interdits hors terrains aménagés sur toute la commune, avec exception pour le bivouac d'altitude, une nuit, du coucher au lever du soleil. (3) Arrêté municipal de Saint-Gervais-les-Bains du 24 juin 2025 : bivouac et camping sauvage interdits sur TOUT le territoire communal du 1er mai au 31 octobre, sauf l'aire dédiée de l'alpage de Miage et le camp de base de Tête Rousse.",
+        "actes": [
+          {
+            "type": "aphn",
+            "ref": "Arrêté préfectoral n° DDT-2020-1132 du 1er octobre 2020 portant création de la zone de protection d'habitats naturels du Mont-Blanc – Site d'exception",
+            "base_legale": "C. env. art. L411-1, L411-2, L415-5, R411-17-7, R411-17-8, R415-1",
+            "perimetre": "3 175 ha (2 628 ha de zone centrale, 547 ha de zones de transition) sur Chamonix-Mont-Blanc, les Houches et Saint-Gervais-les-Bains",
+            "url": "https://www.chamoniarde.com/images/files/APHNmontblanc.pdf",
+            "lu_integralement": true,
+            "citations": {
+              "art_2-1-4": "de camper en dehors du camp de base de Tête Rousse, dans la limite de la validité de la dérogation accordée au titre du site classé et sur réservation nominative ;",
+              "art_2-1-5": "de bivouaquer, sauf en cas de force majeure, sur l'itinéraire et à proximité de la voie normale d'accès au Mont-Blanc par Saint-Gervais-les-Bains, en raison de la présence de plusieurs refuges sur cet itinéraire ;"
+            },
+            "note": "Interdit aussi : dormir à l'abri Vallot et à la cabane forestière des Rognes, s'écarter des itinéraires habituels sur la voie normale, progresser en cordées de plus de trois personnes en zone centrale, entreprendre l'ascension sans réservation nominative en refuge en période de gardiennage."
+          },
+          {
+            "type": "site_classe",
+            "ref": "Décrets des 14 juin 1951, 5 janvier 1952 et 16 juin 1976 classant parmi les sites pittoresques les abords du massif du Mont-Blanc (Chamonix-Mont-Blanc, Saint-Gervais-les-Bains, Vallorcine, les Houches, les Contamines-Montjoie)",
+            "source": "visés par l'arrêté DDT-2020-1132",
+            "url": "https://www.chamoniarde.com/images/files/APHNmontblanc.pdf"
+          },
+          {
+            "type": "arrete_municipal",
+            "commune": "Chamonix-Mont-Blanc",
+            "ref": "Arrêté municipal en vigueur depuis 1992",
+            "regle": "Camping, caravaning et bivouac interdits hors terrains aménagés sur toute la commune ; exception pour le bivouac d'altitude, une nuit, du coucher au lever du soleil",
+            "url": "https://www.chamoniarde.com/en/mountain-topics/bivouac",
+            "fiabilite": "moyenne — la référence et le numéro exact de l'arrêté ne sont pas publiés par la source ; seule l'année 1992 est indiquée",
+            "secteurs_ou_le_bivouac_est_interdit_sans_exception": [
+              "Lac Blanc",
+              "Lacs Jovet",
+              "Montagne de Chailloux",
+              "Alpages de Blaitière",
+              "Col des Posettes",
+              "périmètre de l'APHN, du col du Mont Lachat à la rimaye du Mont Blanc du Tacul"
+            ]
+          },
+          {
+            "type": "arrete_municipal",
+            "commune": "Saint-Gervais-les-Bains",
+            "ref": "Arrêté municipal du 24 juin 2025",
+            "regle": "Bivouac et camping sauvage interdits sur l'ensemble du territoire communal du 1er mai au 31 octobre chaque année. Exceptions : aire dédiée de l'alpage de Miage ; camp de base de Tête Rousse dans le cadre collectif organisé par le refuge, conformément à l'APHN.",
+            "url": "https://www.actumontagne.com/environnement/saint-gervais-interdit-le-bivouac-sur-toute-sa-commune-sauf-deux-sites/",
+            "fiabilite": "moyenne — date de la décision et contenu confirmés par la presse spécialisée ; le texte de l'arrêté n'a pas été retrouvé en ligne"
+          }
+        ],
+        "sanction": "Atteinte aux habitats naturels et aux espèces : jusqu'à 3 ans et 150 000 € (C. env. L415-3 et R415-1). Non-respect de l'interdiction de camper sur un site classé : jusqu'à 2 ans et 300 000 € (C. env. L341-19). Source : plaquette officielle DDT74, https://www.chamoniarde.com/images/files/FlyerAPHNGB.pdf",
+        "controles": "Gardiens de refuge, brigade blanche de Saint-Gervais-les-Bains, PGHM, agents de l'OFB. Réservation nominative contrôlée avec pièce d'identité aux refuges du Goûter, de Tête Rousse et du Nid d'Aigle.",
+        "fiabilite": "haute"
+      },
+      "aiguilles_rouges_carlaveyron_berard": {
+        "nature": "interdiction_reglementaire_sourcee",
+        "regle": "Bivouac réglementé du 1er juin au 31 août : toléré 19h-9h avec RÉSERVATION OBLIGATOIRE dans quatre secteurs à jauge, strictement interdit dans les zones rouges, et toléré 19h-9h pour les alpinistes hors zones jaunes et rouges.",
+        "acte": {
+          "type": "arrete_prefectoral",
+          "ref": "Arrêté n° DDT-2025-820 du 22 mai 2025 portant réglementation de la pratique du bivouac, des activités de baignade et de navigation au sein des réserves naturelles nationales des Aiguilles Rouges, Carlaveyron et Vallon de Bérard",
+          "remplace": "Arrêté n° DDT 2024-0856 du 28 juin 2024 (période élargie du 1er juin au 31 août, secteurs et jauges adaptés)",
+          "url": "https://www.chamonix.com/sites/default/files/media/brochures/ARP_DDT-2025_820_BivouacRNN_MAR_signe.pdf",
+          "lu_integralement": true
+        },
+        "jauges": {
+          "lacs des Cheserys": 30,
+          "lac du Brévent": 25,
+          "ruines d'Arlevé": 15,
+          "combe du lac Cornu": 15
+        },
+        "hors_reserve_mais_encadre": {
+          "refuge de la Pierre à Bérard": "15 tentes, contact avec le refuge nécessaire",
+          "refuge de Bellachat": "15 tentes, réservation auprès du gardien"
+        },
+        "reservation": "https://bivouac.nature-haute-savoie.fr — plateforme gérée par Asters-Conservatoire des espaces naturels de Haute-Savoie",
+        "baignade": "Toute activité aquatique (baignade, navigation motorisée ou non) interdite dans les lacs des Cheserys et le lac Blanc du 1er juillet au 31 août.",
+        "horaires": {
+          "debut": "19:00",
+          "fin": "09:00"
+        },
+        "sanction": "C. env. art. R332-69 à R332-81",
+        "note": "Ce sont des RNN (couche rnn), pas des sites classés — mais l'arrêté est reconductible chaque année avec des jauges et des secteurs qui changent : à revérifier chaque saison. C'est le meilleur exemple français de bivouac contingenté sur réservation, avec la Vanoise.",
+        "fiabilite": "haute"
+      },
+      "gorges_du_verdon": {
+        "nature": "interdiction_reglementaire_sourcee",
+        "sites_classes_concernes": [
+          "FR3200787 Gorges du Verdon"
+        ],
+        "regle": "Camping sauvage sous quelque forme que ce soit (tente, caravaning, camping-car) interdit sur les berges des lacs et dans les gorges. Bivouac interdit sur le sentier Blanc-Martel. Sentier de l'Imbut fermé au public par arrêté municipal. Baignade interdite par arrêté municipal sur Aiguines, Castellane, Rougon et La Palud-sur-Verdon.",
+        "actes": [
+          {
+            "type": "reglement_parc",
+            "ref": "Réglementation du PNR du Verdon rappelée par les écogardes",
+            "citation": "Le camping sauvage, sous quelque forme que ce soit (tente, caravaning, camping-car…), est interdit sur les berges des lacs et dans les gorges.",
+            "sanction": "135 €",
+            "url": "https://www.parcduverdon.fr/explorer/conseils-des-ecogardes/rappel-de-la-reglementation-par-type-de-milieu/",
+            "note": "Le PNR n'ayant pas de pouvoir de police, cette règle est le rappel d'arrêtés municipaux et préfectoraux ; la page ne cite aucune référence d'arrêté. Le montant de 135 € correspond à une contravention de 4e classe, cohérent avec un arrêté municipal (C. urb. R111-34)."
+          },
+          {
+            "type": "arrete_prefectoral",
+            "ref": "Arrêté préfectoral non identifié interdisant le bivouac sur le sentier Blanc-Martel",
+            "fiabilite": "faible — mentionné par des sources secondaires, texte non retrouvé",
+            "note": "Le sentier traverse le périmètre de la réserve ; c'est probablement le régime de la réserve, pas un arrêté bivouac dédié."
+          }
+        ],
+        "ne_pas_confondre": "L'APPB « Grand Canyon du Verdon » (FR3800841, arrêté du 15 novembre 2012) ne dit RIEN du bivouac : il protège l'apron du Rhône et ne réglemente que les activités aquatiques en fonction du débit. Voir par_type.apb.familles.frayeres_cours_eau.cas_exemplaire_a_ne_pas_mal_lire.",
+        "fiabilite": "moyenne"
+      },
+      "calanques_marseille_cassis": {
+        "nature": "interdiction_reglementaire_sourcee",
+        "sites_classes_concernes": [
+          "sites classés des Calanques, recouverts par le cœur du parc national"
+        ],
+        "regle": "Interdiction de « bivouaquer et camper par tout moyen » : à la belle étoile, sous tente, en véhicule, caravane, camping-car ou tout autre abri mobile. Feu, cigarette et réchaud à gaz également interdits, sauf secteurs habités et jardins privés.",
+        "perimetre_cite": [
+          "Mont Rose à Callelongue",
+          "Anse de la Maronaise",
+          "routes de Sormiou et de Morgiou",
+          "D559 de Marseille à Cassis",
+          "D141 de Cassis à La Ciotat"
+        ],
+        "sanction": "68 € par personne pour le bivouac ; 135 € pour les infractions liées au feu",
+        "url": "https://www.calanques-parcnational.fr/fr/actualites/camping-sauvage-et-bivouac-rappel-des-reglementations-et-des-bons-gestes",
+        "note": "Régime déjà porté par l'entrée « Calanques » des parcs nationaux (cœur de parc, bivouac interdit). Ici la valeur ajoutée est le périmètre routier précis et la confirmation du montant de 68 €/personne par la source officielle du parc.",
+        "fiabilite": "haute"
+      },
+      "dune_du_pilat": {
+        "nature": "interdiction_reglementaire_sourcee",
+        "regle": "« Bivouacs et camping sauvage interdits ». Feux strictement interdits en tout lieu. Véhicules motorisés interdits sur tout le site. Stationnement sauvage en lisière forestière verbalisé 135 € avec mise en fourrière. Sports de glisse interdits, chiens tenus en laisse, cueillette interdite.",
+        "actes": [
+          {
+            "ref": "Arrêté n° 2025-664 — interdiction de fumer sur toute la Grande Dune du Pilat"
+          },
+          {
+            "ref": "Arrêté n° 2025-221 du 8 mars 2025 — réglementation de l'accès aux massifs forestiers"
+          },
+          {
+            "ref": "Arrêté n° 2022-158 — réglementation des activités de vol libre"
+          },
+          {
+            "ref": "Arrêté municipal n° 2021-0182 — usage des drones"
+          },
+          {
+            "ref": "Arrêté préfectoral de 2005 modifié en 2009 — réglementation générale du site"
+          }
+        ],
+        "url": "https://ladunedupilat.com/en/preparation/regulation/",
+        "note": "Le site est en outre classé en massif à risque incendie élevé (Landes de Gascogne), ce qui ajoute des fermetures saisonnières.",
+        "fiabilite": "moyenne — les références d'arrêtés sont citées par le gestionnaire officiel du site mais leurs textes n'ont pas été lus"
+      },
+      "montagne_sainte_victoire": {
+        "nature": "interdiction_probable_non_sourcee",
+        "sites_classes_concernes": [
+          "FR3200924 Montagne Sainte-Victoire"
+        ],
+        "regle_annoncee": "Camping sauvage interdit sur l'ensemble du massif ; bivouac également interdit ; accès au massif fermé par arrêté préfectoral en cas de risque incendie très sévère ou extrême, du 1er juin au 30 septembre ; feu et réchaud interdits toute l'année.",
+        "probleme": "Aucune source primaire trouvée. Les seuls résultats sont des blogs SEO se recopiant les uns les autres (voyage-horizons, librecommelair, quidoo, carnets-et-voyages), sans référence d'arrêté. Le site du Grand Site Sainte-Victoire n'a pas été atteint.",
+        "ce_qui_est_certain": "Le dispositif départemental de fermeture des massifs des Bouches-du-Rhône selon l'indice de risque incendie existe bien et est quotidien en été (13 à 25 massifs fermés selon les jours) — c'est la contrainte réelle et documentée. À consulter sur https://www.risque-prevention-incendie.fr/bouches-du-rhone",
+        "fiabilite": "faible",
+        "a_faire": "Récupérer l'arrêté préfectoral B-du-R d'accès aux massifs forestiers (renouvelé chaque année) et le règlement du Grand Site Sainte-Victoire."
+      },
+      "cirque_de_gavarnie": {
+        "nature": "autorise_par_le_regime_du_parc",
+        "sites_classes_concernes": [
+          "FR3200257 Cirque de Gavarnie et les cirques et vallées avoisinants"
+        ],
+        "constat": "Contre-exemple utile : le classement (et le classement UNESCO) n'interdit PAS le bivouac ici. Le régime applicable est celui du cœur du parc national des Pyrénées, déjà porté par rules/parcs-nationaux.json : bivouac autorisé 19h-9h à plus d'une heure de marche d'un accès routier, feu interdit. Aucun arrêté municipal de Gavarnie-Gèdre interdisant le bivouac n'a été trouvé.",
+        "fiabilite": "moyenne — l'absence d'arrêté municipal est un constat de recherche négative, pas une preuve",
+        "sources": [
+          {
+            "url": "https://www.pyrenees-parcnational.fr/fr/des-decouvertes/sejourner-dans-le-parc-national/ou-dormir-en-montagne/bivouac"
+          }
+        ]
+      },
+      "lac_annecy": {
+        "nature": "interdiction_reglementaire_probable",
+        "regle_annoncee": "La très grande majorité des communes riveraines (Annecy, Sevrier, Talloires, Doussard…) interdisent le camping sauvage par arrêté municipal. Une tolérance du bivouac au-dessus de 1200 m est évoquée pour Talloires en juillet-août.",
+        "probleme": "Aucun arrêté municipal retrouvé nominativement. Les sources sont des sites commerciaux de camping et des offices de tourisme. Le chiffre « 90 % des communes » est attribué à la préfecture de Haute-Savoie sans lien vérifiable.",
+        "fiabilite": "faible",
+        "a_faire": "Interroger les recueils d'actes des communes riveraines une par une ; c'est le cas typique où l'exhaustivité est hors d'atteinte."
+      },
+      "pointe_du_raz_etretat_mont_saint_michel": {
+        "nature": "tolerance_de_fait",
+        "constat": "Recherche menée, aucune source primaire trouvée pour ces trois sites. Les résultats sont exclusivement des blogs de randonnée décrivant des tolérances (« toléré en retrait vers Plogoff ou la baie des Trépassés », « toléré dans l'arrière-pays autour de Beauvoir ou Pontorson », « interdit sur les falaises mais toléré en retrait le long du GR21 »). Ces affirmations ne sont pas des règles opposables et ne doivent pas être présentées comme telles.",
+        "ce_qui_s_applique_certainement": "Pour les trois : R111-33 1° (rivages de la mer) et 2° (site classé) interdisent le camping pratiqué isolément, sauf dérogation. Pour la baie du Mont-Saint-Michel, le danger de marée est le facteur déterminant, pas la réglementation.",
+        "fiabilite": "faible"
+      },
+      "fontainebleau": {
+        "nature": "interdiction_reglementaire_probable",
+        "sites_classes_concernes": [
+          "FR3202494 Forêt Domaniale de Fontainebleau (17 435 ha)"
+        ],
+        "regle_annoncee": "Forêt domaniale gérée par l'ONF, en site classé et réserve de biosphère. Le bivouac y est classiquement interdit, mais aucun arrêté n'a été retrouvé au cours de cette recherche.",
+        "fiabilite": "faible",
+        "a_faire": "Chercher l'arrêté préfectoral de Seine-et-Marne réglementant la circulation et le séjour en forêt de Fontainebleau, et le règlement ONF du massif. Les APB de Fontainebleau (platières) sont à croiser."
+      },
+      "bonifacio_lavezzi_aiguille_du_midi_lac_sainte_croix": {
+        "nature": "non_documente",
+        "constat": "Ces quatre pistes du brief n'ont pas pu être documentées avec une source fiable dans le temps imparti. Aucun arrêté trouvé. Pour l'aiguille du Midi, le régime pertinent est celui de l'APHN Mont-Blanc et des arrêtés de Chamonix ci-dessus. Pour Lavezzi, la réserve naturelle des Bouches de Bonifacio (couche rnn/rnc) est le régime à vérifier en priorité. Pour le lac de Sainte-Croix, la règle du PNR du Verdon sur les berges des lacs s'applique a priori.",
+        "fiabilite": "faible"
+      }
+    }
+  },
   "cdl": {
     "libelle": "Terrain du Conservatoire du littoral",
     "statut": "interdit",
-    "resume": "Bivouac et camping interdits sur les terrains du Conservatoire. Le gestionnaire (souvent commune ou département) fixe les règles d'accès par arrêté.",
-    "explication_juridique": "C. env. art. L322-1 et s. Terrains propriété d'un établissement public, gérés par convention. Les règles d'accès sont fixées par le gestionnaire.",
-    "tente": {"autorisee": false, "type": "interdite", "station_debout_autorisee": false, "autoportante_autorisee": false},
-    "horaires": {"debut": null, "fin": null},
-    "localisation": {"contrainte": "libre", "distance_min_acces_routier": null, "corridor_m": null, "refuge_obligatoire": false},
-    "duree": {"nuits_max": 0, "consecutif_meme_lieu": false},
-    "cout": {"payant": false, "montant_eur": null, "unite": null, "reservation_obligatoire": false},
-    "feu": {"feu_ouvert": false, "rechaud_portatif": false},
-    "attention": "Se cumule avec l'interdiction de camper sur les rivages de la mer (C. urb. art. R111-33) et souvent avec la loi Littoral.",
-    "base_legale": ["C. env. art. L322-1 et s.", "C. urb. art. R111-33"],
-    "sources": [{"type": "reference", "url": "https://www.conservatoire-du-littoral.fr/"}]
+    "resume": "Bivouac et camping interdits en pratique, mais le fondement dépend du site : il n'existe aucun texte national qui les interdise nommément. L'interdiction devient verbalisable dès qu'un arrêté municipal ou préfectoral régit l'accès ou les usages du terrain.",
+    "explication_juridique": "Les terrains relèvent du domaine public, sauf les parcelles acquises non classées dans le domaine propre (C. env. art. L322-9) — qui restent du domaine privé de l'établissement. L322-9 impose aussi l'ouverture au public : l'interdiction de bivouac ne peut pas se déduire d'une fermeture par principe. Il n'existe ni règlement de police national, ni règlement type : les restrictions se logent site par site dans la convention de gestion et dans les arrêtés locaux. Les gardes du littoral, commissionnés et assermentés (art. L322-10-1, R322-15), sont compétents pour constater les infractions à ces arrêtés.",
+    "tente": {
+      "autorisee": false,
+      "type": "interdite",
+      "station_debout_autorisee": false,
+      "autoportante_autorisee": false
+    },
+    "horaires": {
+      "debut": null,
+      "fin": null
+    },
+    "localisation": {
+      "contrainte": "libre",
+      "distance_min_acces_routier": null,
+      "corridor_m": null,
+      "refuge_obligatoire": false
+    },
+    "duree": {
+      "nuits_max": 0,
+      "consecutif_meme_lieu": false
+    },
+    "cout": {
+      "payant": false,
+      "montant_eur": null,
+      "unite": null,
+      "reservation_obligatoire": false
+    },
+    "feu": {
+      "feu_ouvert": false,
+      "rechaud_portatif": null,
+      "detail": "Le feu est visé par les arrêtés locaux et par le code forestier ; aucune source nationale ne se prononce sur le réchaud portatif."
+    },
+    "attention": "Trois fondements distincts et cumulables, à ne pas confondre : (1) arrêté municipal ou préfectoral d'accès ou d'usage — c'est le régime normal du bivouaqueur ; (2) C. urb. art. R111-33 si le terrain est en site classé ou inscrit, ou sur le rivage de la mer au sens de L2111-4 CGPPP — cet article ne couvre PAS les terrains situés en retrait du rivage (arrière-dune comprise) ; (3) contravention de grande voirie en cas de dégradation. Hors de ces cas, l'interdiction affichée par le Conservatoire relève de la doctrine du propriétaire, non sanctionnable pénalement en tant que telle.",
+    "base_legale": [
+      "C. env. art. L322-9 (domanialité, ouverture au public)",
+      "C. env. art. L322-10-1 (gardes du littoral, constatation des arrêtés d'accès)",
+      "C. env. art. L322-10-2 (contravention de 4e classe)",
+      "C. env. art. L322-10-3 (amende forfaitaire, CPP art. 529 à 529-2)",
+      "C. env. art. L322-10-4 (contravention de grande voirie, 5e classe)",
+      "C. env. art. R322-13, R322-14 (plan de gestion, limitation de l'accès)",
+      "C. env. art. R322-15 (commissionnement)",
+      "C. urb. art. R111-32 à R111-34 (camping)",
+      "C. urb. art. L121-31 et s. (servitude de passage)",
+      "CGPPP art. L2111-4 (définition du rivage de la mer)"
+    ],
+    "sources": [
+      {
+        "type": "reference",
+        "url": "https://www.conservatoire-du-littoral.fr/"
+      },
+      {
+        "type": "visa",
+        "ref": "C. env. art. L322-10-2 et L322-10-4",
+        "url": "https://www.legifrance.gouv.fr/codes/section_lc/LEGITEXT000006074220/LEGISCTA000006188381/"
+      },
+      {
+        "type": "visa",
+        "ref": "C. env. art. L322-9 (domanialité)",
+        "url": "https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000033034783"
+      },
+      {
+        "type": "visa",
+        "ref": "C. urb. art. L121-31 (servitude de passage des piétons)",
+        "url": "https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000031210502"
+      }
+    ],
+    "nb_sites": 840,
+    "sanction": "Contravention de 4e classe — 135 € forfaitaires (90 € minorée, 375 € majorée), 750 € au maximum (C. env. art. L322-10-2, procédure forfaitaire art. L322-10-3). Ce fondement suppose l'existence d'un arrêté municipal ou préfectoral : sans arrêté local, il tombe. En cas d'atteinte à l'intégrité du domaine public (feu, destruction de végétation), s'y ajoute une contravention de grande voirie de 5e classe — jusqu'à 1 500 €, avec obligation de réparation et frais de remise en état, poursuivie devant le tribunal administratif (art. L322-10-4). C. pén. art. R610-5 (38 €) n'est pas le bon fondement : L322-10-2 est un texte spécial qui prime.",
+    "sentier_littoral": "La servitude de passage des piétons le long du littoral (C. urb. art. L121-31 et s.) grève les propriétés privées riveraines du domaine public maritime sur une bande de 3 m, destinée à assurer « exclusivement le passage des piétons ». Elle ne confère aucun droit de séjour : pas de bivouac au titre du sentier du littoral. Elle n'est pas non plus le titre d'accès aux terrains du Conservatoire, ouverts au public au titre de L322-9.",
+    "exceptions_amenagees": [
+      {
+        "site": "Ghignu, désert des Agriate (Haute-Corse)",
+        "regime": "Gîte d'étape des « paillers » — anciens abris de bergers restaurés, ~50 places en dortoirs de 4 à 6. Ouvert du 1er mai au 15 octobre, 12 €/personne/nuit, gratuit avant 10 ans, réservation auprès du Département. Ni matelas, ni cuisine, ni eau. Le bivouac libre reste interdit hors pistes autorisées.",
+        "gestionnaire": "Département de Haute-Corse, service de gestion des terrains côtiers",
+        "url": "https://www.conservatoire-du-littoral.fr/siteLittoral/42/28-agriate-2b_haute-corse.htm"
+      }
+    ],
+    "nuance": "La « tolérance discrète » du bivouac sur le GR34 (installation après 19-20 h, départ avant 9 h) ne provient que de blogs commerciaux, qui se contredisent sur le fondement comme sur le montant. C'est une tolérance de fait non écrite, à ne jamais présenter comme un régime. Le seul énoncé institutionnel vérifié en Bretagne est une interdiction : Belle-Île-en-Mer, sur tout le littoral, au titre de R111-33 (près de la moitié de l'île est en site classé ou inscrit).",
+    "note_donnees": "840 sites et 222 200 ha au total selon le Conservatoire, pour 1 110 gardes du littoral. La couche cdl du jeu de données en compte 814 — écart normal, les acquisitions sont continues."
   },
-
   "_non_telecharge": {
     "commentaire": "Zonages pertinents non inclus dans fetch.sh, avec la raison.",
     "znieff": "ZNIEFF 1 et 2 (couches patrinat_znieff*) : inventaire scientifique SANS portée réglementaire. Aucune règle de bivouac. Ajoutables si besoin d'un affichage informatif, mais ne jamais en déduire une interdiction.",

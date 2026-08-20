@@ -26,6 +26,10 @@ const LIB_HORAIRE = {
 const heure = (h) => (h ? LIB_HORAIRE[h] ?? h : null)
 const couleur = (s) => SEVERITES.find((x) => x.v === s)?.couleur ?? '#7f8c9b'
 
+// Coupe au dernier espace avant la limite, pour ne pas tronquer un mot.
+const abrege = (t, max) =>
+  t.length <= max ? t : t.slice(0, t.lastIndexOf(' ', max)).replace(/[,;:]$/, '') + '…'
+
 // Le repli ne concerne que la feuille mobile, où elle masquerait la carte que
 // l'on vient de toucher. En desktop, la poignée et le bouton « voir plus » sont
 // masqués en CSS : replier y rendrait le détail inatteignable.
@@ -103,9 +107,20 @@ const fiches = computed(() =>
         : 'Feu et réchaud interdits'])
     }
 
+    // Les aires nommées par l'acte sont l'information la plus actionnable
+    // quand le bivouac n'est autorisé que là : les lister vaut mieux que le
+    // seul « aires désignées » du champ contrainte.
+    if (loc.aires_designees?.length) {
+      detail.push(['Aires autorisées', loc.aires_designees.join(' · ')])
+    }
+
     if (r.saison) detail.push(['Saison', r.saison])
     if (o.periode && o.periode !== 'toute l’année') detail.push(['Période', o.periode])
-    if (r.sanction) detail.push(['Sanction', r.sanction])
+    // La sanction porte désormais son raisonnement juridique complet (jusqu'à
+    // ~500 caractères) : on tronque à la longueur, le détail restant dans
+    // regle_json pour qui lit les données. Couper sur la ponctuation ne marche
+    // pas ici — « C. env. », « art. » abondent et donnent des bouts inutiles.
+    if (r.sanction) detail.push(['Sanction', abrege(r.sanction, 150)])
 
     return {
       cle: `${o.type}|${o.nom}|${o.id_mnhn}`,
